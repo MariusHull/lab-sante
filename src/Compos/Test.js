@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import "../App.css";
 
+const socket = socketIOClient("localhost:3001");
+
 export default class Test extends Component {
   constructor() {
     super();
@@ -12,7 +14,6 @@ export default class Test extends Component {
       color: "white",
       message: "",
       ///
-      socket: "",
       messages: [
         { body: "Heyyyyy" },
         { body: "Heyyyyy2" },
@@ -21,9 +22,7 @@ export default class Test extends Component {
     };
   }
 
-  componentWillMount = () => {
-    this.state.socket = socketIOClient(this.state.endpoint);
-  };
+  componentWillMount = () => {};
 
   onChange = e => {
     let { message } = this.state;
@@ -33,8 +32,8 @@ export default class Test extends Component {
 
   onSubmit = e => {
     console.log(this.state.message);
+    socket.emit("Message IOA", this.state.message);
     this.setState({ message: "" });
-    this.state.socket.emit("Message IOA", this.state.message);
   };
 
   // adding the function
@@ -44,7 +43,7 @@ export default class Test extends Component {
 
   // render method that renders in code if the state is updated
   render() {
-    const { socket, messages, message } = this.state;
+    const { messages, message } = this.state;
     socket.on("New message", mess => {
       console.log("Messages : ", mess);
       messages.push(mess);
