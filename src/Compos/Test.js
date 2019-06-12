@@ -13,16 +13,35 @@ export default class Test extends Component {
       ///
       color: "white",
       message: "",
+      receiver: "Tout le monde",
+      sender: "IOA",
+      status: "information",
       ///
       messages: [
-        { body: "Heyyyyy" },
-        { body: "Heyyyyy2" },
-        { body: "Heyyyyy3" }
+        {
+          body: "Heyyyyy",
+          receiver: "Tout le monde",
+          sender: "IOA",
+          status: "information"
+        },
+        {
+          body: "Heyyyyy2",
+          receiver: "Tout le monde",
+          sender: "IOA",
+          status: "information"
+        }
       ]
     };
   }
 
-  componentWillMount = () => {};
+  componentWillMount = () => {
+    const { messages } = this.state;
+    socket.on("New message", mess => {
+      console.log("Messages : ", mess);
+      messages.push(mess);
+      this.setState({ messages });
+    });
+  };
 
   onChange = e => {
     let { message } = this.state;
@@ -32,8 +51,16 @@ export default class Test extends Component {
 
   onSubmit = e => {
     console.log(this.state.message);
-    socket.emit("Message IOA", this.state.message);
-    this.setState({ message: "" });
+    socket.emit(
+      "Message IOA",
+      this.state.message,
+      this.state.receiver,
+      this.state.sender,
+      this.state.status
+    );
+    this.setState({
+      message: ""
+    });
   };
 
   // adding the function
@@ -44,11 +71,6 @@ export default class Test extends Component {
   // render method that renders in code if the state is updated
   render() {
     const { messages, message } = this.state;
-    socket.on("New message", mess => {
-      console.log("Messages : ", mess);
-      messages.push(mess);
-      this.setState({ messages });
-    });
     return (
       <div style={{ textAlign: "center" }}>
         {/* <button onClick={() => this.send()}>Change Color</button>
@@ -64,7 +86,8 @@ export default class Test extends Component {
             return (
               <div>
                 <hb />
-                {message.body}
+                {message.body} DE : {message.sender}, A : {message.receiver},
+                STATUS : {message.status}
               </div>
             );
           })}
