@@ -12,7 +12,10 @@ export default class Test extends Component {
 
       ///
       color: "white",
-
+      message: "",
+      receiver: "",
+      sender: "",
+      status: "",
       ///
       messages: [
         { body: "Heyyyyy" },
@@ -25,12 +28,13 @@ export default class Test extends Component {
   componentWillMount = () => {};
 
   onChange = e => {
-    let { message } = this.state;
-    message = e.target.value;
-    this.setState({ message });
+    let state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState(state);
   };
 
   onSubmit = e => {
+    console.log(this.state.receiver)
     console.log(this.state.message);
     socket.emit("Message IOA", this.state.message);
     this.setState({ message: "" });
@@ -43,7 +47,7 @@ export default class Test extends Component {
 
   // render method that renders in code if the state is updated
   render() {
-    const { messages, message } = this.state;
+    const { messages, message, receiver } = this.state;
     socket.on("New message", mess => {
       console.log("Messages : ", mess);
       messages.push(mess);
@@ -68,9 +72,37 @@ export default class Test extends Component {
               </div>
             );
           })}
+
+          
         <h2>Votre message : </h2>
+        <select 
+          name="receiver"
+          className="form-control"
+          onChange={this.onChange}
+          >
+          <option value="" selected disabled hidden>Qui êtes vous?</option>
+          <option value="IAO">IAO</option>
+          <option value="Bocal">Bocal</option>
+          <option value="Accueil">Accueil</option>
+          <option value="Administration">Administration</option>
+        </select>
+
+        <select 
+          className="form-control"
+          onChange={this.onChange}
+          name="sender"
+          >
+          <option value="" selected disabled hidden>Destinataire?</option>
+          <option value="all">Tous</option>
+          <option value="IAO">IAO</option>
+          <option value="Bocal">Bocal</option>
+          <option value="Accueil">Accueil</option>
+          <option value="Administration">Administration</option>
+        </select>
+
         <div className="form-group">
           <input
+            name="message"
             type="text"
             className="form-control"
             aria-describedby="emailHelp"
@@ -78,6 +110,8 @@ export default class Test extends Component {
             onChange={this.onChange}
             placeholder="Name"
           />
+
+          
           <button onClick={this.onSubmit}>Envoyer</button>
         </div>
       </div>
