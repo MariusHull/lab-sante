@@ -3,6 +3,8 @@ import socketIOClient from "socket.io-client";
 import logo from "./logo.svg";
 import "./App.css";
 
+import MessageBoard from './Components/MessageBoard/MessageBoard'
+
 class App extends Component {
   constructor() {
     super();
@@ -38,16 +40,17 @@ class App extends Component {
   render() {
     const socket = socketIOClient(this.state.endpoint);
     return (
-      <div style={{ textAlign: "center" }}>
-        <button onClick={() => this.send()}>Change Color</button>
+      <MessageBoard />
+      // <div style={{ textAlign: "center" }}>
+      //   <button onClick={() => this.send()}>Change Color</button>
 
-        <button id="blue" onClick={() => this.setColor("blue")}>
-          Blue
-        </button>
-        <button id="red" onClick={() => this.setColor("red")}>
-          Red
-        </button>
-      </div>
+      //   <button id="blue" onClick={() => this.setColor("blue")}>
+      //     Blue
+      //   </button>
+      //   <button id="red" onClick={() => this.setColor("red")}>
+      //     Red
+      //   </button>
+      // </div>
     );
   }
 }
