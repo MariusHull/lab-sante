@@ -1,4 +1,41 @@
 .container{
-    background-color: red
+    margin-top: 30px;
+    padding: 0px 15px;
+    min-height: 500px;
+    /* box-shadow: 0px 0px 4px black;
+    background-color: rgba(0, 0, 0, 0.5) */
 }
 
+.message{
+    background-color: white;
+    margin-top: 10px;
+    height: 100px;
+    border-width: 4px;
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+}
+
+.sender-container{
+    width: 100px;
+}
+
+.sender-transparent{
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.418);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sender-content{
+    text-align: center;
+    font-weight: 900;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 10px;
+}
+
+.message-content{
+    background-color: white;
+    flex: 1
+}
