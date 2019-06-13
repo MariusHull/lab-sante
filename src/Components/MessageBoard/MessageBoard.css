@@ -9,16 +9,17 @@
 .message{
     background-color: white;
     margin-top: 10px;
-    height: 70px;
+    min-height: 70px;
     border-width: 2px;
     border-style: solid;
     display: flex;
     flex-direction: row;
     border-radius: 10px;
+
 }
 
 .sender-container{
-    width: 100px;
+    width: 150px;
     border-radius: 8px 0px 0px 8px;
 }
 
@@ -34,9 +35,18 @@
 
 .sender-content{
     text-align: center;
-    font-weight: 900;
     /* font-family: 'Courier New', Courier, monospace; */
-    margin: 10px;
+}
+
+.message-container{
+    border-radius: 0px 8px 8px 0px;
+    background-color: white;
+    display: flex;
+}
+
+.date-message{
+    font-weight: bold;
+    margin-left: 5px;
 }
 
 .message-content{
@@ -44,7 +54,8 @@
     border-radius: 0px 8px 8px 0px;
     display: flex;
     align-items: center;
+    justify-items: center;
     margin-left : 10px;
     font-size: x-large;
-    font-family: montserrat
+    font-family: 'Montserrat'
 }
