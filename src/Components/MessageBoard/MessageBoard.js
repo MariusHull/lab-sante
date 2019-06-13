@@ -3,7 +3,7 @@ import "./MessageBoard.css";
 
 class MessageBoard extends React.Component {
 
-    constructor(){
+    constructor() {
         super()
     }
 
@@ -12,9 +12,9 @@ class MessageBoard extends React.Component {
             case "IOA":
                 return "blue"
             case "Bocal":
-                return "green" 
+                return "green"
             case "Accueil":
-                    return "orange"
+                return "orange"
             default:
                 return "red"
         }
@@ -37,7 +37,7 @@ class MessageBoard extends React.Component {
 
     render() {
         return (
-            <div class="container">
+            <div class="main-container">
                 {this.displayMessage({
                     sender: "IOA",
                     receiver: "Bocal",
@@ -62,7 +62,21 @@ class MessageBoard extends React.Component {
                 {this.displayMessage({
                     sender: "Accueil",
                     receiver: "IOA",
-                    body: "Ceci est un test.",
+                    body: "Malaise jeune fille 12 ans.",
+                    updated_at: Date.now(),
+                    status: "urgent"
+                })}
+                {this.displayMessage({
+                    sender: "Bocal",
+                    receiver: "IOA",
+                    body: "Box 3 libéré.",
+                    updated_at: Date.now(),
+                    status: "urgent"
+                })}
+                {this.displayMessage({
+                    sender: "Accueil",
+                    receiver: "IOA",
+                    body: "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
                     updated_at: Date.now(),
                     status: "urgent"
                 })}
