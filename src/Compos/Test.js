@@ -92,7 +92,7 @@ img.src = './images.jpeg';
 
     const { messages, message } = this.state;
     return (
-      <div style={{ textAlign: "center" }}>
+      <div>
         {/* <button onClick={() => this.send()}>Change Color</button>
 
         <button id="blue" onClick={() => this.setColor("blue")}>
@@ -112,9 +112,9 @@ img.src = './images.jpeg';
             );
           })*/}
      
-        <div className="row" size="1">
+        <div className="row1">
 
-
+        
         <div className="col" id="colonne1">
         <select 
           name="receiver"
@@ -146,9 +146,12 @@ img.src = './images.jpeg';
         </div>
         </div>
 
+        <div className='row2'>
+
         <div id="colonne3" >
         <button  className="form-control3" onClick={this.coucou} > 
-        <img alt='haut-parleur' src="./imagedicteevocale.jpeg" width="25%" height="25%"/>
+          <div class="form-control3-icon"></div>
+        {/* <img alt='haut-parleur' src="./imagedicteevocale.jpeg" width="25%" height="25%"/> */}
         </button>
         </div>
 
@@ -163,7 +166,9 @@ img.src = './images.jpeg';
             placeholder="Message"
           />
           </div>
-         <div>
+        
+        </div>
+         <div className="row3">
          <div id="colonne5">
           <button className="form-control5" name="status" onClick={this.onChangeStatus} value="important">Important</button>
           </div>

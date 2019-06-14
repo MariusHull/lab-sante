@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import "./App.css";
 import Test from "./Compos/Test";
+import FrontAccueil from "./front_accueil/front_accueil"
 
 class App extends Component {
   constructor() {
@@ -21,6 +24,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={Test} />
+          <Route exact path="/accueil" component={FrontAccueil} />
+          {/* <Route exact path="/notifs" component={MessageBoard} /> */}
         </div>
       </Router>
     );

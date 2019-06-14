@@ -9,14 +9,21 @@ textarea {
     
   }
 
+.row1 {
+    width: 100%;
+    height: 20vh;
+    background-color: cyan
+}
+
 div#colonne1 {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-
+    
 	float: left;
-	width: 50%;
+    width: 50%;
+    height: 100%;
 	background: grey;
 }
 
@@ -34,9 +41,9 @@ div#colonne1 {
     background: blue;
 
     
-
     width: 100%;
-    height: 20vh;
+    height: 100%;
+
 }
 
 div#colonne2 {
@@ -45,7 +52,7 @@ div#colonne2 {
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-
+    height: 100%;
 	float: left;
 	width: 50%;
 	background: red;
@@ -66,20 +73,26 @@ div#colonne2 {
     text-align: center;
 
     width: 100%;
-    height: 20vh;
+    height: 100%;
 }
 
+.row2 {
+    width: 100%;
+    height: 50vh;
+    background-color: brown
+}
 div#colonne3 {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-
+    padding:0%;
 	float: left;
     width: 25%;
-    height: 50vh;
+    height: 100%;
     padding: 0px;
-	background: grey;
+    background: grey;
+    border-radius: 5px;
 }
 
 .form-control3 {
@@ -87,7 +100,8 @@ div#colonne3 {
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
- 
+    padding:0%;
+
     border-color: none;
     
     color:white; 
@@ -95,7 +109,17 @@ div#colonne3 {
     text-align: center;
 
     width: 100%;
-    height: 50vh;
+    height: 100%;
+}
+
+.form-control3-icon{
+    background-color: red;
+    background-image: url('./imagedicteevocale.jpeg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: auto;
+    width: 63%;
+    height: 55%;
 }
 
 div#colonne4 {
@@ -103,28 +127,32 @@ div#colonne4 {
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-
+    height: 100%;
 	float: left;
 	width: 75%;
-	background: white;
+	background: brown;
 }
 
 .form-control4 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 2%;
+    margin-right: 2%;
 
     border-color: none;
     color:black; 
     font-size: xx-large;
     background: white;
     text-align: left;
-    padding:2%;
-    width: 96%;
-    height: 45.5vh;
+    width: 95%;
+    height: 46vh;
 }
 
+.row3 {
+    width: 100%;
+    height: 30vh;
+    background-color: green
+}
 div#colonne5 {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -132,7 +160,8 @@ div#colonne5 {
     margin-right: 0px;
 
 	float: left;
-	width: 30%;
+    width: 30%;
+    height: 100%;
 	background: white;
 }
 
@@ -150,7 +179,7 @@ div#colonne5 {
     text-align: center;
 
     width: 100%;
-    height: 30vh;
+    height: 100%;
 }
 
 div#colonne6 {
@@ -160,11 +189,14 @@ div#colonne6 {
     margin-right: 0px;
 
 	float: left;
-	width: 40%;
-	background: grey;
+    width: 40%;
+    height: 100%;
+	background:white;
 }
 
 .form-control6 {
+    border-radius:5px;
+
     font-size: 200%;
 
     margin-top: 0px;
@@ -178,22 +210,24 @@ div#colonne6 {
     text-align: center;
 
     width: 100%;
-    height: 30vh;
+    height: 100%;
 }
 
 div#colonne7 {
-
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
 
 	float: left;
-	width: 30%;
-	background: grey;
+    width: 30%;
+    height: 100%;
+	background: white;
 }
 
 .form-control7 {
+    border-radius:5px;
+
     font-size: 200%;
 
     margin-top: 0px;
@@ -207,5 +241,5 @@ div#colonne7 {
     text-align: center;
 
     width: 100%;
-    height: 30vh;
+    height: 100%;
 }
