@@ -11,7 +11,6 @@ class MessageBoard extends React.Component {
         super()
         moment.locale('fr');
         this.state = {
-            messages: [],
             messageList: [
                 {
                     sender: "IOA",
@@ -99,13 +98,13 @@ class MessageBoard extends React.Component {
     }
 
     componentWillMount = () => {
-        const { messages } = this.state;
         socket.on("Message", mess => {
-          console.log("Messages : ", mess);
-          messages.push(mess);
-          this.setState({ messages }, ()=>{
-              console.log(messages)
-          });
+            this.setState({ messageList : [mess, ...this.state.messageList]})
+        //   console.log("Messages : ", mess);
+        //   messages.push(mess);
+        //   this.setState({ messages }, ()=>{
+        //       console.log(messages)
+        //   });
         });
       };
 
