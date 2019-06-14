@@ -23,6 +23,7 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={Test} />
+          <Route exact path="/board" component={MessageBoard} />
         </div>
       </Router>
     );
