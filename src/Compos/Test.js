@@ -23,7 +23,7 @@ export default class Test extends Component {
 
   componentWillMount = () => {
     const { messages } = this.state;
-    socket.on("New message", mess => {
+    socket.on("Ne  w message", mess => {
       console.log("Messages : ", mess);
       messages.push(mess);
       this.setState({ messages });
@@ -50,6 +50,7 @@ export default class Test extends Component {
       updated_at: Date.now(),
       status:this.state.status
     })
+
     socket.emit(
       "Message",
       {
