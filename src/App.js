@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./App.css";
-import Test from "./Compos/Test";
-import FrontAccueil from "./front_accueil/front_accueil"
+import FrontMessage from "./Components/FrontMessageEnvoi/front_message_envoi";
+import FrontAccueil from "./Components/FrontAccueil/front_accueil"
 
 import MessageBoard from './Components/MessageBoard/MessageBoard'
 
@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={Test} />
+          <Route exact path="/" component={FrontMessage} />
           <Route exact path="/accueil" component={FrontAccueil}/>
           <Route exact path="/board" component={MessageBoard} />
         </div>

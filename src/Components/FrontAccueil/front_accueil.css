@@ -1,0 +1,130 @@
+.row1accueil{
+    width: 100%;
+    height: 20vh;
+    background-color: white
+}
+
+.bienvenue {
+    width: 90%;
+    height: 50%;
+
+    margin-left: 5%;
+    margin-right: 5%; 
+    margin-top:2.5%;
+
+    border-radius: 5px;
+
+	float: left;
+    background: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.titretext{
+    font-size: xx-large;
+    text-align: center;
+    color:white;
+    font-weight:bold;
+    vertical-align:middle;
+
+}
+
+.row2accueil {
+    width: 100%;
+    height: 80vh;
+    background-color:white
+    
+}
+
+.soustitreprocedure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12%;
+    text-align: center;
+
+    color: white;
+}
+
+.soustitreordre {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 12%;
+    
+}
+
+.ordrepassage{
+    float:left;
+    
+    width: 35%;
+    height:95%;
+    margin-bottom: 5%;
+    margin-right: 5%;
+    margin-left:5%;
+
+    background: grey;
+    border-radius: 5px;
+}
+
+.textbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+
+    color: black;
+}
+
+.ordrebox{
+    font-size: x-large;
+
+    margin-left:5%;
+    margin-bottom: 3%;
+    text-align: center;
+    width: 90%;
+    height: 8%;
+    background-color: white;
+    border-radius: 5px
+}
+
+.ordrebox1{
+    font-size: x-large;
+    text-align: center;
+    color:white;
+    font-weight:bold;
+    margin-left:5%;
+    margin-bottom: 3%;
+    text-align: center;
+    width: 90%;
+    height: 8%;
+    background-color: rosybrown;
+    border-radius: 5px
+}
+
+.procedures {
+    float:left;
+
+    width: 50%;
+    height: 95%;
+    
+    margin-bottom: 5%;
+    margin-right: 5%;
+    background: grey;
+    border-radius: 5px;
+}
+
+.textprocedure {
+    margin-left:3%;
+    margin-right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: black;
+}

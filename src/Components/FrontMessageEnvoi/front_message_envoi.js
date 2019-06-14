@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import "./test.css";
+import "./front_message_envoi";
 import "./imagedicteevocale.jpeg"
 
 const socket = socketIOClient("localhost:3001");
 
-export default class Test extends Component {
+export default class FrontMessageEnvoi extends Component {
   constructor() {
     super();
     this.state = {
@@ -113,7 +113,7 @@ img.src = './images.jpeg';
           onChange={this.onChange}
           >
           <option value="" selected disabled hidden>Expéditeur?</option>
-          <option value="IAO">IAO</option>
+          <option value="IOA">IOA</option>
           <option value="Bocal">Bocal</option>
           <option value="Accueil">Accueil</option>
           <option value="Administration">Administration</option>
@@ -129,7 +129,7 @@ img.src = './images.jpeg';
           >
           <option value="" selected disabled hidden>Destinataire?</option>
           <option className="option" value="all">Tous</option>
-          <option value="IAO">IAO</option>
+          <option value="IOA">IOA</option>
           <option value="Bocal">Bocal</option>
           <option value="Accueil">Accueil</option>
           <option value="Administration">Administration</option>
