@@ -2,6 +2,8 @@ import React from "react";
 import "./MessageBoard.css";
 import * as moment from 'moment';
 import 'moment/locale/fr';
+import socketIOClient from "socket.io-client";
+const socket = socketIOClient("localhost:3001");
 
 class MessageBoard extends React.Component {
 
@@ -9,6 +11,7 @@ class MessageBoard extends React.Component {
         super()
         moment.locale('fr');
         this.state = {
+            messages: [],
             messageList: [
                 {
                     sender: "IOA",
@@ -69,17 +72,17 @@ class MessageBoard extends React.Component {
         }
     }
 
-    displayMessage(message) {
+    displayMessage(message, index) {
         return (
-            <div class="message" style={{ borderColor: this.colorFromSender(message.sender) }}>
-                <div class="sender-container" style={{ backgroundColor: this.colorFromSender(message.sender) }}>
-                    <div class="sender-transparent">
-                        <div class="sender-content" style={{ fontWeight: 900, fontSize: 18 }}>{message.sender}</div>
+            <div className="message" key={index} style={{ borderColor: this.colorFromSender(message.sender) }}>
+                <div className="sender-container" style={{ backgroundColor: this.colorFromSender(message.sender) }}>
+                    <div className="sender-transparent">
+                        <div className="sender-content" style={{ fontWeight: 900, fontSize: 18 }}>{message.sender}</div>
                         <div>{"à " + moment(message.updated_at).format('LT')}</div>
                     </div>
                 </div>
-                <div class="message-container">
-                    <div class="message-content">{message.body}</div>
+                <div className="message-container">
+                    <div className="message-content">{message.body}</div>
                 </div>
             </div>
         )
@@ -87,20 +90,31 @@ class MessageBoard extends React.Component {
 
     displayEmergencyMessage(message) {
         return (
-            <div class="emergency-container">
-                <div class="emergency-popup">
+            <div className="emergency-container">
+                <div className="emergency-popup">
                     <div>{message.body}</div>
                 </div>
             </div>
         )
     }
 
+    componentWillMount = () => {
+        const { messages } = this.state;
+        socket.on("Message", mess => {
+          console.log("Messages : ", mess);
+          messages.push(mess);
+          this.setState({ messages }, ()=>{
+              console.log(messages)
+          });
+        });
+      };
+
     render() {
         console.log(this.state)
 
         return (
-                <div class="main-container">
-                    {this.state.messageList.map(message => { return this.displayMessage(message) })}
+                <div className="main-container">
+                    {this.state.messageList.map((message, index) => { return this.displayMessage(message, index) })}
                     {/* {this.displayEmergencyMessage({
                     sender: "Accueil",
                     receiver: "IOA",
