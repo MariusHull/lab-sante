@@ -63,8 +63,6 @@ export default class Test extends Component {
     );
     this.setState({
       message: "",
-      receiver: "",
-      sender:"",
       status:""
     });
   };
@@ -110,7 +108,7 @@ img.src = './images.jpeg';
         
         <div className="col" id="colonne1">
         <select 
-          name="receiver"
+          name="sender"
           className="form-control1"
           onChange={this.onChange}
           >
@@ -127,7 +125,7 @@ img.src = './images.jpeg';
         <select 
           className="form-control2"
           onChange={this.onChange}
-          name="sender"
+          name="receiver"
           >
           <option value="" selected disabled hidden>Destinataire?</option>
           <option className="option" value="all">Tous</option>
