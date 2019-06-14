@@ -51,6 +51,7 @@ export default class Test extends Component {
       status:this.state.status
     })
     socket.emit(
+      "Message",
       {
         sender:  this.state.sender,
         receiver: this.state.receiver,
