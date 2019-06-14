@@ -12,9 +12,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./assets/background.png');
-  background-size: 100% auto
   /* background-color: cyan */
+  height: 100%;
 }
 
 code {
