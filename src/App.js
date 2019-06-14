@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Test from "./Compos/Test";
 
+import MessageBoard from './Components/MessageBoard/MessageBoard'
+
 class App extends Component {
   constructor() {
     super();
