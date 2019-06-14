@@ -85,8 +85,8 @@ class MessageBoard extends React.Component {
         )
     }
 
-    displayEmergencyMessage(message){
-        return(
+    displayEmergencyMessage(message) {
+        return (
             <div class="emergency-container">
                 <div class="emergency-popup">
                     <div>{message.body}</div>
@@ -99,16 +99,16 @@ class MessageBoard extends React.Component {
         console.log(this.state)
 
         return (
-            <div class="main-container">
-                {this.state.messageList.map(message => { return this.displayMessage(message) })}
-                {this.displayEmergencyMessage({
+                <div class="main-container">
+                    {this.state.messageList.map(message => { return this.displayMessage(message) })}
+                    {/* {this.displayEmergencyMessage({
                     sender: "Accueil",
                     receiver: "IOA",
                     body: "Accident de bus. 33 personnes blessées.",
                     updated_at: Date.now(),
                     status: "urgent"
-                })}
-            </div>
+                })} */}
+                </div>
         )
     }
 
