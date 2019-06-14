@@ -40,17 +40,16 @@ class App extends Component {
   render() {
     const socket = socketIOClient(this.state.endpoint);
     return (
-      <MessageBoard />
-      // <div style={{ textAlign: "center" }}>
-      //   <button onClick={() => this.send()}>Change Color</button>
+      <div style={{ textAlign: "center" }}>
+        <button onClick={() => this.send()}>Change Color</button>
 
-      //   <button id="blue" onClick={() => this.setColor("blue")}>
-      //     Blue
-      //   </button>
-      //   <button id="red" onClick={() => this.setColor("red")}>
-      //     Red
-      //   </button>
-      // </div>
+        <button id="blue" onClick={() => this.setColor("blue")}>
+          Blue
+        </button>
+        <button id="red" onClick={() => this.setColor("red")}>
+          Red
+        </button>
+      </div>
     );
   }
 }
