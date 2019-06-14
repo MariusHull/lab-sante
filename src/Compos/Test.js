@@ -18,20 +18,6 @@ export default class Test extends Component {
       sender: "",
       status: "",
       ///
-      messages: [
-        {
-          body: "Heyyyyy",
-          receiver: "Tout le monde",
-          sender: "IOA",
-          status: "information"
-        },
-        {
-          body: "Heyyyyy2",
-          receiver: "Tout le monde",
-          sender: "IOA",
-          status: "information"
-        }
-      ]
     };
   }
 
@@ -53,20 +39,25 @@ export default class Test extends Component {
   onChangeStatus = e => {
     let state = this.state;
     state[e.target.name] = e.target.value;
-    this.setState(state, () => console.log(this.state));
+    this.setState(state, () => this.onSubmit());
   };
 
   onSubmit = e => {
-    console.log(this.state.status)
-    console.log(this.state.receiver)
-    console.log(this.state.sender)
-    console.log(this.state.message);
+    console.log(      {
+      sender:  this.state.sender,
+      receiver: this.state.receiver,
+      body: this.state.message,
+      updated_at: Date.now(),
+      status:this.state.status
+    })
     socket.emit(
-      "Message IOA",
-      this.state.message,
-      this.state.receiver,
-      this.state.sender,
-      this.state.status
+      {
+        sender:  this.state.sender,
+        receiver: this.state.receiver,
+        body: this.state.message,
+        updated_at: Date.now(),
+        status:this.state.status
+      }
     );
     this.setState({
       message: "",
