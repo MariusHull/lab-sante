@@ -1,0 +1,90 @@
+.row1iao {
+    width: 100%;
+    height: 10vh;
+    background-color: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.messageiao{
+    margin-right:5%;
+
+    margin-left:2%;
+    width: 85%;
+    height: 70%;
+    background-color: cyan;
+
+}
+
+.boxalarm {
+    margin-right:5%;
+
+    width: 6%;
+    height: 100%;
+    background-color: red;
+
+}
+
+.row2iao {
+    width: 100%;
+    height: 90vh;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row2col1iao {
+    width: 25%;
+    height: 100%;
+    background-color: yellow;
+}
+
+.row2col1row1iao{
+    width:90%;
+    height: 25%;
+    background-color: pink;
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:5%;
+    margin-bottom:2%
+}
+
+.row2col1row2iao{
+    width:90%;
+    height: 40%;
+    background-color: pink;
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:2%;
+    margin-bottom:2%
+}
+
+.row2col1row3iao{
+    width:90%;
+    height: 25%;
+    background-color: pink;
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:2%;
+    margin-bottom:2%
+}
+
+.row2col2iao {
+    width: 75%;
+    height: 100%;
+    background-color: green;
+}
+
+.camerabox {
+    width: 90%;
+    height: 90%;
+
+    margin-left:5%;
+    margin-right:5%;
+    margin-top:5%;
+    margin-bottom:5%;
+
+    background-color: blueviolet;
+}

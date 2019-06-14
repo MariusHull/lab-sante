@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import "./front_message_envoi";
+import "./front_message_envoi.css";
 import "./imagedicteevocale.jpeg"
 
 const socket = socketIOClient("localhost:3001");
