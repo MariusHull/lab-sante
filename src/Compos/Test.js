@@ -121,8 +121,8 @@ img.src = './images.jpeg';
           className="form-control1"
           onChange={this.onChange}
           >
-          <option  className="option" value="" selected disabled hidden>Expéditeur?</option>
-          <option className="option" value="IAO">IAO</option>
+          <option value="" selected disabled hidden>Expéditeur?</option>
+          <option value="IAO">IAO</option>
           <option value="Bocal">Bocal</option>
           <option value="Accueil">Accueil</option>
           <option value="Administration">Administration</option>

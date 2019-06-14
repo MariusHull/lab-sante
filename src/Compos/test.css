@@ -20,7 +20,7 @@ div#colonne1 {
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    
+    padding:0%;
 	float: left;
     width: 50%;
     height: 100%;
@@ -53,6 +53,8 @@ div#colonne2 {
     margin-left: 0px;
     margin-right: 0px;
     height: 100%;
+    padding:0%;
+
 	float: left;
 	width: 50%;
 	background: red;

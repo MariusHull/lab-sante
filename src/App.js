@@ -26,12 +26,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={Test} />
-<<<<<<< HEAD
-          <Route exact path="/accueil" component={FrontAccueil} />
-          {/* <Route exact path="/notifs" component={MessageBoard} /> */}
-=======
+          <Route exactpath="/accueil" component={FrontAccueil}/>
           <Route exact path="/board" component={MessageBoard} />
->>>>>>> fa9d9367703ded72b1b84e7a1f6b40c7114c8f5b
         </div>
       </Router>
     );
