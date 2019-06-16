@@ -32,6 +32,23 @@ class Service extends Component {
     this.setState(state);
   };
 
+  onSubmit = () => {
+    const { newColor, newName } = this.state;
+    if (newName === "") {
+      window.alert("Veuillez donner un nom au nouveau service");
+      return 0;
+    }
+    axios
+      .post("http://localhost:3001/services/", {
+        name: newName,
+        color: newColor
+      })
+      .then(res => {
+        this.setState({ newColor: "#000000", newName: "" });
+        this.reload();
+      });
+  };
+
   getColors = () => {
     const { colors, newColor } = this.state;
     return (
@@ -39,20 +56,16 @@ class Service extends Component {
         {colors &&
           colors.map((color, index) => {
             return (
-              <div className="col">
-                <span
-                  className={`badge badge-choose ${newColor === color &&
-                    "selected"}`}
-                  onClick={this.onChange}
-                  name="newColor"
-                  value={color}
-                  style={{
-                    backgroundColor: color
-                  }}
-                >
-                  &nbsp;
-                </span>
-              </div>
+              <div
+                className={`col ${
+                  newColor === color ? "selected" : "not-selected"
+                }`}
+                onClick={() => this.setState({ newColor: color })}
+                key={index}
+                style={{
+                  backgroundColor: color
+                }}
+              />
             );
           })}
       </div>
@@ -68,7 +81,7 @@ class Service extends Component {
           {savedServices &&
             savedServices.map((service, count) => {
               return (
-                <li className="list-group-item single-service">
+                <li key={count} className="list-group-item single-service">
                   {service.name} (couleur : &nbsp;
                   <span
                     className="badge badge-service"
@@ -89,7 +102,7 @@ class Service extends Component {
 
   // render method that renders in code if the state is updated
   render() {
-    const { newName, newColor } = this.state;
+    const { newName } = this.state;
     return (
       <div>
         Hello !
@@ -115,6 +128,14 @@ class Service extends Component {
               />
             </div>
             {this.getColors()}
+            <br />
+            <button
+              type="button"
+              onClick={this.onSubmit}
+              className="col btn btn-outline-success"
+            >
+              Ajouter ce service !{" "}
+            </button>
           </div>
         </div>
       </div>

@@ -12,10 +12,19 @@
 
 .badge-choose {
   width: 100%;
-  border: 3px;
 }
 
 .selected {
-  width: 90%;
-  border-color: rgb(143, 143, 143);
+  border-radius: 3px;
+  border: solid 4px #5baa50;
+}
+
+.not-selected {
+  border-radius: 3px;
+  border: solid 2px #000000;
+}
+
+.col {
+  margin: 5px;
+  height: 40px;
 }
