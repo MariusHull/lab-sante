@@ -1,0 +1,21 @@
+.single-service {
+  display: flex;
+  text-align: right;
+}
+
+.badge-service {
+  width: "25px";
+  height: "15px";
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.badge-choose {
+  width: 100%;
+  border: 3px;
+}
+
+.selected {
+  width: 90%;
+  border-color: rgb(143, 143, 143);
+}

@@ -20,11 +20,11 @@ export default class Navbar extends Component {
   getLinks = () => {
     const { links } = this.state;
     return (
-      <ul class="navbar-nav mr-auto">
+      <ul className="navbar-nav mr-auto">
         {links.map((link, count) => {
           return (
-            <li class="nav-item">
-              <Link to={link.link} class="nav-link">
+            <li className="nav-item" key={count}>
+              <Link to={link.link} className="nav-link">
                 {link.text}
               </Link>
             </li>
@@ -36,12 +36,12 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a className="navbar-brand" href="#">
           Messagerie - Urgences de Melun
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarText"
@@ -49,12 +49,12 @@ export default class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon" />
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
+        <div className="collapse navbar-collapse" id="navbarText">
           {this.getLinks()}
 
-          <span class="navbar-text">Blabla</span>
+          <span className="navbar-text">Blabla</span>
         </div>
       </nav>
     );
