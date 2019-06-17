@@ -117,7 +117,7 @@ export default class FrontIAO extends Component {
                   <div>Important : {message.body}</div>
                 ))}
             </div>
-            <div className="boxalarm"> </div>
+            <div className="boxalarmiao"> </div>
           </div>
 
           <div className="row2iao">
@@ -161,15 +161,15 @@ export default class FrontIAO extends Component {
                 <h2>Tableau des attentes</h2>
 
                 <div className="rowtabiao">
-                  <div className="nompatient"> Nom du patient </div>
-                  <div className="attentepatient"> Attente du patient </div>
-                  <div className="statutpatient"> Statut du Patient </div>
+                  <div className="nompatientiao"> Nom du patient </div>
+                  <div className="attentepatientiao"> Attente du patient </div>
+                  <div className="statutpatientiao"> Statut du Patient </div>
                 </div>
                 {this.state.ordre.slice(0, 5).map(patient => (
                   <div className="rowtabiao">
-                    <div className="nompatient"> {patient.name}</div>
-                    <div className="attentepatient">{patient.attente}</div>
-                    <div className="statutpatient">{patient.statut}</div>
+                    <div className="nompatientiao"> {patient.name}</div>
+                    <div className="attentepatientiao">{patient.attente}</div>
+                    <div className="statutpatientiao">{patient.statut}</div>
                   </div>
                 ))}
               </div>
@@ -197,7 +197,7 @@ export default class FrontIAO extends Component {
               </div>
             </div>
             <div className="row2col2iao">
-              <div className="camerabox"> Caméra de surveillance </div>
+              <div className="cameraboxiao"> Caméra de surveillance </div>
             </div>
           </div>
         </div>

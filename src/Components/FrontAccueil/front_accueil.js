@@ -58,7 +58,6 @@ export default class FrontAccueil extends Component {
         <div className="row2accueil">
           <div className="ordrepassage">
             <h2 className="soustitreordre">Ordre de passage </h2>
-            <br />
             {this.state.ordre.slice(0, 1).map(patient => (
               <div className="ordrebox1">
                 {" "}

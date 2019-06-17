@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import "./front_message_envoi.css";
-import "./imagedicteevocale.jpeg";
 import Navbar from "../../Containers/Navbar";
+import Axios from "axios";
+import { resolveSrv } from "dns";
 
 const socket = socketIOClient("localhost:3001");
 
@@ -26,8 +27,7 @@ export default class FrontMessageEnvoi extends Component {
     const { messages } = this.state;
     socket.on("Ne  w message", mess => {
       console.log("Messages : ", mess);
-      messages.push(mess);
-      this.setState({ messages });
+      this.setState({ messages: mess });
     });
   };
 

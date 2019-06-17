@@ -117,7 +117,7 @@ div#colonne3 {
 
 .form-control3-icon{
     background-color: red;
-    background-image: url('./imagedicteevocale.jpeg');
+    background-image: url('../../assets/imagedicteevocale.jpeg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     margin: auto;
