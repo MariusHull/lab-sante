@@ -40,25 +40,25 @@ export default class FrontBocal extends Component {
           statut: "3"
         },
         {
-            name: "Michel",
-            attente: "2h",
-            statut: "3"
-          },
-          {
-            name: "Michel",
-            attente: "2h",
-            statut: "3"
-          },
-          {
-            name: "Michel",
-            attente: "2h",
-            statut: "3"
-          },
-          {
-            name: "Michel",
-            attente: "2h",
-            statut: "3"
-          },
+          name: "Michel",
+          attente: "2h",
+          statut: "3"
+        },
+        {
+          name: "Michel",
+          attente: "2h",
+          statut: "3"
+        },
+        {
+          name: "Michel",
+          attente: "2h",
+          statut: "3"
+        },
+        {
+          name: "Michel",
+          attente: "2h",
+          statut: "3"
+        }
       ],
 
       numero: [
@@ -120,7 +120,7 @@ export default class FrontBocal extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div className="generalbocal">
           <div className="row1bocal">
@@ -135,7 +135,9 @@ export default class FrontBocal extends Component {
                 })
                 .slice(0, 1)
                 .map(message => (
-                  <div className="messagetextbocal">Important : {message.body}</div>
+                  <div className="messagetextbocal">
+                    Important : {message.body}
+                  </div>
                 ))}
             </div>
             <div className="boxalarmbocal"> </div>
@@ -183,7 +185,10 @@ export default class FrontBocal extends Component {
 
                 <div className="rowtabbocal">
                   <div className="nompatientbocal"> Nom du patient </div>
-                  <div className="attentepatientbocal"> Attente du patient </div>
+                  <div className="attentepatientbocal">
+                    {" "}
+                    Attente du patient{" "}
+                  </div>
                   <div className="statutpatientbocal"> Statut du Patient </div>
                 </div>
                 {this.state.ordre.slice(0, 5).map(patient => (
@@ -219,22 +224,22 @@ export default class FrontBocal extends Component {
             </div>
             <div className="row2col2bocal">
               <div className="statutbox">
-              <h2 className="titrestatutbocal"> Tableau des statuts</h2>
+                <h2 className="titrestatutbocal"> Tableau des statuts</h2>
                 <div className="tableaugeneralbocal">
-                <div className="rowtabbocalstatut">
-                  <div className="tableaustatut"> Nom du patient </div>
-                  <div className="tableaustatut"> Statut Radiologie </div>
-                  <div className="tableaustatut"> Statut Laboratoire </div>
-                  <div className="tableaustatut"> Attente du patient </div>
-                </div>
-                {this.state.ordre.slice(0, 10).map(patient => (
                   <div className="rowtabbocalstatut">
-                    <div className="tableaustatut"> {patient.name}</div>
-                    <div className="tableaustatut">{patient.attente}</div>
-                    <div className="tableaustatut">{patient.statut}</div>
-                    <div className="tableaustatut">{patient.statut}</div>
+                    <div className="tableaustatut"> Nom du patient </div>
+                    <div className="tableaustatut"> Statut Radiologie </div>
+                    <div className="tableaustatut"> Statut Laboratoire </div>
+                    <div className="tableaustatut"> Attente du patient </div>
                   </div>
-                ))}{" "}
+                  {this.state.ordre.slice(0, 10).map(patient => (
+                    <div className="rowtabbocalstatut">
+                      <div className="tableaustatut"> {patient.name}</div>
+                      <div className="tableaustatut">{patient.attente}</div>
+                      <div className="tableaustatut">{patient.statut}</div>
+                      <div className="tableaustatut">{patient.statut}</div>
+                    </div>
+                  ))}{" "}
                 </div>
               </div>
             </div>

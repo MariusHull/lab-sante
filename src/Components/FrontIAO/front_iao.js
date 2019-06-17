@@ -101,7 +101,7 @@ export default class FrontIAO extends Component {
     const { nombrepatienturgences } = this.state;
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="generaliao">
           <div className="row1iao">
             <div className="messageiao">

@@ -130,7 +130,7 @@ class Service extends Component {
     const { newName } = this.state;
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="container">
           <br />
           {this.getServices()}

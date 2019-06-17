@@ -81,7 +81,7 @@ export default class FrontMessageEnvoi extends Component {
     const { messages, message } = this.state;
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         {/* <button onClick={() => this.send()}>Change Color</button>
 
         <button id="blue" onClick={() => this.setColor("blue")}>
