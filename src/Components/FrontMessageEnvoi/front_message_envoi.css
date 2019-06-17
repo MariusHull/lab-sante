@@ -104,6 +104,8 @@ div#colonne3 {
     border-color: none;
     
     color:white; 
+    border-radius: 5px;
+
     background: rgba(128, 128, 128, 0.363);
     text-align: center;
 
@@ -143,6 +145,7 @@ div#colonne4 {
     font-size: xx-large;
     background: rgba(255, 255, 255, 0.616);
     text-align: left;
+    border-radius: 5px;
     width: 95%;
     height: 46vh;
 }
@@ -164,6 +167,8 @@ div#colonne5 {
 }
 
 .form-control5 {
+    border-radius: 5px;
+
     font-size: 200%;
 
     margin-top: 0px;
