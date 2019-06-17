@@ -98,6 +98,7 @@ export default class FrontIAO extends Component {
   };
 
   render() {
+    const { nombrepatienturgences } = this.state;
     return (
       <div>
         <Navbar />
@@ -114,10 +115,22 @@ export default class FrontIAO extends Component {
                 })
                 .slice(0, 1)
                 .map(message => (
-                  <div className="messagetextiao">Important : {message.body}</div>
+                  <div className="messagetextiao">
+                    Important : {message.body}
+                  </div>
                 ))}
             </div>
-            <div className="boxalarmiao"> </div>
+            <div
+              className={`boxalarmiao ${
+                nombrepatienturgences && nombrepatienturgences > 60
+                  ? "red"
+                  : nombrepatienturgences < 30
+                  ? "green"
+                  : "orange"
+              }`}
+            >
+              {" "}
+            </div>
           </div>
 
           <div className="row2iao">
