@@ -1,11 +1,13 @@
 .generaliao{
     height: 100vh;
+    width: 100%;
+    background-color: aliceblue;
 }
 
 .row1iao {
     width: 100%;
     height: 10vh;
-    background-color: brown;
+    background-color: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,12 +19,14 @@
     margin-left:2%;
     width: 85%;
     height: 70%;
-    background-color: cyan;
+    background-color: grey;
+    border-radius: 5px;
 
 }
 
 .boxalarm {
     margin-right:5%;
+    border-radius: 5px;
 
     width: 6%;
     height: 100%;
@@ -33,7 +37,7 @@
 .row2iao {
     width: 100%;
     height: 90vh;
-    background-color: blue;
+    background-color: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,15 +46,16 @@
 .row2col1iao {
     width: 25%;
     height: 100%;
-    background-color: yellow;
+    background-color: none;
 }
 
 .row2col1row1iao{
     text-align: center;
+    border-radius: 5px;
 
     width:90%;
     height: 25%;
-    background-color: pink;
+    background-color: grey;
     margin-left:5%;
     margin-right:5%;
     margin-top:5%;
@@ -79,6 +84,7 @@
 }
 
 .rowtabiao{
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,7 +141,9 @@
 
     width:90%;
     height: 40%;
-    background-color: pink;
+    background-color: grey;
+    border-radius: 5px;
+
     margin-left:5%;
     margin-right:5%;
     margin-top:2%;
@@ -147,7 +155,9 @@
 
     width:90%;
     height: 25%;
-    background-color: pink;
+    background-color: grey;
+    border-radius: 5px;
+
     margin-left:5%;
     margin-right:5%;
     margin-top:2%;
@@ -157,7 +167,7 @@
 .row2col1row35iao {
     width: 100%;
     height: 10vh;
-    background-color: brown;
+    background-color: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,7 +226,9 @@
 .row2col2iao {
     width: 75%;
     height: 100%;
-    background-color: green;
+    background-color: grey;
+    border-radius: 5px;
+
 }
 
 .camerabox {
@@ -228,5 +240,5 @@
     margin-top:5%;
     margin-bottom:5%;
 
-    background-color: blueviolet;
+    background-color: white;
 }
