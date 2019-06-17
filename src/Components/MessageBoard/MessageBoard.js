@@ -129,7 +129,7 @@ class MessageBoard extends React.Component {
         Axios.get("http://localhost:3001/messages/").then(res => {
             console.log(res.data);
             // + ajouter trier par dates
-            this.setState({ messageList: res.data });
+            this.setState({ messageList: res.data.reverse() });
         });
 
         // Listening to socket
