@@ -1,9 +1,11 @@
 import React from "react";
+
 import "./MessageBoard.css";
 import * as moment from 'moment';
 import 'moment/locale/fr';
 import socketIOClient from "socket.io-client";
 const socket = socketIOClient("localhost:3001");
+
 
 class MessageBoard extends React.Component {
 
@@ -11,6 +13,8 @@ class MessageBoard extends React.Component {
         super()
         moment.locale('fr');
         this.state = {
+            emergency: null,
+            numberRows: 6,
             messageList: [
                 {
                     sender: "IOA",
@@ -66,8 +70,10 @@ class MessageBoard extends React.Component {
                 return "green"
             case "Accueil":
                 return "orange"
+            case "Administration":
+                return "#800080"
             default:
-                return "red"
+                return "pink"
         }
     }
 
@@ -97,31 +103,42 @@ class MessageBoard extends React.Component {
         )
     }
 
+    displayOldMessages(messages) {
+        return (
+            <div className="old-messages-container">Caca</div>
+        )
+    }
+
     componentWillMount = () => {
-        socket.on("Message", mess => {
-            this.setState({ messageList : [mess, ...this.state.messageList]})
-        //   console.log("Messages : ", mess);
-        //   messages.push(mess);
-        //   this.setState({ messages }, ()=>{
-        //       console.log(messages)
-        //   });
+        socket.on("Message", message => {
+            console.log(message)
+            this.setState({ messageList: [message, ...this.state.messageList] })
+            if (message.status === 'urgent') {
+                this.setState({ emergency: message }, () => {
+                    setTimeout(() => {
+                        this.setState({ emergency: null })
+                    }, 2000);
+                })
+            }
+            //   console.log("Messages : ", mess);
+            //   messages.push(mess);
+            //   this.setState({ messages }, ()=>{
+            //       console.log(messages)
+            //   });
         });
-      };
+    };
+
 
     render() {
-        console.log(this.state)
-
         return (
-                <div className="main-container">
-                    {this.state.messageList.map((message, index) => { return this.displayMessage(message, index) })}
-                    {/* {this.displayEmergencyMessage({
-                    sender: "Accueil",
-                    receiver: "IOA",
-                    body: "Accident de bus. 33 personnes blessées.",
-                    updated_at: Date.now(),
-                    status: "urgent"
-                })} */}
+            <div className="main-container">
+                <div className="messages-container">
+                    {this.state.messageList.slice(0, this.state.numberRows).map((message, index) => { return this.displayMessage(message, index) })}
+                    {this.state.emergency && this.displayEmergencyMessage(this.state.emergency)}
                 </div>
+                {this.displayOldMessages()}
+            </div>
+
         )
     }
 
