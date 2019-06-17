@@ -28,9 +28,9 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Navbar />
+          {/* <Navbar /> */}
           <div className="container">
-            <Route exact path="/" component={FrontMessage} />
+            <Route exact path="/message" component={FrontMessage} />
             <Route exact path="/accueil" component={FrontAccueil} />
             <Route exact path="/iao" component={FrontIAO} />
             <Route exact path="/bocal" component={FrontBocal} />

@@ -14,8 +14,8 @@ export default class FrontMessageEnvoi extends Component {
       ///
       color: "white",
       message: "",
-      receiver: "",
-      sender: "",
+      receiver: "all",
+      sender: "IOA",
       status: "",
       ///
     };
@@ -112,7 +112,7 @@ img.src = './images.jpeg';
           className="form-control1"
           onChange={this.onChange}
           >
-          <option value="" selected disabled hidden>Expéditeur?</option>
+          <option value="" selected disabled hidden>Expéditeur? (IOA)</option>
           <option value="IOA">IOA</option>
           <option value="Bocal">Bocal</option>
           <option value="Accueil">Accueil</option>
@@ -128,7 +128,7 @@ img.src = './images.jpeg';
           name="receiver"
           >
           <option value="" selected disabled hidden>Destinataire?</option>
-          <option className="option" value="all">Tous</option>
+          <option value="all">Tous</option>
           <option value="IOA">IOA</option>
           <option value="Bocal">Bocal</option>
           <option value="Accueil">Accueil</option>
