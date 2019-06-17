@@ -2,6 +2,7 @@ import React from "react";
 import "./MessageBoard.css";
 import * as moment from "moment";
 import "moment/locale/fr";
+import Axios from "axios";
 import socketIOClient from "socket.io-client";
 import Navbar from "../../Containers/Navbar";
 const socket = socketIOClient("localhost:3001");
@@ -111,6 +112,10 @@ class MessageBoard extends React.Component {
   }
 
   componentWillMount = () => {
+    Axios.get("http://localhost:3001/messages/").then(res => {
+      console.log(res.data);
+      this.setState({ messageList: res.data });
+    });
     socket.on("Message", mess => {
       this.setState({ messageList: [mess, ...this.state.messageList] });
       //   console.log("Messages : ", mess);
