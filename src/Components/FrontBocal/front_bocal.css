@@ -34,7 +34,18 @@
     margin-top:1px;
     width: 6%;
     height: 100%;
+  }
+
+  .boxalarmbocal.red {
     background-color: red;
+  }
+  
+  .boxalarmbocal.orange {
+    background-color: orange;
+  }
+  
+  .boxalarmbocal.green {
+    background-color: green;
   }
   
   .row2bocal {
