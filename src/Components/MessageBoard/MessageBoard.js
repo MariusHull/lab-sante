@@ -117,7 +117,7 @@ class MessageBoard extends React.Component {
   }
 
   displayOldMessages(messages) {
-    return <div className="old-messages-container">Caca</div>;
+    return <div className="old-messages-container" />;
   }
 
   componentWillMount = () => {
