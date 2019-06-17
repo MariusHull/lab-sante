@@ -1,0 +1,30 @@
+.single-service {
+  display: flex;
+  text-align: right;
+}
+
+.badge-service {
+  width: "25px";
+  height: "15px";
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.badge-choose {
+  width: 100%;
+}
+
+.selected {
+  border-radius: 3px;
+  border: solid 4px #5baa50;
+}
+
+.not-selected {
+  border-radius: 3px;
+  border: solid 2px #000000;
+}
+
+.col {
+  margin: 5px;
+  height: 40px;
+}
