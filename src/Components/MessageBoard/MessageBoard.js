@@ -16,7 +16,7 @@ class MessageBoard extends React.Component {
         moment.locale('fr');
         this.state = {
             emergency: null,
-            numberRows: 6,
+            numberRows: 5,
             messageList: [
                 {
                     sender: "IOA",
@@ -119,7 +119,11 @@ class MessageBoard extends React.Component {
 
     displayOldMessages(messages) {
         return (
-            <div className="old-messages-container"></div>
+            <div className="old-messages-container">
+                <div class="old-message-title">Anciens messages</div>
+                <div class="old-message-count">1/5</div>
+                <div class="old-message">{this.displayMessage(this.state.messageList[this.state.messageList.length-1], 0)}</div>
+            </div>
         )
     }
 
