@@ -118,6 +118,8 @@ export default class FrontBocal extends Component {
   };
 
   render() {
+    const { nombrepatienturgences } = this.state;
+
     return (
       <div>
         {/* <Navbar /> */}
@@ -140,8 +142,17 @@ export default class FrontBocal extends Component {
                   </div>
                 ))}
             </div>
-            <div className="boxalarmbocal"> </div>
-          </div>
+            <div
+              className={`boxalarmbocal ${
+                nombrepatienturgences && nombrepatienturgences > 60
+                  ? "red"
+                  : nombrepatienturgences < 30
+                  ? "green"
+                  : "orange"
+              }`}
+            >
+            </div>          
+            </div>
 
           <div className="row2bocal">
             <div className="row2col1bocal">
@@ -157,10 +168,10 @@ export default class FrontBocal extends Component {
                 </div>
                 <div className="row2col1row1col1rowbocal">
                   <div className="row2col1row1col1bocal">
-                    Nombre de patient en attente d'bocal:
+                    Nombre de patient en attente d'IAO:
                   </div>
                   <div className="row2col1row1col2bocal">
-                    {this.state.nombrepatientbocal}
+                    {this.state.nombrepatientIAO}
                   </div>
                 </div>
                 <div className="row2col1row1col1rowbocal">
