@@ -19,42 +19,6 @@ class MessageBoard extends React.Component {
           body: "Aide demandée au Box 3.",
           updated_at: Date.now(),
           status: "important"
-        },
-        {
-          sender: "Bocal",
-          receiver: "IOA",
-          body: "Ceci est un test.",
-          updated_at: Date.now(),
-          status: "urgent"
-        },
-        {
-          sender: "Bocal",
-          receiver: "IOA",
-          body: "Ceci est un test.",
-          updated_at: Date.now(),
-          status: "urgent"
-        },
-        {
-          sender: "Accueil",
-          receiver: "IOA",
-          body: "Malaise jeune fille 12 ans.",
-          updated_at: Date.now(),
-          status: "urgent"
-        },
-        {
-          sender: "Bocal",
-          receiver: "IOA",
-          body: "Box 3 libéré.",
-          updated_at: Date.now(),
-          status: "urgent"
-        },
-        {
-          sender: "Accueil",
-          receiver: "IOA",
-          body:
-            "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
-          updated_at: Date.now(),
-          status: "urgent"
         }
       ]
     };
@@ -117,12 +81,8 @@ class MessageBoard extends React.Component {
       this.setState({ messageList: res.data });
     });
     socket.on("Message", mess => {
-      this.setState({ messageList: [mess, ...this.state.messageList] });
-      //   console.log("Messages : ", mess);
-      //   messages.push(mess);
-      //   this.setState({ messages }, ()=>{
-      //       console.log(messages)
-      //   });
+      //console.log([mess, ...this.state.messageList]);
+      this.setState({ messageList: mess });
     });
   };
 
