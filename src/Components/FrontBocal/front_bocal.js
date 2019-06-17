@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Navbar from "../../Containers/Navbar";
-import "./front_iao.css";
+import "./front_bocal.css";
 import socketIOClient from "socket.io-client";
 const socket = socketIOClient("localhost:3001");
 
-export default class FrontIAO extends Component {
+export default class FrontBocal extends Component {
   constructor() {
     super();
     this.state = {
@@ -101,9 +101,10 @@ export default class FrontIAO extends Component {
     return (
       <div>
         <Navbar />
-        <div className="generaliao">
-          <div className="row1iao">
-            <div className="messageiao">
+
+        <div className="generalbocal">
+          <div className="row1bocal">
+            <div className="messagebocal">
               {" "}
               {this.state.messageList
                 .filter(item => {
@@ -120,53 +121,53 @@ export default class FrontIAO extends Component {
             <div className="boxalarm"> </div>
           </div>
 
-          <div className="row2iao">
-            <div className="row2col1iao">
-              <div className="row2col1row1iao">
+          <div className="row2bocal">
+            <div className="row2col1bocal">
+              <div className="row2col1row1bocal">
                 <h2>Informations</h2>
-                <div className="row2col1row1col1rowiao">
-                  <div className="row2col1row1col1iao">
+                <div className="row2col1row1col1rowbocal">
+                  <div className="row2col1row1col1bocal">
                     Nombre de patient dans les urgences:
                   </div>
-                  <div className="row2col1row1col2iao">
+                  <div className="row2col1row1col2bocal">
                     {this.state.nombrepatienturgences}
                   </div>
                 </div>
-                <div className="row2col1row1col1rowiao">
-                  <div className="row2col1row1col1iao">
-                    Nombre de patient en attente d'IAO:
+                <div className="row2col1row1col1rowbocal">
+                  <div className="row2col1row1col1bocal">
+                    Nombre de patient en attente d'bocal:
                   </div>
-                  <div className="row2col1row1col2iao">
-                    {this.state.nombrepatientIAO}
+                  <div className="row2col1row1col2bocal">
+                    {this.state.nombrepatientbocal}
                   </div>
                 </div>
-                <div className="row2col1row1col1rowiao">
-                  <div className="row2col1row1col1iao">
+                <div className="row2col1row1col1rowbocal">
+                  <div className="row2col1row1col1bocal">
                     Nombre de patient en attente de box :
                   </div>
-                  <div className="row2col1row1col2iao">
+                  <div className="row2col1row1col2bocal">
                     {this.state.nombrepatientmedecin}
                   </div>
                 </div>
-                <div className="row2col1row1col1rowiao">
-                  <div className="row2col1row1col1iao">
+                <div className="row2col1row1col1rowbocal">
+                  <div className="row2col1row1col1bocal">
                     Nombre de patient en attente d'analyses:
                   </div>
-                  <div className="row2col1row1col2iao">
+                  <div className="row2col1row1col2bocal">
                     {this.state.nombrepatientanalyse}
                   </div>
                 </div>
               </div>
-              <div className="row2col1row2iao">
+              <div className="row2col1row2bocal">
                 <h2>Tableau des attentes</h2>
 
-                <div className="rowtabiao">
+                <div className="rowtabbocal">
                   <div className="nompatient"> Nom du patient </div>
                   <div className="attentepatient"> Attente du patient </div>
                   <div className="statutpatient"> Statut du Patient </div>
                 </div>
                 {this.state.ordre.slice(0, 5).map(patient => (
-                  <div className="rowtabiao">
+                  <div className="rowtabbocal">
                     <div className="nompatient"> {patient.name}</div>
                     <div className="attentepatient">{patient.attente}</div>
                     <div className="statutpatient">{patient.statut}</div>
@@ -174,30 +175,45 @@ export default class FrontIAO extends Component {
                 ))}
               </div>
 
-              <div className="row2col1row3iao">
+              <div className="row2col1row3bocal">
                 <h2>Numéros importants</h2>
-                <div className="row2col1row35iao">
-                  <div className="row2col1row3col1iao">
+                <div className="row2col1row35bocal">
+                  <div className="row2col1row3col1bocal">
                     {this.state.numero.slice(0, 5).map(numero => (
-                      <div className="rowtabnumeroiao">
-                        <div className="nomnumeroiao">{numero.nom}</div>
-                        <div className="numeroiao">{numero.numero}</div>
+                      <div className="rowtabnumerobocal">
+                        <div className="nomnumerobocal">{numero.nom}</div>
+                        <div className="numerobocal">{numero.numero}</div>
                       </div>
                     ))}
                   </div>
-                  <div className="row2col1row3col2iao">
+                  <div className="row2col1row3col2bocal">
                     {this.state.numero.slice(0, 5).map(numero => (
-                      <div className="rowtabnumeroiao">
-                        <div className="nomnumeroiao">{numero.nom}</div>
-                        <div className="numeroiao">{numero.numero}</div>
+                      <div className="rowtabnumerobocal">
+                        <div className="nomnumerobocal">{numero.nom}</div>
+                        <div className="numerobocal">{numero.numero}</div>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
-            <div className="row2col2iao">
-              <div className="camerabox"> Caméra de surveillance </div>
+            <div className="row2col2bocal">
+              <div className="statutbox">
+                <div className="rowtabbocalstatut">
+                  <div className="tableaustatut"> Nom du patient </div>
+                  <div className="tableaustatut"> Statut Radiologie </div>
+                  <div className="tableaustatut"> Statut Laboratoire </div>
+                  <div className="tableaustatut"> Attente du patient </div>
+                </div>
+                {this.state.ordre.slice(0, 5).map(patient => (
+                  <div className="rowtabbocalstatut">
+                    <div className="tableaustatut"> {patient.name}</div>
+                    <div className="tableaustatut">{patient.attente}</div>
+                    <div className="tableaustatut">{patient.statut}</div>
+                    <div className="tableaustatut">{patient.statut}</div>
+                  </div>
+                ))}{" "}
+              </div>
             </div>
           </div>
         </div>

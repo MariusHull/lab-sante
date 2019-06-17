@@ -1,9 +1,11 @@
 import React from "react";
 
 import "./MessageBoard.css";
-import * as moment from 'moment';
-import 'moment/locale/fr';
+import * as moment from "moment";
+import "moment/locale/fr";
+import Axios from "axios";
 import socketIOClient from "socket.io-client";
+import Navbar from "../../Containers/Navbar";
 const socket = socketIOClient("localhost:3001");
 
 
@@ -60,7 +62,7 @@ class MessageBoard extends React.Component {
                 }
             ]
         }
-    }
+    };
 
     colorFromSender(sender) {
         switch (sender) {
@@ -79,18 +81,30 @@ class MessageBoard extends React.Component {
 
     displayMessage(message, index) {
         return (
-            <div className="message" key={index} style={{ borderColor: this.colorFromSender(message.sender) }}>
-                <div className="sender-container" style={{ backgroundColor: this.colorFromSender(message.sender) }}>
+            <div
+                className="message"
+                key={index}
+                style={{ borderColor: this.colorFromSender(message.sender) }}
+            >
+                <div
+                    className="sender-container"
+                    style={{ backgroundColor: this.colorFromSender(message.sender) }}
+                >
                     <div className="sender-transparent">
-                        <div className="sender-content" style={{ fontWeight: 900, fontSize: 18 }}>{message.sender}</div>
-                        <div>{"à " + moment(message.updated_at).format('LT')}</div>
+                        <div
+                            className="sender-content"
+                            style={{ fontWeight: 900, fontSize: 18 }}
+                        >
+                            {message.sender}
+                        </div>
+                        <div>{"à " + moment(message.updated_at).format("LT")}</div>
                     </div>
                 </div>
                 <div className="message-container">
                     <div className="message-content">{message.body}</div>
                 </div>
             </div>
-        )
+        );
     }
 
     displayEmergencyMessage(message) {
@@ -100,7 +114,7 @@ class MessageBoard extends React.Component {
                     <div>{message.body}</div>
                 </div>
             </div>
-        )
+        );
     }
 
     displayOldMessages(messages) {
@@ -110,8 +124,19 @@ class MessageBoard extends React.Component {
     }
 
     componentWillMount = () => {
+
+        // Getting all messages
+        Axios.get("http://localhost:3001/messages/").then(res => {
+            console.log(res.data);
+            // + ajouter trier par dates
+            this.setState({ messageList: res.data });
+        });
+
+        // Listening to socket
         socket.on("Message", message => {
             console.log(message)
+            // console.log([mess, ...this.state.messageList]);
+            // this.setState({ messageList: mess }); que branlo marius ??
             this.setState({ messageList: [message, ...this.state.messageList] })
             if (message.status === 'urgent') {
                 this.setState({ emergency: message }, () => {
@@ -120,28 +145,24 @@ class MessageBoard extends React.Component {
                     }, 2000);
                 })
             }
-            //   console.log("Messages : ", mess);
-            //   messages.push(mess);
-            //   this.setState({ messages }, ()=>{
-            //       console.log(messages)
-            //   });
         });
     };
 
-
     render() {
         return (
-            <div className="main-container">
-                <div className="messages-container">
-                    {this.state.messageList.slice(0, this.state.numberRows).map((message, index) => { return this.displayMessage(message, index) })}
-                    {this.state.emergency && this.displayEmergencyMessage(this.state.emergency)}
+            <div>
+                <Navbar />
+                <div className="main-container">
+                    <div className="messages-container">
+                        {this.state.messageList.slice(0, this.state.numberRows).map((message, index) => { return this.displayMessage(message, index) })}
+                        {this.state.emergency && this.displayEmergencyMessage(this.state.emergency)}
+                    </div>
+                    {this.displayOldMessages()}
                 </div>
-                {this.displayOldMessages()}
             </div>
 
         )
     }
-
 }
 
-export default MessageBoard
+export default MessageBoard;
