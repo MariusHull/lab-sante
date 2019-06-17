@@ -100,111 +100,44 @@ export default class FrontIAO extends Component {
   render() {
     return (
       <div>
-        <div>
-          <div>
-            <div>
-              <div className="generaliao">
-                <div className="row1iao">
-                  <div className="messageiao">
-                    {" "}
-                    {this.state.messageList
-                      .filter(item => {
-                        return item.receiver == "IOA" || item.receiver == "all";
-                      })
-                      .filter(item => {
-                        return item.status == "important";
-                      })
-                      .slice(0, 1)
-                      .map(message => (
-                        <div>Important : {message.body}</div>
-                      ))}
+        <Navbar />
+        <div className="generaliao">
+          <div className="row1iao">
+            <div className="messageiao">
+              {" "}
+              {this.state.messageList
+                .filter(item => {
+                  return item.receiver == "IOA" || item.receiver == "all";
+                })
+                .filter(item => {
+                  return item.status == "important";
+                })
+                .slice(0, 1)
+                .map(message => (
+                  <div>Important : {message.body}</div>
+                ))}
+            </div>
+            <div className="boxalarm"> </div>
+          </div>
+
+          <div className="row2iao">
+            <div className="row2col1iao">
+              <div className="row2col1row1iao">
+                <h2>Informations</h2>
+                <div className="row2col1row1col1rowiao">
+                  <div className="row2col1row1col1iao">
+                    Nombre de patient dans les urgences:
                   </div>
-                  <div className="boxalarm"> </div>
+                  <div className="row2col1row1col2iao">
+                    {this.state.nombrepatienturgences}
+                  </div>
                 </div>
-
-                <div className="row2iao">
-                  <div className="row2col1iao">
-                    <div className="row2col1row1iao">
-                      <h2>Informations</h2>
-                      <div className="row2col1row1col1rowiao">
-                        <div className="row2col1row1col1iao">
-                          Nombre de patient dans les urgences:
-                        </div>
-                        <div className="row2col1row1col2iao">
-                          {this.state.nombrepatienturgences}
-                        </div>
-                      </div>
-                      <div className="row2col1row1col1rowiao">
-                        <div className="row2col1row1col1iao">
-                          Nombre de patient en attente d'IAO:
-                        </div>
-                        <div className="row2col1row1col2iao">
-                          {this.state.nombrepatientIAO}
-                        </div>
-                      </div>
-                      <div className="row2col1row1col1rowiao">
-                        <div className="row2col1row1col1iao">
-                          Nombre de patient en attente de box :
-                        </div>
-                        <div className="row2col1row1col2iao">
-                          {this.state.nombrepatientmedecin}
-                        </div>
-                      </div>
-                      <div className="row2col1row1col1rowiao">
-                        <div className="row2col1row1col1iao">
-                          Nombre de patient en attente d'analyses:
-                        </div>
-                        <div className="row2col1row1col2iao">
-                          {this.state.nombrepatientanalyse}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row2col1row2iao">
-                      <h2>Tableau des attentes</h2>
-
-                      <div className="rowtabiao">
-                        <div className="nompatient"> Nom du patient </div>
-                        <div className="attentepatient">
-                          {" "}
-                          Attente du patient{" "}
-                        </div>
-                        <div className="statutpatient"> Statut du Patient </div>
-                      </div>
-                      {this.state.ordre.slice(0, 5).map(patient => (
-                        <div className="rowtabiao">
-                          <div className="nompatient"> {patient.name}</div>
-                          <div className="attentepatient">
-                            {patient.attente}
-                          </div>
-                          <div className="statutpatient">{patient.statut}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="row2col1row3iao">
-                      <h2>Numéros importants</h2>
-                      <div className="row2col1row35iao">
-                        <div className="row2col1row3col1iao">
-                          {this.state.numero.slice(0, 5).map(numero => (
-                            <div className="rowtabnumeroiao">
-                              <div className="nomnumeroiao">{numero.nom}</div>
-                              <div className="numeroiao">{numero.numero}</div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="row2col1row3col2iao">
-                          {this.state.numero.slice(0, 5).map(numero => (
-                            <div className="rowtabnumeroiao">
-                              <div className="nomnumeroiao">{numero.nom}</div>
-                              <div className="numeroiao">{numero.numero}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                <div className="row2col1row1col1rowiao">
+                  <div className="row2col1row1col1iao">
+                    Nombre de patient en attente d'IAO:
                   </div>
-                  <div className="row2col2iao">
-                    <div className="camerabox"> Caméra de surveillance </div>
+                  <div className="row2col1row1col2iao">
+                    {this.state.nombrepatientIAO}
                   </div>
                 </div>
                 <div className="row2col1row1col1rowiao">

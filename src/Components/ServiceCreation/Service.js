@@ -105,37 +105,38 @@ class Service extends Component {
     return (
       <div>
         <Navbar />
-        Hello !
-        <br />
-        {this.getServices()}
-        <br />
-        <div className="card">
-          <h5 className="card-header">Enregistrer un nouveau service :</h5>
-          <div className="card-body">
-            <div className="input-group mb-2 mr-sm-2">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon1">
-                  Nom du service :
-                </span>
+        <div className="container">
+          <br />
+          {this.getServices()}
+          <br />
+          <div className="card">
+            <h5 className="card-header">Enregistrer un nouveau service :</h5>
+            <div className="card-body">
+              <div className="input-group mb-2 mr-sm-2">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="basic-addon1">
+                    Nom du service :
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  value={newName}
+                  name="newName"
+                  className="form-control"
+                  placeholder="Nom du service"
+                  onChange={this.onChange}
+                />
               </div>
-              <input
-                type="text"
-                value={newName}
-                name="newName"
-                className="form-control"
-                placeholder="Nom du service"
-                onChange={this.onChange}
-              />
+              {this.getColors()}
+              <br />
+              <button
+                type="button"
+                onClick={this.onSubmit}
+                className="col btn btn-outline-success"
+              >
+                Ajouter ce service !{" "}
+              </button>
             </div>
-            {this.getColors()}
-            <br />
-            <button
-              type="button"
-              onClick={this.onSubmit}
-              className="col btn btn-outline-success"
-            >
-              Ajouter ce service !{" "}
-            </button>
           </div>
         </div>
       </div>

@@ -119,39 +119,21 @@ export default class FrontMessageEnvoi extends Component {
             </select>
           </div>
 
-          <div className="row1">
-            <div className="col" id="colonne1">
-              <select
-                name="sender"
-                className="form-control1"
-                onChange={this.onChange}
-              >
-                <option value="" selected disabled hidden>
-                  Expéditeur?
-                </option>
-                <option value="IOA">IOA</option>
-                <option value="Bocal">Bocal</option>
-                <option value="Accueil">Accueil</option>
-                <option value="Administration">Administration</option>
-              </select>
-            </div>
-
-            <div className="col" id="colonne2">
-              <select
-                className="form-control2"
-                onChange={this.onChange}
-                name="receiver"
-              >
-                <option value="" selected disabled hidden>
-                  Destinataire?
-                </option>
-                <option value="all">Tous</option>
-                <option value="IOA">IOA</option>
-                <option value="Bocal">Bocal</option>
-                <option value="Accueil">Accueil</option>
-                <option value="Administration">Administration</option>
-              </select>
-            </div>
+          <div className="col" id="colonne2">
+            <select
+              className="form-control2"
+              onChange={this.onChange}
+              name="receiver"
+            >
+              <option value="" selected disabled hidden>
+                Destinataire?
+              </option>
+              <option value="all">Tous</option>
+              <option value="IOA">IOA</option>
+              <option value="Bocal">Bocal</option>
+              <option value="Accueil">Accueil</option>
+              <option value="Administration">Administration</option>
+            </select>
           </div>
 
           <div className="row2">
