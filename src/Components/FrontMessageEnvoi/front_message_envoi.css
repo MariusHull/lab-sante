@@ -21,7 +21,7 @@ div#colonne1 {
 	float: left;
     width: 50%;
     height: 100%;
-	background: rgba(128, 128, 128, 0.342);
+	background: rgba(216, 231, 225, 0.342);
 }
 
 .form-control1 {
@@ -35,7 +35,7 @@ div#colonne1 {
     border-color: none;
     
     color:white; 
-    background: rgba(143, 143, 218, 0.877);
+    background: rgba(20, 20, 24, 0.082);
 
     
     width: 100%;
@@ -54,7 +54,7 @@ div#colonne2 {
 
 	float: left;
 	width: 50%;
-	background: rgb(223, 95, 212);
+	background: rgba(207, 230, 220, 0.342);
 }
 
 .form-control2 {
@@ -68,7 +68,7 @@ div#colonne2 {
     border-color: none;
     
     color:white; 
-    background: rgb(223, 95, 212);
+    background: rgba(42, 49, 46, 0.658);
     text-align: center;
 
     width: 100%;
@@ -104,6 +104,8 @@ div#colonne3 {
     border-color: none;
     
     color:white; 
+    border-radius: 5px;
+
     background: rgba(128, 128, 128, 0.363);
     text-align: center;
 
@@ -112,10 +114,10 @@ div#colonne3 {
 }
 
 .form-control3-icon{
-    background-color: none;
     background-image: url('../../assets/imagedicteevocale.jpeg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    
     margin: auto;
     width: 63%;
     height: 55%;
@@ -141,8 +143,9 @@ div#colonne4 {
     border-color: none;
     color:black; 
     font-size: xx-large;
-    background: white;
+    background: rgba(255, 255, 255, 0.616);
     text-align: left;
+    border-radius: 5px;
     width: 95%;
     height: 46vh;
 }
@@ -164,6 +167,8 @@ div#colonne5 {
 }
 
 .form-control5 {
+        border-radius: 5px;
+
     font-size: 200%;
 
     margin-top: 0px;
@@ -173,7 +178,7 @@ div#colonne5 {
 
     border-color: none;
     color:white; 
-    background: rgba(57, 124, 57, 0.671);
+    background: rgba(226, 147, 43, 0.466);
     text-align: center;
 
     width: 100%;
@@ -235,7 +240,7 @@ div#colonne7 {
 
     border-color: none;
     color:white; 
-    background: rgb(43, 43, 92);
+    background: rgba(43, 43, 92, 0.493);
     text-align: center;
 
     width: 100%;

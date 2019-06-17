@@ -81,7 +81,7 @@ export default class FrontMessageEnvoi extends Component {
     const { messages, message } = this.state;
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         {/* <button onClick={() => this.send()}>Change Color</button>
 
         <button id="blue" onClick={() => this.setColor("blue")}>
@@ -109,7 +109,7 @@ export default class FrontMessageEnvoi extends Component {
               onChange={this.onChange}
             >
               <option value="" selected disabled hidden>
-                Expéditeur? (IOA)
+                Expéditeur ? (IOA)
               </option>
               <option value="IOA">IOA</option>
               <option value="Bocal">Bocal</option>
@@ -125,7 +125,7 @@ export default class FrontMessageEnvoi extends Component {
               name="receiver"
             >
               <option value="" selected disabled hidden>
-                Destinataire?
+                Destinataire ?
               </option>
               <option value="all">Tous</option>
               <option value="IOA">IOA</option>
@@ -138,8 +138,7 @@ export default class FrontMessageEnvoi extends Component {
           <div className="row2">
             <div id="colonne3">
               <button className="form-control3" onClick={this.coucou}>
-                <div class="form-control3-icon" />
-                {/* <img alt='haut-parleur' src="./imagedicteevocale.jpeg" width="25%" height="25%"/> */}
+                <i class="fas fa-microphone-alt" style={{ fontSize: "500%" }} />
               </button>
             </div>
 
