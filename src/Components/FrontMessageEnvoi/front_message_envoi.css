@@ -1,8 +1,4 @@
-.option{
-    text-align:center;
-    color: white;
-    height: 20%
-}
+
 
 textarea {
     resize: none;
@@ -13,7 +9,7 @@ textarea {
 .row1 {
     width: 100%;
     height: 20vh;
-    background-color: cyan
+    background-color: none
 }
 
 div#colonne1 {
@@ -25,7 +21,7 @@ div#colonne1 {
 	float: left;
     width: 50%;
     height: 100%;
-	background: grey;
+	background: rgba(128, 128, 128, 0.342);
 }
 
 .form-control1 {
@@ -39,7 +35,7 @@ div#colonne1 {
     border-color: none;
     
     color:white; 
-    background: blue;
+    background: rgba(143, 143, 218, 0.877);
 
     
     width: 100%;
@@ -58,7 +54,7 @@ div#colonne2 {
 
 	float: left;
 	width: 50%;
-	background: red;
+	background: rgb(223, 95, 212);
 }
 
 .form-control2 {
@@ -72,7 +68,7 @@ div#colonne2 {
     border-color: none;
     
     color:white; 
-    background: red;
+    background: rgb(223, 95, 212);
     text-align: center;
 
     width: 100%;
@@ -82,7 +78,7 @@ div#colonne2 {
 .row2 {
     width: 100%;
     height: 50vh;
-    background-color: brown
+    background-color: none
 }
 div#colonne3 {
     margin-top: 0px;
@@ -94,7 +90,7 @@ div#colonne3 {
     width: 25%;
     height: 100%;
     padding: 0px;
-    background: grey;
+    background: none;
     border-radius: 5px;
 }
 
@@ -108,7 +104,7 @@ div#colonne3 {
     border-color: none;
     
     color:white; 
-    background: grey;
+    background: rgba(128, 128, 128, 0.363);
     text-align: center;
 
     width: 100%;
@@ -116,7 +112,7 @@ div#colonne3 {
 }
 
 .form-control3-icon{
-    background-color: red;
+    background-color: none;
     background-image: url('../../assets/imagedicteevocale.jpeg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -133,7 +129,7 @@ div#colonne4 {
     height: 100%;
 	float: left;
 	width: 75%;
-	background: brown;
+	background: none;
 }
 
 .form-control4 {
@@ -154,7 +150,6 @@ div#colonne4 {
 .row3 {
     width: 100%;
     height: 30vh;
-    background-color: green
 }
 div#colonne5 {
     margin-top: 0px;
@@ -178,7 +173,7 @@ div#colonne5 {
 
     border-color: none;
     color:white; 
-    background: green;
+    background: rgba(57, 124, 57, 0.671);
     text-align: center;
 
     width: 100%;
@@ -209,7 +204,7 @@ div#colonne6 {
 
     border-color: none;
     color:white; 
-    background: green;
+    background: rgb(201, 61, 61);
     text-align: center;
 
     width: 100%;
@@ -240,7 +235,7 @@ div#colonne7 {
 
     border-color: none;
     color:white; 
-    background: green;
+    background: rgb(43, 43, 92);
     text-align: center;
 
     width: 100%;

@@ -77,30 +77,20 @@ export default class FrontAccueil extends Component {
           <div className="procedures">
             <h2 className="soustitreprocedure">Procédures</h2>
             <div className="textprocedure">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              fermentum neque magna, eu venenatis purus egestas ut. In id sapien
-              vel ex laoreet condimentum quis nec elit. Curabitur mattis tempus
-              purus ut gravida. Praesent iaculis mi sed rhoncus mattis.
-              Vestibulum ac commodo erat. Nulla quis magna ac eros blandit
-              blandit non at leo. Donec rhoncus venenatis dolor gravida
-              dignissim. Vestibulum aliquam nisl erat, a dictum mauris viverra
-              viverra. Cras a erat nec turpis cursus mattis. Sed metus magna,
-              interdum et ex ac, volutpat posuere nisi. Quisque cursus, mauris
-              ac ornare gravida, ligula neque rutrum nibh, vitae luctus justo
-              massa sed metus. In consectetur nec quam sit amet fermentum. Etiam
-              congue neque non lectus scelerisque, vitae sollicitudin purus
-              imperdiet. Morbi pharetra cursus erat convallis fermentum. Etiam
-              risus risus, vestibulum a purus at, consectetur convallis ante.
-              Etiam pellentesque leo mauris, sit amet semper tortor tincidunt
-              quis. Integer vehicula ornare lacus, ut tincidunt metus.
-              Suspendisse suscipit leo viverra viverra ultricies. Morbi vel
-              faucibus mauris. Donec hendrerit dui et est elementum placerat.
-              Vivamus condimentum massa eget aliquam suscipit. Aliquam dapibus
-              odio et lobortis tristique. Aliquam faucibus iaculis eros, a
-              posuere arcu fringilla vel. Praesent tortor turpis, posuere ut
-              nisl eget, ornare auctor turpis. Nam ac volutpat augue, non
-              consectetur ligula. Etiam euismod tellus sit amet metus
-              pellentesque porta.
+
+              Veuillez prendre un ticket pour l’ordre de passage près de la porte d'entrée. <br/>
+              Attendez que votre numéro soit appelé pour vous présenter avec:<br/>
+                    - Adulte, adolescent: carte d’identité, carte vitale et mutuelle du patient<br/>
+                    - Enfant : carnet de santé de l’enfant, carte d’identité et mutuelle d’un parent<br/>
+              <br/>
+              Explication des Règles de Priorités<br/><br/>
+              
+              1) Pompiers/Policiers/SAMU/Ambulances<br/>
+              2) Maternité/gynéco<br/>
+              3) Enfant<br/>
+              4) Adulte<br/>
+  
+              
             </div>
           </div>
         </div>

@@ -114,7 +114,7 @@ export default class FrontIAO extends Component {
                 })
                 .slice(0, 1)
                 .map(message => (
-                  <div>Important : {message.body}</div>
+                  <div className="messagetextiao">Important : {message.body}</div>
                 ))}
             </div>
             <div className="boxalarmiao"> </div>

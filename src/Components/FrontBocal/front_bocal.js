@@ -135,7 +135,7 @@ export default class FrontBocal extends Component {
                 })
                 .slice(0, 1)
                 .map(message => (
-                  <div>Important : {message.body}</div>
+                  <div className="messagetextbocal">Important : {message.body}</div>
                 ))}
             </div>
             <div className="boxalarmbocal"> </div>
