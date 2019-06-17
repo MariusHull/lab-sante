@@ -119,7 +119,7 @@ class MessageBoard extends React.Component {
 
     displayOldMessages(messages) {
         return (
-            <div className="old-messages-container">Caca</div>
+            <div className="old-messages-container"></div>
         )
     }
 
