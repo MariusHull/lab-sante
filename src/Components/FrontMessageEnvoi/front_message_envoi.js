@@ -109,7 +109,7 @@ export default class FrontMessageEnvoi extends Component {
               onChange={this.onChange}
             >
               <option value="" selected disabled hidden>
-                Expéditeur? (IOA)
+                Expéditeur ? (IOA)
               </option>
               <option value="IOA">IOA</option>
               <option value="Bocal">Bocal</option>
@@ -125,7 +125,7 @@ export default class FrontMessageEnvoi extends Component {
               name="receiver"
             >
               <option value="" selected disabled hidden>
-                Destinataire?
+                Destinataire ?
               </option>
               <option value="all">Tous</option>
               <option value="IOA">IOA</option>
