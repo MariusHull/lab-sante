@@ -9,7 +9,15 @@ class Service extends Component {
     this.state = {
       endpoint: "localhost:3001",
       savedServices: [],
-      colors: ["#000000", "#ffffff", "#ff0000", "#00ff00", "#0000ff"],
+      colors: [
+        "#ffcb83",
+        "#cc66ff",
+        "#6d7eff",
+        "#7fb678",
+        "#ff817a",
+        "#996633",
+        "#666699"
+      ],
       newName: "",
       newColor: "#000000"
     };
@@ -31,6 +39,17 @@ class Service extends Component {
     this.setState(state);
   };
 
+  delete = service => {
+    if (!window.confirm("Etes-vous sûr.e de vouloir supprimer ce service ?")) {
+      return 1;
+    }
+    axios
+      .delete(`http://localhost:3001/services/${service._id}`, service)
+      .then(res => {
+        this.reload();
+      });
+  };
+
   onSubmit = () => {
     const { newColor, newName } = this.state;
     if (newName === "") {
@@ -38,7 +57,7 @@ class Service extends Component {
       return 0;
     }
     axios
-      .post("http://localhost:3001/services/", {
+      .post(`http://localhost:3001/services/`, {
         name: newName,
         color: newColor
       })
@@ -90,7 +109,14 @@ class Service extends Component {
                   >
                     &nbsp;
                   </span>
-                  )
+                  ){" "}
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger delete-button"
+                    onClick={() => this.delete(service)}
+                  >
+                    X
+                  </button>
                 </li>
               );
             })}

@@ -3,6 +3,11 @@
   text-align: right;
 }
 
+.delete-button {
+  height: 25px;
+  padding: 0px;
+}
+
 .badge-service {
   width: "25px";
   height: "15px";
