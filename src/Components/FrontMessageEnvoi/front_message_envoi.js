@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import "./front_message_envoi.css";
-import "./imagedicteevocale.jpeg";
 import Navbar from "../../Containers/Navbar";
 import Axios from "axios";
 import { resolveSrv } from "dns";

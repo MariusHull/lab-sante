@@ -15,17 +15,17 @@
 .messageiao {
   margin-right: 5%;
 
-  margin-left: 2%;
+  margin-left: 1.25%;
   width: 85%;
   height: 70%;
   background-color: rgba(128, 128, 128, 0.658);
   border-radius: 5px;
 }
 
-.boxalarm {
+.boxalarmiao {
   margin-right: 5%;
   border-radius: 5px;
-
+  margin-top:1px;
   width: 6%;
   height: 100%;
   background-color: red;
@@ -88,7 +88,7 @@
   height: 8%;
 }
 
-.nompatient {
+.nompatientiao {
   text-align: center;
 
   font-size: 50%;
@@ -98,11 +98,11 @@
 
   margin-top: 1%;
 
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.781);
   border-color: black;
 }
 
-.attentepatient {
+.attentepatientiao {
   text-align: center;
   font-size: 50%;
 
@@ -111,11 +111,11 @@
 
   margin-top: 1%;
 
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.781);
   border-color: black;
 }
 
-.statutpatient {
+.statutpatientiao {
   text-align: center;
 
   font-size: 50%;
@@ -125,7 +125,7 @@
 
   margin-top: 1%;
 
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.781);
   border-color: black;
 }
 
@@ -195,7 +195,7 @@
 
   margin-top: 1%;
 
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.781);
   border-color: black;
 }
 
@@ -209,25 +209,25 @@
 
   margin-top: 1%;
 
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.781);
   border-color: black;
 }
 
 .row2col2iao {
   width: 75%;
   height: 100%;
-  background-color: rgba(128, 128, 128, 0.658);
+  background-color: none;
   border-radius: 5px;
 }
 
-.camerabox {
+.cameraboxiao {
   width: 90%;
   height: 90%;
 
   margin-left: 5%;
   margin-right: 5%;
-  margin-top: 5%;
+  margin-top: 1.5%;
   margin-bottom: 5%;
-
-  background-color: white;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
 }

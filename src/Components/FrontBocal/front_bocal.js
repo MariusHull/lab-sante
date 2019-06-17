@@ -38,7 +38,27 @@ export default class FrontBocal extends Component {
           name: "georges",
           attente: "2h",
           statut: "3"
-        }
+        },
+        {
+            name: "Michel",
+            attente: "2h",
+            statut: "3"
+          },
+          {
+            name: "Michel",
+            attente: "2h",
+            statut: "3"
+          },
+          {
+            name: "Michel",
+            attente: "2h",
+            statut: "3"
+          },
+          {
+            name: "Michel",
+            attente: "2h",
+            statut: "3"
+          },
       ],
 
       numero: [
@@ -118,7 +138,7 @@ export default class FrontBocal extends Component {
                   <div>Important : {message.body}</div>
                 ))}
             </div>
-            <div className="boxalarm"> </div>
+            <div className="boxalarmbocal"> </div>
           </div>
 
           <div className="row2bocal">
@@ -162,15 +182,15 @@ export default class FrontBocal extends Component {
                 <h2>Tableau des attentes</h2>
 
                 <div className="rowtabbocal">
-                  <div className="nompatient"> Nom du patient </div>
-                  <div className="attentepatient"> Attente du patient </div>
-                  <div className="statutpatient"> Statut du Patient </div>
+                  <div className="nompatientbocal"> Nom du patient </div>
+                  <div className="attentepatientbocal"> Attente du patient </div>
+                  <div className="statutpatientbocal"> Statut du Patient </div>
                 </div>
                 {this.state.ordre.slice(0, 5).map(patient => (
                   <div className="rowtabbocal">
-                    <div className="nompatient"> {patient.name}</div>
-                    <div className="attentepatient">{patient.attente}</div>
-                    <div className="statutpatient">{patient.statut}</div>
+                    <div className="nompatientbocal"> {patient.name}</div>
+                    <div className="attentepatientbocal">{patient.attente}</div>
+                    <div className="statutpatientbocal">{patient.statut}</div>
                   </div>
                 ))}
               </div>
@@ -199,13 +219,15 @@ export default class FrontBocal extends Component {
             </div>
             <div className="row2col2bocal">
               <div className="statutbox">
+              <h2 className="titrestatutbocal"> Tableau des statuts</h2>
+                <div className="tableaugeneralbocal">
                 <div className="rowtabbocalstatut">
                   <div className="tableaustatut"> Nom du patient </div>
                   <div className="tableaustatut"> Statut Radiologie </div>
                   <div className="tableaustatut"> Statut Laboratoire </div>
                   <div className="tableaustatut"> Attente du patient </div>
                 </div>
-                {this.state.ordre.slice(0, 5).map(patient => (
+                {this.state.ordre.slice(0, 10).map(patient => (
                   <div className="rowtabbocalstatut">
                     <div className="tableaustatut"> {patient.name}</div>
                     <div className="tableaustatut">{patient.attente}</div>
@@ -213,6 +235,7 @@ export default class FrontBocal extends Component {
                     <div className="tableaustatut">{patient.statut}</div>
                   </div>
                 ))}{" "}
+                </div>
               </div>
             </div>
           </div>
