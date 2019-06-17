@@ -18,16 +18,15 @@ export default class FrontMessageEnvoi extends Component {
       message: "",
       receiver: "all",
       sender: "IOA",
-      status: ""
+      status: "",
+      services: []
       ///
     };
   }
 
   componentWillMount = () => {
-    const { messages } = this.state;
-    socket.on("Ne  w message", mess => {
-      console.log("Messages : ", mess);
-      this.setState({ messages: mess });
+    Axios.get("http://localhost:3001/services/").then(res => {
+      this.setState({ services: res.data });
     });
   };
 
@@ -82,7 +81,7 @@ export default class FrontMessageEnvoi extends Component {
     const { messages, message } = this.state;
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         {/* <button onClick={() => this.send()}>Change Color</button>
 
         <button id="blue" onClick={() => this.setColor("blue")}>

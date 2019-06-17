@@ -48,7 +48,7 @@ export default class FrontAccueil extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="row1accueil">
           <div className="bienvenue">
             <div className="titretext">Bienvenue aux Urgences de Melun</div>
@@ -77,20 +77,28 @@ export default class FrontAccueil extends Component {
           <div className="procedures">
             <h2 className="soustitreprocedure">Procédures</h2>
             <div className="textprocedure">
-
-              Veuillez prendre un ticket pour l’ordre de passage près de la porte d'entrée. <br/>
-              Attendez que votre numéro soit appelé pour vous présenter avec:<br/>
-                    - Adulte, adolescent: carte d’identité, carte vitale et mutuelle du patient<br/>
-                    - Enfant : carnet de santé de l’enfant, carte d’identité et mutuelle d’un parent<br/>
-              <br/>
-              Explication des Règles de Priorités<br/><br/>
-              
-              1) Pompiers/Policiers/SAMU/Ambulances<br/>
-              2) Maternité/gynéco<br/>
-              3) Enfant<br/>
-              4) Adulte<br/>
-  
-              
+              Veuillez prendre un ticket pour l’ordre de passage près de la
+              porte d'entrée. <br />
+              Attendez que votre numéro soit appelé pour vous présenter avec:
+              <br />
+              - Adulte, adolescent: carte d’identité, carte vitale et mutuelle
+              du patient
+              <br />
+              - Enfant : carnet de santé de l’enfant, carte d’identité et
+              mutuelle d’un parent
+              <br />
+              <br />
+              Explication des Règles de Priorités
+              <br />
+              <br />
+              1) Pompiers/Policiers/SAMU/Ambulances
+              <br />
+              2) Maternité/gynéco
+              <br />
+              3) Enfant
+              <br />
+              4) Adulte
+              <br />
             </div>
           </div>
         </div>

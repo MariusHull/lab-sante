@@ -40,7 +40,7 @@ class Service extends Component {
   };
 
   delete = service => {
-    if (!window.confirm("Etes-vous sûr.e de vouloir supprimer ce service ?")) {
+    if (!window.confirm("Etes-vous sûr de vouloir supprimer ce service ?")) {
       return 1;
     }
     axios
@@ -130,7 +130,7 @@ class Service extends Component {
     const { newName } = this.state;
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="container">
           <br />
           {this.getServices()}
