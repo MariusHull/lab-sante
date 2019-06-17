@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./Service.css";
+import Navbar from "../../Containers/Navbar";
 
 class Service extends Component {
   constructor() {
@@ -105,6 +104,7 @@ class Service extends Component {
     const { newName } = this.state;
     return (
       <div>
+        <Navbar />
         Hello !
         <br />
         {this.getServices()}

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import "./front_message_envoi.css";
-import "./imagedicteevocale.jpeg"
+import "./imagedicteevocale.jpeg";
+import Navbar from "../../Containers/Navbar";
 
 const socket = socketIOClient("localhost:3001");
 
@@ -16,7 +17,7 @@ export default class FrontMessageEnvoi extends Component {
       message: "",
       receiver: "",
       sender: "",
-      status: "",
+      status: ""
       ///
     };
   }
@@ -43,33 +44,30 @@ export default class FrontMessageEnvoi extends Component {
   };
 
   onSubmit = e => {
-    console.log(      {
-      sender:  this.state.sender,
+    console.log({
+      sender: this.state.sender,
       receiver: this.state.receiver,
       body: this.state.message,
       updated_at: Date.now(),
-      status:this.state.status
-    })
+      status: this.state.status
+    });
 
-    socket.emit(
-      "Message",
-      {
-        sender:  this.state.sender,
-        receiver: this.state.receiver,
-        body: this.state.message,
-        updated_at: Date.now(),
-        status:this.state.status
-      }
-    );
+    socket.emit("Message", {
+      sender: this.state.sender,
+      receiver: this.state.receiver,
+      body: this.state.message,
+      updated_at: Date.now(),
+      status: this.state.status
+    });
     this.setState({
       message: "",
-      status:""
+      status: ""
     });
   };
 
   coucou = e => {
-    console.log("coucou")
-  }
+    console.log("coucou");
+  };
 
   // adding the function
   setColor = color => {
@@ -78,12 +76,13 @@ export default class FrontMessageEnvoi extends Component {
 
   // render method that renders in code if the state is updated
   render() {
-    var img = new Image();   // Crée un nouvel élément img
-img.src = './images.jpeg';
+    var img = new Image(); // Crée un nouvel élément img
+    img.src = "./images.jpeg";
 
     const { messages, message } = this.state;
     return (
       <div>
+        <Navbar />
         {/* <button onClick={() => this.send()}>Change Color</button>
 
         <button id="blue" onClick={() => this.setColor("blue")}>
@@ -102,74 +101,96 @@ img.src = './images.jpeg';
               </div>
             );
           })*/}
-     
+
         <div className="row1">
-
-        
-        <div className="col" id="colonne1">
-        <select 
-          name="sender"
-          className="form-control1"
-          onChange={this.onChange}
-          >
-          <option value="" selected disabled hidden>Expéditeur?</option>
-          <option value="IOA">IOA</option>
-          <option value="Bocal">Bocal</option>
-          <option value="Accueil">Accueil</option>
-          <option value="Administration">Administration</option>
-        </select>
-        </div>
-
-
-        <div className="col" id="colonne2" >
-        <select 
-          className="form-control2"
-          onChange={this.onChange}
-          name="receiver"
-          >
-          <option value="" selected disabled hidden>Destinataire?</option>
-          <option className="option" value="all">Tous</option>
-          <option value="IOA">IOA</option>
-          <option value="Bocal">Bocal</option>
-          <option value="Accueil">Accueil</option>
-          <option value="Administration">Administration</option>
-        </select>
-        </div>
-        </div>
-
-        <div className='row2'>
-
-        <div id="colonne3" >
-        <button  className="form-control3" onClick={this.coucou} > 
-          <div class="form-control3-icon"></div>
-        {/* <img alt='haut-parleur' src="./imagedicteevocale.jpeg" width="25%" height="25%"/> */}
-        </button>
-        </div>
-
-        <div className="form-group" id="colonne4">
-          <textarea
-            name="message"
-            type="text"
-            className="form-control4"
-            aria-describedby="emailHelp"
-            value={message}
-            onChange={this.onChange}
-            placeholder="Message"
-          />
+          <div className="col" id="colonne1">
+            <select
+              name="sender"
+              className="form-control1"
+              onChange={this.onChange}
+            >
+              <option value="" selected disabled hidden>
+                Expéditeur?
+              </option>
+              <option value="IOA">IOA</option>
+              <option value="Bocal">Bocal</option>
+              <option value="Accueil">Accueil</option>
+              <option value="Administration">Administration</option>
+            </select>
           </div>
-        
+
+          <div className="col" id="colonne2">
+            <select
+              className="form-control2"
+              onChange={this.onChange}
+              name="receiver"
+            >
+              <option value="" selected disabled hidden>
+                Destinataire?
+              </option>
+              <option className="option" value="all">
+                Tous
+              </option>
+              <option value="IOA">IOA</option>
+              <option value="Bocal">Bocal</option>
+              <option value="Accueil">Accueil</option>
+              <option value="Administration">Administration</option>
+            </select>
+          </div>
         </div>
-         <div className="row3">
-         <div id="colonne5">
-          <button className="form-control5" name="status" onClick={this.onChangeStatus} value="important">Important</button>
+
+        <div className="row2">
+          <div id="colonne3">
+            <button className="form-control3" onClick={this.coucou}>
+              <div class="form-control3-icon" />
+              {/* <img alt='haut-parleur' src="./imagedicteevocale.jpeg" width="25%" height="25%"/> */}
+            </button>
+          </div>
+
+          <div className="form-group" id="colonne4">
+            <textarea
+              name="message"
+              type="text"
+              className="form-control4"
+              aria-describedby="emailHelp"
+              value={message}
+              onChange={this.onChange}
+              placeholder="Message"
+            />
+          </div>
+        </div>
+        <div className="row3">
+          <div id="colonne5">
+            <button
+              className="form-control5"
+              name="status"
+              onClick={this.onChangeStatus}
+              value="important"
+            >
+              Important
+            </button>
           </div>
           <div id="colonne6">
-          <button className="form-control6" name="status" onClick={this.onChangeStatus} value="urgent">Urgent</button>
+            <button
+              className="form-control6"
+              name="status"
+              onClick={this.onChangeStatus}
+              value="urgent"
+            >
+              Urgent
+            </button>
           </div>
           <div id="colonne7">
-          <button className="form-control7" name="status" onClick={this.onChangeStatus} value="information">Information</button>
+            <button
+              className="form-control7"
+              name="status"
+              onClick={this.onChangeStatus}
+              value="information"
+            >
+              Information
+            </button>
           </div>
-          </div>
+        </div>
       </div>
     );
   }
