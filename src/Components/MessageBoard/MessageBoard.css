@@ -56,6 +56,54 @@
     font-weight: bold;
 }
 
+
+.emergency-status-blink {
+  -webkit-animation: BlinkAnimation 3s infinite;  /* Safari 4+ */
+  -moz-animation: BlinkAnimation 3s infinite;  /* Fx 5+ */
+  -o-animation: BlinkAnimation 3s infinite;  /* Opera 12+ */
+  animation: BlinkAnimation 3s infinite;  /* IE 10+, Fx 29+ */
+}
+
+.information-status {
+  color : green;
+  background-color : rgba(0, 100, 0, 0.3);
+}
+
+.important-status {
+  color : navy;
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+@keyframes BlinkAnimation {
+  0%, 49% {
+    background-color: rgb(255, 176, 176);
+    color: red;
+  }
+  50%, 100% {
+    background-color: rgb(255, 60, 60);
+    color: rgb(255, 196, 196);
+  }
+}
+
+.message-container {
+  border-radius: 0px 8px 8px 0px;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.message-content {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: x-large;
+  font-family: "Montserrat";
+}
+
 .message{
     background-color: white;
     margin-top: 10px;
@@ -68,8 +116,16 @@
 
 }
 
+.message-status{
+  min-width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 8px 8px 0px;
+}
+
 .sender-container {
-  min-width: 150px;
+  width: 200px;
   border-radius: 8px 0px 0px 8px;
 }
 
@@ -85,30 +141,14 @@
 }
 
 .sender-content {
+  padding: 5px;
   text-align: center;
   /* font-family: 'Courier New', Courier, monospace; */
-}
-
-.message-container {
-  border-radius: 0px 8px 8px 0px;
-  background-color: white;
-  display: flex;
 }
 
 .date-message {
   font-weight: bold;
   margin-left: 5px;
-}
-
-.message-content {
-  background-color: white;
-  border-radius: 0px 8px 8px 0px;
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  margin-left: 10px;
-  font-size: x-large;
-  font-family: "Montserrat";
 }
 
 .emergency-container {

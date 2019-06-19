@@ -67,13 +67,11 @@ class MessageBoard extends React.Component {
     }
   };
 
-
   resizeWindow() {
     let numberRows = Math.trunc((window.innerHeight - 165) / 75);
     this.setState({ numberRows: numberRows });
     // console.log("numberRows", numberRows);
   }
-
 
   displayMessage(message, index) {
     const color = message.color || "orange";
@@ -83,8 +81,7 @@ class MessageBoard extends React.Component {
           <div className="sender-transparent">
             <div
               className="sender-content"
-              style={{ fontWeight: 900, fontSize: 18 }}
-            >
+              style={{ fontWeight: 900, fontSize: 18 }}>
               {message.sender}
             </div>
             <div>{"à " + moment(message.updated_at).format("LT")}</div>
@@ -92,9 +89,39 @@ class MessageBoard extends React.Component {
         </div>
         <div className="message-container">
           <div className="message-content">{message.body}</div>
+          {this.displayStatus(message.status)}
         </div>
       </div>
     );
+  }
+
+  displayStatus(status) {
+    let logo = "fas fa-info-circle";
+    let cssClass = ""
+
+    switch (status) {
+      case "information":
+        logo = "fas fa-info-circle";
+        cssClass = "information-status"
+        break
+      case "urgent":
+        logo = "fas fa-ambulance";
+        cssClass = "emergency-status-blink"
+        break
+      case "important":
+        logo = "fas fa-exclamation-triangle";
+        cssClass = "important-status"
+        break
+      default:
+        logo = ""
+    }
+    return (
+      <div className={"message-status "+ cssClass}>
+        <i
+          class={logo}
+          style={{fontSize: "200%" }}></i>
+      </div>
+    )
   }
 
   displayEmergencyMessage(message) {
