@@ -93,7 +93,7 @@ export default class FrontAccueil extends Component {
               <br />
               1) Pompiers/Policiers/SAMU/Ambulances
               <br />
-              2) Maternité/gynéco
+              2) Maternité/gynécologique
               <br />
               3) Enfant
               <br />

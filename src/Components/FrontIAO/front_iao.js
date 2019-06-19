@@ -15,27 +15,27 @@ export default class FrontIAO extends Component {
 
       ordre: [
         {
-          name: "Michel",
+          name: "Michel Dupont",
           attente: "2h",
           statut: "3"
         },
         {
-          name: "georges",
+          name: "georges Dupont",
           attente: "2h",
           statut: "3"
         },
         {
-          name: "georges",
+          name: "georges Dupont",
           attente: "2h",
           statut: "3"
         },
         {
-          name: "georges",
+          name: "georges Dupont",
           attente: "2h",
           statut: "3"
         },
         {
-          name: "georges",
+          name: "georges Dupont ",
           attente: "2h",
           statut: "3"
         }
@@ -175,8 +175,8 @@ export default class FrontIAO extends Component {
 
                 <div className="rowtabiao">
                   <div className="nompatientiao"> Nom du patient </div>
-                  <div className="attentepatientiao"> Attente du patient </div>
-                  <div className="statutpatientiao"> Statut du Patient </div>
+                  <div className="attentepatientiao"> Attente</div>
+                  <div className="statutpatientiao"> Statut </div>
                 </div>
                 {this.state.ordre.slice(0, 5).map(patient => (
                   <div className="rowtabiao">
@@ -198,14 +198,7 @@ export default class FrontIAO extends Component {
                       </div>
                     ))}
                   </div>
-                  <div className="row2col1row3col2iao">
-                    {this.state.numero.slice(0, 5).map(numero => (
-                      <div className="rowtabnumeroiao">
-                        <div className="nomnumeroiao">{numero.nom}</div>
-                        <div className="numeroiao">{numero.numero}</div>
-                      </div>
-                    ))}
-                  </div>
+
                 </div>
               </div>
             </div>

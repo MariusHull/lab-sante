@@ -108,7 +108,7 @@
 .nompatientiao {
   text-align: center;
 
-  font-size: 50%;
+  font-size: 70%;
 
   width: 30%;
   height: 100%;
@@ -121,9 +121,9 @@
 
 .attentepatientiao {
   text-align: center;
-  font-size: 50%;
+  font-size: 70%;
 
-  width: 30%;
+  width: 25%;
   height: 100%;
 
   margin-top: 1%;
@@ -135,9 +135,9 @@
 .statutpatientiao {
   text-align: center;
 
-  font-size: 50%;
+  font-size: 70%;
 
-  width: 30%;
+  width: 25%;
   height: 100%;
 
   margin-top: 1%;
@@ -184,7 +184,7 @@
 }
 
 .row2col1row3col1iao {
-  width: 45%;
+  width: 100%;
   margin-left: 2.5%;
   margin-right: 5%;
 }
@@ -205,9 +205,9 @@
 .nomnumeroiao {
   text-align: center;
 
-  font-size: 50%;
+  font-size: 80%;
 
-  width: 50%;
+  width: 100%;
   height: 100%;
 
   background-color: rgba(255, 255, 255, 0.781);
@@ -217,9 +217,9 @@
 .numeroiao {
   text-align: center;
 
-  font-size: 50%;
+  font-size: 80%;
 
-  width: 50%;
+  width: 100%;
   height: 100%;
 
   background-color: rgba(255, 255, 255, 0.781);
