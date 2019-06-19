@@ -1,4 +1,6 @@
 import React from "react";
+import Slider from 'react-animated-slider';
+import 'react-animated-slider/build/horizontal.css';
 
 import "./MessageBoard.css";
 import * as moment from "moment";
@@ -8,13 +10,16 @@ import socketIOClient from "socket.io-client";
 import Navbar from "../../Containers/Navbar";
 const socket = socketIOClient("localhost:3001");
 
+
 class MessageBoard extends React.Component {
+
   constructor() {
-    super();
-    moment.locale("fr");
+    super()
+    moment.locale('fr');
     this.state = {
       emergency: null,
-      numberRows: 5,
+      oldMessageIndex: 0,
+      numberRows: 6,
       messageList: [
         {
           sender: "IOA",
@@ -54,14 +59,21 @@ class MessageBoard extends React.Component {
         {
           sender: "Accueil",
           receiver: "IOA",
-          body:
-            "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
+          body: "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
           updated_at: Date.now(),
           status: "urgent"
         }
       ]
-    };
+    }
+  };
+
+
+  resizeWindow() {
+    let numberRows = Math.trunc((window.innerHeight - 165) / 75);
+    this.setState({ numberRows: numberRows });
+    // console.log("numberRows", numberRows);
   }
+
 
   displayMessage(message, index) {
     const color = message.color || "orange";
@@ -98,16 +110,24 @@ class MessageBoard extends React.Component {
   displayOldMessages(messages) {
     return (
       <div className="old-messages-container">
-        <div class="old-message-title">Anciens messages</div>
-        <div class="old-message-count">1/5</div>
-        <div class="old-message">
-          {this.displayMessage(
-            this.state.messageList[this.state.messageList.length - 1],
-            0
-          )}
-        </div>
-      </div>
-    );
+        <div className="old-message-title">Anciens messages</div>
+        <div className="old-message-count">{this.state.oldMessageIndex + 1}/{messages.length}</div>
+        <Slider
+          autoplay={10000}
+          infinite={true}
+          previousButton={null}
+          nextButton={null}
+          onSlideChange={(event) => { this.setState({ oldMessageIndex: event.slideIndex }) }}>
+          {
+            messages.map((message, index) => {
+              return (
+                <div>{this.displayMessage(message, index)}</div>
+              )
+            })
+          }
+        </Slider>
+      </div >
+    )
   }
 
   componentWillMount = () => {
@@ -128,11 +148,27 @@ class MessageBoard extends React.Component {
         this.setState({ emergency: message }, () => {
           setTimeout(() => {
             this.setState({ emergency: null });
-          }, 2000);
+          }, 5000);
         });
       }
     });
   };
+
+
+  /**
+   * Add event listener
+   */
+  componentDidMount() {
+    this.resizeWindow();
+    window.addEventListener("resize", this.resizeWindow.bind(this));
+  }
+
+  /**
+   * Remove event listener
+   */
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeWindow.bind(this));
+  }
 
   render() {
     return (
@@ -148,7 +184,9 @@ class MessageBoard extends React.Component {
             {this.state.emergency &&
               this.displayEmergencyMessage(this.state.emergency)}
           </div>
-          {this.displayOldMessages()}
+          <div className="old-message-container-position">
+            {this.state.messageList.slice(this.state.numberRows).length > 0 && this.displayOldMessages(this.state.messageList.slice(this.state.numberRows))}
+          </div>
         </div>
       </div>
     );

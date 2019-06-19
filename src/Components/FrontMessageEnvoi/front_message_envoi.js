@@ -234,8 +234,10 @@ export default class FrontMessageEnvoi extends Component {
                 type="text"
                 className="form-control4"
                 aria-describedby="emailHelp"
-                value={this.state.message}
-                onChange={this.changeValue.bind(this)}
+                value={message}
+                onChange={this.onChange}
+                placeholder="Message"
+                maxlength="256"
               />
             </div>
           </div>
