@@ -63,33 +63,100 @@ export default class FrontBocal extends Component {
 
       numero: [
         {
-          nom: "Michel",
+          nom: "Michel Hervé",
           numero: "0688989898"
         },
         {
-          nom: "Michel",
+          nom: "Michel Hervé",
           numero: "0688989898"
         },
         {
-          nom: "Michel",
+          nom: "Michel Hervé",
           numero: "0688989898"
         },
         {
-          nom: "Michel",
+          nom: "Michel Hervé",
           numero: "0688989898"
         },
         {
-          nom: "Michel",
+          nom: "Michel Hervé",
           numero: "0688989898"
         },
         {
-          nom: "Michel",
+          nom: "Michel Hervé",
           numero: "0688989898"
         },
         {
-          nom: "Michel",
+          nom: "Michel Hervé",
           numero: "0688989898"
         }
+      ],
+
+      tab: [
+        {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+          {
+            nom: "Michel",
+            attente:"2h",
+            statut:"3",
+            radio:"en attente de radio",
+            labo:"en cours d'analyse"
+          },
+
       ],
       messageList: [
         {
@@ -191,7 +258,7 @@ export default class FrontBocal extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row2col1row2bocal">
+              {/* <div className="row2col1row2bocal">
                 <h2>Tableau des attentes</h2>
 
                 <div className="rowtabbocal">
@@ -209,7 +276,7 @@ export default class FrontBocal extends Component {
                     <div className="statutpatientbocal">{patient.statut}</div>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               <div className="row2col1row3bocal">
                 <h2>Numéros importants</h2>
@@ -222,14 +289,14 @@ export default class FrontBocal extends Component {
                       </div>
                     ))}
                   </div>
-                  <div className="row2col1row3col2bocal">
+                  {/* <div className="row2col1row3col2bocal">
                     {this.state.numero.slice(0, 5).map(numero => (
                       <div className="rowtabnumerobocal">
                         <div className="nomnumerobocal">{numero.nom}</div>
                         <div className="numerobocal">{numero.numero}</div>
                       </div>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -239,16 +306,18 @@ export default class FrontBocal extends Component {
                 <div className="tableaugeneralbocal">
                   <div className="rowtabbocalstatut">
                     <div className="tableaustatut"> Nom du patient </div>
-                    <div className="tableaustatut"> Statut Radiologie </div>
+                    <div className="tableaustatut"> Statut de l'Imagerie </div>
                     <div className="tableaustatut"> Statut Laboratoire </div>
+                    <div className="tableaustatut"> Statut du patient </div>
                     <div className="tableaustatut"> Attente du patient </div>
                   </div>
-                  {this.state.ordre.slice(0, 10).map(patient => (
+                  {this.state.tab.slice(0, 10).map(patient => (
                     <div className="rowtabbocalstatut">
-                      <div className="tableaustatut"> {patient.name}</div>
+                      <div className="tableaustatut"> {patient.nom}</div>
+                      <div className="tableaustatut">{patient.radio}</div>
+                      <div className="tableaustatut">{patient.labo}</div>
+                      <div className="tableaustatut">{patient.statut}</div>
                       <div className="tableaustatut">{patient.attente}</div>
-                      <div className="tableaustatut">{patient.statut}</div>
-                      <div className="tableaustatut">{patient.statut}</div>
                     </div>
                   ))}{" "}
                 </div>
