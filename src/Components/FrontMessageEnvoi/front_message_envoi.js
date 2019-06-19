@@ -5,14 +5,20 @@ import Navbar from "../../Containers/Navbar";
 import Axios from "axios";
 import { resolveSrv } from "dns";
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import mic from './mic.gif';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import micAnimate from './mic-animate.gif'
+
 const socket = socketIOClient("localhost:3001");
+
 
 export default class FrontMessageEnvoi extends Component {
   constructor() {
     super();
     this.state = {
       endpoint: "localhost:3001",
-
+      supportVoice: 'webkitSpeechRecognition' in window,
       ///
       color: "green",
       message: "",
@@ -79,6 +85,59 @@ export default class FrontMessageEnvoi extends Component {
     this.setState({ color });
   };
 
+
+  componentDidMount() {
+    if (this.state.supportVoice) {
+      const WebkitSpeechRecognition = window.webkitSpeechRecognition;
+      this.recognition = new WebkitSpeechRecognition();
+      this.recognition.continuous = true;
+      this.recognition.interimResults = true;
+      this.recognition.lang = this.props.lang || 'fr';
+      this.recognition.onresult = (event) => {
+        let interimTranscript = '';
+        let finalTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+            this.setState({
+              message: finalTranscript,
+            });
+            if (this.props.onChange) this.props.onChange(finalTranscript);
+            if (this.props.onEnd) this.props.onEnd(finalTranscript);
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+            this.setState({
+              message: interimTranscript,
+            });
+            if (this.props.onChange) this.props.onChange(interimTranscript);
+          }
+        }
+      };
+    }
+  }
+
+  changeValue(event) {
+    this.setState({
+      message: event.target.value,
+    });
+  }
+
+  say() {
+    if (this.state.supportVoice) {
+      if (!this.state.speaking) {
+        // start listening
+        this.recognition.start();
+      } else {
+        this.recognition.stop();
+        const question = this.state.message;
+      }
+      this.setState({
+        speaking: !this.state.speaking,
+        message: '',
+      });
+    }
+  }
+
   // render method that renders in code if the state is updated
   render() {
     var img = new Image(); // Crée un nouvel élément img
@@ -87,6 +146,8 @@ export default class FrontMessageEnvoi extends Component {
     const { messages, message, services } = this.state;
     return (
       <div>
+
+
         {/* <Navbar /> */}
         {/* <button onClick={() => this.send()}>Change Color</button>
 
@@ -106,6 +167,7 @@ export default class FrontMessageEnvoi extends Component {
               </div>
             );
           })*/}
+        <microphone/>
 
         <div className="row1">
           <div className="col" id="colonne1">
@@ -154,11 +216,15 @@ export default class FrontMessageEnvoi extends Component {
                 ))}
             </select>
           </div>
+            
+
+
 
           <div className="row2">
             <div id="colonne3">
-              <button className="form-control3" onClick={this.coucou}>
-                <i class="fas fa-microphone-alt" style={{ fontSize: "500%" }} />
+
+              <button className="form-control3" onClick={this.say.bind(this)}>
+                <i class={this.state.speaking ? "" : "fas fa-microphone-alt"} style={{ fontSize: "500%" }} />
               </button>
             </div>
 
@@ -171,6 +237,7 @@ export default class FrontMessageEnvoi extends Component {
                 value={message}
                 onChange={this.onChange}
                 placeholder="Message"
+                maxlength="256"
               />
             </div>
           </div>
