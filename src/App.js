@@ -9,33 +9,20 @@ import FrontIAO from "./Components/FrontIAO/front_iao";
 import MessageBoard from "./Components/MessageBoard/MessageBoard";
 import FrontBocal from "./Components/FrontBocal/front_bocal";
 import Service from "./Components/ServiceCreation/Service";
-import Navbar from "./Containers/Navbar";
+import AccueilUser from "./Components/AccueilUser/AccueilUser";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      endpoint: "localhost:3001",
-
-      ///
-      color: "white"
-      ///
-    };
-  }
-
-  // render method that renders in code if the state is updated
   render() {
     return (
       <div>
         <Router>
-          <div>
-            <Route exact path="/" component={FrontMessage} />
-            <Route exact path="/accueil" component={FrontAccueil} />
-            <Route exact path="/iao" component={FrontIAO} />
-            <Route exact path="/bocal" component={FrontBocal} />
-            <Route exact path="/board" component={MessageBoard} />
-            <Route exact path="/service" component={Service} />
-          </div>
+          <Route exact path="/" component={AccueilUser} />
+          <Route path="/message" component={FrontMessage} />
+          <Route path="/accueil" component={FrontAccueil} />
+          <Route path="/iao" component={FrontIAO} />
+          <Route path="/bocal" component={FrontBocal} />
+          <Route path="/board" component={MessageBoard} />
+          <Route path="/service" component={Service} />
         </Router>
       </div>
     );

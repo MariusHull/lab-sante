@@ -171,6 +171,7 @@ export default class FrontMessageEnvoi extends Component {
                 value={message}
                 onChange={this.onChange}
                 placeholder="Message"
+                maxlength="256"
               />
             </div>
           </div>

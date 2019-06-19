@@ -100,23 +100,26 @@ class Service extends Component {
             savedServices.map((service, count) => {
               return (
                 <li key={count} className="list-group-item single-service">
-                  {service.name} (couleur : &nbsp;
-                  <span
-                    className="badge badge-service"
-                    style={{
-                      backgroundColor: service.color
-                    }}
-                  >
-                    &nbsp;
-                  </span>
-                  ){" "}
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger delete-button"
-                    onClick={() => this.delete(service)}
-                  >
-                    X
-                  </button>
+                  <div>{service.name} </div>
+                  <div>
+                    <span
+                      className="badge badge-service"
+                      style={{
+                        backgroundColor: service.color
+                      }}
+                    >
+                      {" "}
+                      &nbsp;
+                    </span>
+
+                    <button
+                      type="button"
+                      className="btn btn-outline-danger delete-button"
+                      onClick={() => this.delete(service)}
+                    >
+                      <i class="fas fa-times" />
+                    </button>
+                  </div>
                 </li>
               );
             })}

@@ -1,18 +1,24 @@
 .single-service {
   display: flex;
-  text-align: right;
+  justify-content: space-between;
 }
 
 .delete-button {
-  height: 25px;
+  height: 100%;
+  width: 28px;
   padding: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
 }
 
 .badge-service {
-  width: "25px";
-  height: "15px";
+  height: 100%;
+  width: 28px;
   margin-top: auto;
   margin-bottom: auto;
+  border: solid 1px #000000;
+  transform: translate(0px, -4px);
 }
 
 .badge-choose {
