@@ -110,8 +110,8 @@ class MessageBoard extends React.Component {
   displayOldMessages(messages) {
     return (
       <div className="old-messages-container">
-        <div class="old-message-title">Anciens messages</div>
-        <div class="old-message-count">{this.state.oldMessageIndex + 1}/{messages.length}</div>
+        <div className="old-message-title">Anciens messages</div>
+        <div className="old-message-count">{this.state.oldMessageIndex + 1}/{messages.length}</div>
         <Slider
           autoplay={10000}
           infinite={true}
@@ -121,7 +121,7 @@ class MessageBoard extends React.Component {
           {
             messages.map((message, index) => {
               return (
-                <div class="old-message">{this.displayMessage(message, index)}</div>
+                <div>{this.displayMessage(message, index)}</div>
               )
             })
           }
@@ -184,7 +184,7 @@ class MessageBoard extends React.Component {
             {this.state.emergency &&
               this.displayEmergencyMessage(this.state.emergency)}
           </div>
-          <div class="old-message-container-position">
+          <div className="old-message-container-position">
             {this.state.messageList.slice(this.state.numberRows).length > 0 && this.displayOldMessages(this.state.messageList.slice(this.state.numberRows))}
           </div>
         </div>
