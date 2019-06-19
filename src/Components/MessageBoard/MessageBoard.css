@@ -1,6 +1,6 @@
 .main-container{
     /* background-image: url('../../assets/background.png'); */
-    background-color: rgba(204, 213, 255, 0.589);
+    background-color: rgba(204, 213, 255, 0.521);
     background-size: 100% 100%;
     margin : 0;
     position: relative;
@@ -14,8 +14,35 @@
 }
 
 .old-messages-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* padding-top : 50px; */
     min-height: 20vh;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.old-message{
+    margin: 20px;
+}
+
+.old-message-title{
+    position: absolute ;
+    top: 5px;
+    left: 10px;
+    font-size: large;
+    color: white;
+    font-weight: bold;
+}
+
+.old-message-count{
+    position: absolute ;
+    top: 5px;
+    right: 10px;
+    font-size: x-large;
+    color: white;
+    font-weight: bold;
 }
 
 .message{

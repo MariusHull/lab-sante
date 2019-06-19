@@ -14,7 +14,7 @@ class MessageBoard extends React.Component {
     moment.locale("fr");
     this.state = {
       emergency: null,
-      numberRows: 6,
+      numberRows: 5,
       messageList: [
         {
           sender: "IOA",
@@ -63,32 +63,11 @@ class MessageBoard extends React.Component {
     };
   }
 
-  colorFromSender(sender) {
-    switch (sender) {
-      case "IOA":
-        return "blue";
-      case "Bocal":
-        return "green";
-      case "Accueil":
-        return "orange";
-      case "Administration":
-        return "#800080";
-      default:
-        return "pink";
-    }
-  }
-
   displayMessage(message, index) {
+    const color = message.color || "orange";
     return (
-      <div
-        className="message"
-        key={index}
-        style={{ borderColor: this.colorFromSender(message.sender) }}
-      >
-        <div
-          className="sender-container"
-          style={{ backgroundColor: this.colorFromSender(message.sender) }}
-        >
+      <div className="message" key={index} style={{ borderColor: color }}>
+        <div className="sender-container" style={{ backgroundColor: color }}>
           <div className="sender-transparent">
             <div
               className="sender-content"
@@ -117,7 +96,18 @@ class MessageBoard extends React.Component {
   }
 
   displayOldMessages(messages) {
-    return <div className="old-messages-container" />;
+    return (
+      <div className="old-messages-container">
+        <div class="old-message-title">Anciens messages</div>
+        <div class="old-message-count">1/5</div>
+        <div class="old-message">
+          {this.displayMessage(
+            this.state.messageList[this.state.messageList.length - 1],
+            0
+          )}
+        </div>
+      </div>
+    );
   }
 
   componentWillMount = () => {
