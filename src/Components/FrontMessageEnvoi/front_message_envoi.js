@@ -14,7 +14,7 @@ export default class FrontMessageEnvoi extends Component {
       endpoint: "localhost:3001",
 
       ///
-      color: "white",
+      color: "green",
       message: "",
       receiver: "all",
       sender: "IOA",
@@ -43,12 +43,17 @@ export default class FrontMessageEnvoi extends Component {
   };
 
   onSubmit = e => {
+    const color =
+      this.state.services.filter(
+        service => service.name === this.state.sender
+      )[0].color || "black";
     console.log({
       sender: this.state.sender,
       receiver: this.state.receiver,
       body: this.state.message,
       updated_at: Date.now(),
-      status: this.state.status
+      status: this.state.status,
+      color: color
     });
 
     socket.emit("Message", {
@@ -56,7 +61,8 @@ export default class FrontMessageEnvoi extends Component {
       receiver: this.state.receiver,
       body: this.state.message,
       updated_at: Date.now(),
-      status: this.state.status
+      status: this.state.status,
+      color: color
     });
     this.setState({
       message: "",
@@ -78,7 +84,7 @@ export default class FrontMessageEnvoi extends Component {
     var img = new Image(); // Crée un nouvel élément img
     img.src = "./images.jpeg";
 
-    const { messages, message } = this.state;
+    const { messages, message, services } = this.state;
     return (
       <div>
         {/* <Navbar /> */}
@@ -111,10 +117,16 @@ export default class FrontMessageEnvoi extends Component {
               <option value="" selected disabled hidden>
                 Expéditeur ? (IOA)
               </option>
-              <option value="IOA">IOA</option>
-              <option value="Bocal">Bocal</option>
-              <option value="Accueil">Accueil</option>
-              <option value="Administration">Administration</option>
+              {services &&
+                services.map((service, index) => (
+                  <option
+                    key={index}
+                    value={service.name}
+                    color={service.color}
+                  >
+                    {service.name}
+                  </option>
+                ))}
             </select>
           </div>
 
@@ -127,11 +139,19 @@ export default class FrontMessageEnvoi extends Component {
               <option value="" selected disabled hidden>
                 Destinataire ?
               </option>
-              <option value="all">Tous</option>
-              <option value="IOA">IOA</option>
-              <option value="Bocal">Bocal</option>
-              <option value="Accueil">Accueil</option>
-              <option value="Administration">Administration</option>
+              <option value="all" couleur="green">
+                Tous
+              </option>
+              {services &&
+                services.map((service, index) => (
+                  <option
+                    key={index}
+                    value={service.name}
+                    color={service.color}
+                  >
+                    {service.name}
+                  </option>
+                ))}
             </select>
           </div>
 

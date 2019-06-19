@@ -9,87 +9,65 @@ import Navbar from "../../Containers/Navbar";
 const socket = socketIOClient("localhost:3001");
 
 class MessageBoard extends React.Component {
-
-    constructor() {
-        super()
-        moment.locale('fr');
-        this.state = {
-            emergency: null,
-            numberRows: 5,
-            messageList: [
-                {
-                    sender: "IOA",
-                    receiver: "Bocal",
-                    body: "Aide demandée au Box 3.",
-                    updated_at: Date.now(),
-                    status: "important"
-                },
-                {
-                    sender: "Bocal",
-                    receiver: "IOA",
-                    body: "Ceci est un test.",
-                    updated_at: Date.now(),
-                    status: "urgent"
-                },
-                {
-                    sender: "Bocal",
-                    receiver: "IOA",
-                    body: "Ceci est un test.",
-                    updated_at: Date.now(),
-                    status: "urgent"
-                },
-                {
-                    sender: "Accueil",
-                    receiver: "IOA",
-                    body: "Malaise jeune fille 12 ans.",
-                    updated_at: Date.now(),
-                    status: "urgent"
-                },
-                {
-                    sender: "Bocal",
-                    receiver: "IOA",
-                    body: "Box 3 libéré.",
-                    updated_at: Date.now(),
-                    status: "urgent"
-                },
-                {
-                    sender: "Accueil",
-                    receiver: "IOA",
-                    body: "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
-                    updated_at: Date.now(),
-                    status: "urgent"
-                }
-            ]
+  constructor() {
+    super();
+    moment.locale("fr");
+    this.state = {
+      emergency: null,
+      numberRows: 5,
+      messageList: [
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "Accueil",
+          receiver: "IOA",
+          body: "Malaise jeune fille 12 ans.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Box 3 libéré.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "Accueil",
+          receiver: "IOA",
+          body:
+            "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
+          updated_at: Date.now(),
+          status: "urgent"
         }
+      ]
     };
-
-
-  colorFromSender(sender) {
-    switch (sender) {
-      case "IOA":
-        return "blue";
-      case "Bocal":
-        return "green";
-      case "Accueil":
-        return "orange";
-      case "Administration":
-        return "#800080";
-      default:
-        return "pink";
-    }
   }
 
   displayMessage(message, index) {
+    const color = message.color || "orange";
     return (
-      <div
-        className="message"
-        key={index}
-        style={{ borderColor: this.colorFromSender(message.sender) }}
-      >
-        <div
-          className="sender-container"
-          style={{ backgroundColor: this.colorFromSender(message.sender) }}
-        >
+      <div className="message" key={index} style={{ borderColor: color }}>
+        <div className="sender-container" style={{ backgroundColor: color }}>
           <div className="sender-transparent">
             <div
               className="sender-content"
@@ -117,15 +95,20 @@ class MessageBoard extends React.Component {
     );
   }
 
-    displayOldMessages(messages) {
-        return (
-            <div className="old-messages-container">
-                <div class="old-message-title">Anciens messages</div>
-                <div class="old-message-count">1/5</div>
-                <div class="old-message">{this.displayMessage(this.state.messageList[this.state.messageList.length-1], 0)}</div>
-            </div>
-        )
-    }
+  displayOldMessages(messages) {
+    return (
+      <div className="old-messages-container">
+        <div class="old-message-title">Anciens messages</div>
+        <div class="old-message-count">1/5</div>
+        <div class="old-message">
+          {this.displayMessage(
+            this.state.messageList[this.state.messageList.length - 1],
+            0
+          )}
+        </div>
+      </div>
+    );
+  }
 
   componentWillMount = () => {
     // Getting all messages
