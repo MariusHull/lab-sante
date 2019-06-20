@@ -58,10 +58,10 @@
 
 
 .emergency-status-blink {
-  -webkit-animation: BlinkAnimation 3s infinite;  /* Safari 4+ */
-  -moz-animation: BlinkAnimation 3s infinite;  /* Fx 5+ */
-  -o-animation: BlinkAnimation 3s infinite;  /* Opera 12+ */
-  animation: BlinkAnimation 3s infinite;  /* IE 10+, Fx 29+ */
+  -webkit-animation: BlinkAnimation 5s infinite;  /* Safari 4+ */
+  -moz-animation: BlinkAnimation 5s infinite;  /* Fx 5+ */
+  -o-animation: BlinkAnimation 5s infinite;  /* Opera 12+ */
+  animation: BlinkAnimation 5s infinite;  /* IE 10+, Fx 29+ */
 }
 
 .information-status {
