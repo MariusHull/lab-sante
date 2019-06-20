@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { url } from '../../config.js';
 import { Link } from "react-router-dom";
 import "./AccueilUser.css";
 
@@ -12,7 +13,7 @@ export default class AccueilUser extends Component {
   }
 
   componentWillMount() {
-    axios.get("http://localhost:3001/services/").then(res => {
+    axios.get(`${url}/services/`).then(res => {
       this.setState({ services: res.data });
     });
   }

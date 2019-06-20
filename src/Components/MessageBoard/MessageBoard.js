@@ -1,23 +1,27 @@
 import React from "react";
+import Swipeout from 'rc-swipeout';
+import 'rc-swipeout/assets/index.css';
+// import 'rc-swipeout/assets/index'
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
 import sync from 'css-animation-sync';
+import { url } from '../../config.js';
 import "./MessageBoard.css";
 import * as moment from "moment";
 import "moment/locale/fr";
 import Axios from "axios";
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient("localhost:3001");
+const socket = socketIOClient(url);
 
 class MessageBoard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     new sync("BlinkAnimation");
     moment.locale("fr");
     this.state = {
       emergency: null,
       oldMessageIndex: 0,
-      numberRows: 6,
+      numberRows: 10,
       messageList: [
         {
           sender: "IOA",
@@ -96,9 +100,35 @@ class MessageBoard extends React.Component {
     );
   }
 
+  displayMessageSwipe(message, index) {
+    return (
+      <Swipeout
+        style={{
+          height: '100%', 
+          marginTop: '10px',
+          borderRadius: "10px"
+        }}
+        right={
+          [
+            {
+              text: "Je m'en occupe !",
+              onPress: () => alert("C'est noté. Le service '"+message.sender+"' vous remercie."),
+              className: "right-button-swipe-message"
+            }
+          ]}
+        onOpen={() => {}}
+        onClose={() => {}}
+        autoClose
+      >
+        {this.displayMessage(message, index)}
+      </Swipeout >
+    )
+  }
+
+
   displayStatus(status) {
-    let logo = "fas fa-info-circle";
-    let cssClass = "";
+    let logo = "";
+    let cssClass;
 
     switch (status) {
       case "information":
@@ -115,6 +145,7 @@ class MessageBoard extends React.Component {
         break;
       default:
         logo = "";
+        cssClass = "";
     }
     return (
       <div className={"message-status " + cssClass}>
@@ -165,7 +196,7 @@ class MessageBoard extends React.Component {
     this.setState({
       serviceName: serviceName
     });
-    Axios.get(`http://localhost:3001/messages/byreceiver/${serviceName}`).then(
+    Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(
       res => {
         console.log(res.data);
         // + ajouter trier par dates
@@ -208,19 +239,19 @@ class MessageBoard extends React.Component {
     const { serviceName } = this.state;
     return (
       <div>
-        <div>{serviceName}</div>
+        {/* <div>{serviceName}</div> */}
         <div className="main-container">
           <div className="messages-container">
             {this.state.messageList
-              .slice(0, this.state.numberRows)
+              .slice(0, this.props.canScroll ? this.state.messageList.length : this.state.numberRows)
               .map((message, index) => {
-                return this.displayMessage(message, index);
+                return this.displayMessageSwipe(message, index);
               })}
-            {this.state.emergency &&
+            {this.state.emergency && !this.props.canScroll &&
               this.displayEmergencyMessage(this.state.emergency)}
           </div>
           <div className="old-message-container-position">
-            {this.state.messageList.slice(this.state.numberRows).length > 0 &&
+            {!this.props.canScroll && this.state.messageList.slice(this.state.numberRows).length > 0 &&
               this.displayOldMessages(
                 this.state.messageList.slice(this.state.numberRows)
               )}

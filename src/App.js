@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import "./App.css";
 import FrontMessage from "./Components/FrontMessageEnvoi/front_message_envoi";
@@ -17,17 +17,23 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Route exact path="/" component={AccueilUser} />
+          <Route exact path="/" component={()=><Redirect to='/device' />} />
+          <Route path="/user" component={AccueilUser} />
           <Route path="/accueil" component={FrontAccueil} />
           <Route path="/iao" component={FrontIAO} />
           <Route path="/bocal" component={FrontBocal} />
+          <Route path="/board"
+            render={(props) => <MessageBoard {...props} />} />
           <Route path="/service" component={Service} />
-          <SwipeableRoutes replace resistance={true} enableMouseEvents>
-          <Route path="/message" component={FrontMessage} />
-          <Route path="/board" component={MessageBoard} />
-          </SwipeableRoutes>
+          <Route path="/device" component={() =>
+            <SwipeableRoutes containerStyle={{ height: "100vh" }} replace resistance={false} enableMouseEvents>
+              <Route path="/device/message" component={FrontMessage} />
+              <Route path="/device/boardScroll"
+                render={(props) => <MessageBoard {...props} canScroll />} />
+            </SwipeableRoutes>
+          } />
         </Router>
-      </div>
+      </div >
     );
   }
 }
