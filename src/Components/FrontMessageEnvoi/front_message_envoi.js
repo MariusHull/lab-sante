@@ -141,7 +141,7 @@ export default class FrontMessageEnvoi extends Component {
 
     const { messages, message, services } = this.state;
     return (
-      <div>
+      <div className="general">
 
 
         {/* <Navbar /> */}
@@ -218,7 +218,7 @@ export default class FrontMessageEnvoi extends Component {
 
           <div className="row2">
             <div id="colonne3">
-            {/* onmousedown */}
+              {/* onmousedown */}
               <button className="form-control3" onClick={this.say.bind(this)}>
                 <i class={this.state.speaking ? "" : "fas fa-microphone-alt"} style={{ fontSize: "500%" }} />
               </button>
@@ -265,9 +265,11 @@ export default class FrontMessageEnvoi extends Component {
                   <div className="urgent-statusenvoi">
                     <i
                       class="fas fa-ambulance"
-                      style={{ fontSize: "200%" }}></i>
+                      style={{ fontSize: "200%" }}
+                    ></i>
                   </div>
-                  <div className="sous-urgentbox">Urgent</div>
+                  <div className="sous-urgentbox"
+                  >Urgent</div>
                 </div>
               </button>
             </div>
