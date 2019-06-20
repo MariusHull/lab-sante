@@ -22,12 +22,13 @@ div#colonne1 {
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    margin-right: 0px;
+    margin-right: 0.25%;
     padding:0%;
 	float: left;
-    width: 50%;
+    width: 49.75%;
     height: 100%;
-	background: rgba(216, 231, 225, 0.342);
+    background: rgba(82, 88, 86, 0.521);
+    border-radius:5px;
 }
 
 .form-control1 {
@@ -53,14 +54,16 @@ div#colonne2 {
     border-radius: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 0px;
+    margin-left: 0.25%;
     margin-right: 0px;
     height: 100%;
     padding:0%;
 
 	float: left;
-	width: 50%;
-	background: rgba(207, 230, 220, 0.342);
+	width: 49.75%;
+    background: rgba(207, 230, 220, 0.342);
+    border-radius:5px;
+
 }
 
 .form-control2 {
