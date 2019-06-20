@@ -39,10 +39,10 @@ export default class FrontMessageEnvoi extends Component {
     this.setState(state);
   };
 
-  onChangeStatus = e => {
-    let state = this.state;
-    state[e.target.name] = e.target.value;
-    this.setState(state, () => this.onSubmit());
+  onChangeStatus = value => {
+    // let state = this.state;
+    // state[e.target.name] = e.target.value;
+    this.setState({ status : value }, () => this.onSubmit());
   };
 
   onSubmit = e => {
@@ -68,8 +68,7 @@ export default class FrontMessageEnvoi extends Component {
       color: color
     });
     this.setState({
-      message: "",
-      status: ""
+      message: ""
     });
   };
 
@@ -243,7 +242,7 @@ export default class FrontMessageEnvoi extends Component {
               <button
                 className="form-control5"
                 name="status"
-                onClick={this.onChangeStatus}
+                onClick={() => this.onChangeStatus("important")}
                 value="important"
               >
                 <div className="importantbox">
@@ -259,7 +258,7 @@ export default class FrontMessageEnvoi extends Component {
               <button
                 className="form-control6"
                 name="status"
-                onClick={this.onChangeStatus}
+                onClick={() => this.onChangeStatus("urgent")}
                 value="urgent"
               >
                 <div className="urgentbox">
@@ -278,7 +277,7 @@ export default class FrontMessageEnvoi extends Component {
               <button
                 className="form-control7"
                 name="status"
-                onClick={this.onChangeStatus}
+                onClick={() => this.onChangeStatus("information")}
                 value="information"
               >
                 <div className="infobox">

@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('./assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
 .App {
   text-align: center;
 }
@@ -12,6 +16,7 @@ body {
   height: 100%;
   margin: 0;
   background-image: url("./assets/fond.jpg");
+  font-family: 'Roboto';
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;

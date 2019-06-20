@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../../Containers/Navbar";
 import "./front_accueil.css";
 
 export default class FrontAccueil extends Component {
@@ -48,7 +47,6 @@ export default class FrontAccueil extends Component {
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
         <div className="row1accueil">
           <div className="bienvenue">
             <div className="titretext">Bienvenue aux Urgences de Melun</div>
