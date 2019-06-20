@@ -3,18 +3,18 @@ import socketIOClient from "socket.io-client";
 import "./front_message_envoi.css";
 import Navbar from "../../Containers/Navbar";
 import Axios from "axios";
+import { url } from '../../config.js';
 import { resolveSrv } from "dns";
 import 'react-animated-slider/build/horizontal.css';
 
 
-const socket = socketIOClient("localhost:3001");
+const socket = socketIOClient(url);
 
 
 export default class FrontMessageEnvoi extends Component {
   constructor() {
     super();
     this.state = {
-      endpoint: "localhost:3001",
       supportVoice: 'webkitSpeechRecognition' in window,
       ///
       color: "green",
@@ -28,7 +28,7 @@ export default class FrontMessageEnvoi extends Component {
   }
 
   componentWillMount = () => {
-    Axios.get("http://localhost:3001/services/").then(res => {
+    Axios.get(`${url}/services/`).then(res => {
       this.setState({ services: res.data });
     });
   };
@@ -56,7 +56,8 @@ export default class FrontMessageEnvoi extends Component {
       body: this.state.message,
       updated_at: Date.now(),
       status: this.state.status,
-      color: color
+      color: color,
+      outdated: false
     });
 
     socket.emit("Message", {
@@ -65,7 +66,8 @@ export default class FrontMessageEnvoi extends Component {
       body: this.state.message,
       updated_at: Date.now(),
       status: this.state.status,
-      color: color
+      color: color,
+      outdated: false
     });
     this.setState({
       message: ""

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Navbar from "../../Containers/Navbar";
 import "./front_bocal.css";
+import { url } from '../../config.js';
+
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient("localhost:3001");
+const socket = socketIOClient(url);
 
 export default class FrontBocal extends Component {
     constructor() {

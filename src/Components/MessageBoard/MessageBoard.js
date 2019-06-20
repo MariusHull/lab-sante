@@ -5,12 +5,13 @@ import 'rc-swipeout/assets/index.css';
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
 import sync from 'css-animation-sync';
+import { url } from '../../config.js';
 import "./MessageBoard.css";
 import * as moment from "moment";
 import "moment/locale/fr";
 import Axios from "axios";
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient("localhost:3001");
+const socket = socketIOClient(url);
 
 class MessageBoard extends React.Component {
   constructor(props) {
@@ -195,7 +196,7 @@ class MessageBoard extends React.Component {
     this.setState({
       serviceName: serviceName
     });
-    Axios.get(`http://localhost:3001/messages/byreceiver/${serviceName}`).then(
+    Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(
       res => {
         console.log(res.data);
         // + ajouter trier par dates
