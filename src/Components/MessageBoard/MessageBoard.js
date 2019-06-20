@@ -105,7 +105,7 @@ class MessageBoard extends React.Component {
       <Swipeout
         style={{
           height: '100%', 
-          margin: '10px',
+          marginTop: '10px',
           borderRadius: "10px"
         }}
         right={
@@ -239,7 +239,7 @@ class MessageBoard extends React.Component {
     const { serviceName } = this.state;
     return (
       <div>
-        <div>{serviceName}</div>
+        {/* <div>{serviceName}</div> */}
         <div className="main-container">
           <div className="messages-container">
             {this.state.messageList
@@ -247,7 +247,7 @@ class MessageBoard extends React.Component {
               .map((message, index) => {
                 return this.displayMessageSwipe(message, index);
               })}
-            {this.state.emergency &&
+            {this.state.emergency && !this.props.canScroll &&
               this.displayEmergencyMessage(this.state.emergency)}
           </div>
           <div className="old-message-container-position">
