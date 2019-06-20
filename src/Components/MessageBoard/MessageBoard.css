@@ -104,9 +104,17 @@
   font-family: "Montserrat";
 }
 
+.rc-swipeout-content, .right-button-swipe-message{
+  background-color: rgb(63, 58, 58);
+}
+.right-button-swipe-message{
+    width: 150px;
+    color: white
+}
+
 .message{
     background-color: white;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     min-height: 65px;
     border-width: 2px;
     border-style: solid;
