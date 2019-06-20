@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Redirect from='/' to='/device' />
+          <Route exact path="/" component={()=><Redirect to='/device' />} />
           <Route path="/user" component={AccueilUser} />
           <Route path="/accueil" component={FrontAccueil} />
           <Route path="/iao" component={FrontIAO} />
@@ -32,7 +32,6 @@ class App extends Component {
                 render={(props) => <MessageBoard {...props} canScroll />} />
             </SwipeableRoutes>
           } />
-
         </Router>
       </div >
     );
