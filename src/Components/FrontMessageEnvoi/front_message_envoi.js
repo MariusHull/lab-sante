@@ -4,11 +4,8 @@ import "./front_message_envoi.css";
 import Navbar from "../../Containers/Navbar";
 import Axios from "axios";
 import { resolveSrv } from "dns";
+import 'react-animated-slider/build/horizontal.css';
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import mic from './mic.gif';
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import micAnimate from './mic-animate.gif'
 
 const socket = socketIOClient("localhost:3001");
 
@@ -124,6 +121,7 @@ export default class FrontMessageEnvoi extends Component {
 
   say() {
     if (this.state.supportVoice) {
+      console.log(this.state.supportVoice)
       if (!this.state.speaking) {
         // start listening
         this.recognition.start();
@@ -133,7 +131,6 @@ export default class FrontMessageEnvoi extends Component {
       }
       this.setState({
         speaking: !this.state.speaking,
-        message: '',
       });
     }
   }
@@ -167,7 +164,7 @@ export default class FrontMessageEnvoi extends Component {
               </div>
             );
           })*/}
-        <microphone/>
+        <microphone />
 
         <div className="row1">
           <div className="col" id="colonne1">
@@ -216,13 +213,13 @@ export default class FrontMessageEnvoi extends Component {
                 ))}
             </select>
           </div>
-            
+
 
 
 
           <div className="row2">
             <div id="colonne3">
-
+            {/* onmousedown */}
               <button className="form-control3" onClick={this.say.bind(this)}>
                 <i class={this.state.speaking ? "" : "fas fa-microphone-alt"} style={{ fontSize: "500%" }} />
               </button>
@@ -249,8 +246,14 @@ export default class FrontMessageEnvoi extends Component {
                 onClick={this.onChangeStatus}
                 value="important"
               >
-                Important
-              </button>
+                <div className="importantbox">
+                  <div className="important-statusenvoi">
+                    <i
+                      class="fas fa-exclamation-triangle"
+                      style={{ fontSize: "200%" }}></i>
+                  </div>
+                  <div className="sous-importantbox">Important</div>
+                </div>              </button>
             </div>
             <div id="colonne6">
               <button
@@ -259,7 +262,14 @@ export default class FrontMessageEnvoi extends Component {
                 onClick={this.onChangeStatus}
                 value="urgent"
               >
-                Urgent
+                <div className="urgentbox">
+                  <div className="urgent-statusenvoi">
+                    <i
+                      class="fas fa-ambulance"
+                      style={{ fontSize: "200%" }}></i>
+                  </div>
+                  <div className="sous-urgentbox">Urgent</div>
+                </div>
               </button>
             </div>
             <div id="colonne7">
@@ -269,7 +279,14 @@ export default class FrontMessageEnvoi extends Component {
                 onClick={this.onChangeStatus}
                 value="information"
               >
-                Information
+                <div className="infobox">
+                  <div className="information-statusenvoi">
+                    <i
+                      class="fas fa-info-circle"
+                      style={{ fontSize: "200%" }}></i>
+                  </div>
+                  <div className="sous-infobox">Information</div>
+                </div>
               </button>
             </div>
           </div>
