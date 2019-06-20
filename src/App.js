@@ -21,7 +21,10 @@ class App extends Component {
           <Route path="/accueil" component={FrontAccueil} />
           <Route path="/iao" component={FrontIAO} />
           <Route path="/bocal" component={FrontBocal} />
-          <Route path="/board" component={MessageBoard} />
+          <Route path="/board" 
+                 render={(props) => <MessageBoard {...props}/>} />
+          <Route path="/boardScroll" 
+                 render={(props) => <MessageBoard {...props} canScroll/>} />
           <Route path="/service" component={Service} />
         </Router>
       </div>
