@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
 import sync from 'css-animation-sync';
+import { url } from '../../config.js';
 import "./MessageBoard.css";
 import * as moment from "moment";
 import "moment/locale/fr";
@@ -165,7 +166,7 @@ class MessageBoard extends React.Component {
     this.setState({
       serviceName: serviceName
     });
-    Axios.get(`http://localhost:3001/messages/byreceiver/${serviceName}`).then(
+    Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(
       res => {
         console.log(res.data);
         // + ajouter trier par dates

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { url } from '../../config.js';
 import "./Service.css";
 
 class Service extends Component {
@@ -27,7 +28,7 @@ class Service extends Component {
   }
 
   reload = () => {
-    axios.get("http://localhost:3001/services/").then(res => {
+    axios.get(`${url}services/`).then(res => {
       this.setState({ savedServices: res.data });
     });
   };
@@ -43,7 +44,7 @@ class Service extends Component {
       return 1;
     }
     axios
-      .delete(`http://localhost:3001/services/${service._id}`, service)
+      .delete(`${url}/services/${service._id}`, service)
       .then(res => {
         this.reload();
       });
@@ -56,7 +57,7 @@ class Service extends Component {
       return 0;
     }
     axios
-      .post(`http://localhost:3001/services/`, {
+      .post(`${url}/services/`, {
         name: newName,
         color: newColor
       })
