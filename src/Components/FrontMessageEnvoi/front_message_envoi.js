@@ -16,7 +16,7 @@ export default class FrontMessageEnvoi extends Component {
     super();
     this.state = {
       supportVoice: 'webkitSpeechRecognition' in window,
-      speaking:"false",
+      speaking: "false",
       ///
       color: "green",
       message: "",
@@ -43,7 +43,7 @@ export default class FrontMessageEnvoi extends Component {
   onChangeStatus = value => {
     // let state = this.state;
     // state[e.target.name] = e.target.value;
-    this.setState({ status : value }, () => this.onSubmit());
+    this.setState({ status: value }, () => this.onSubmit());
   };
 
   onSubmit = e => {
@@ -99,14 +99,15 @@ export default class FrontMessageEnvoi extends Component {
           if (event.results[i].isFinal) {
             finalTranscript += event.results[i][0].transcript;
             this.setState({
-              message: finalTranscript,
+              finalTranscript: finalTranscript
+              // [...this.state.finalTranscript, finalTranscript],
             });
             if (this.props.onChange) this.props.onChange(finalTranscript);
             if (this.props.onEnd) this.props.onEnd(finalTranscript);
           } else {
             interimTranscript += event.results[i][0].transcript;
             this.setState({
-              message: interimTranscript,
+              message: interimTranscript
             });
             if (this.props.onChange) this.props.onChange(interimTranscript);
           }
@@ -123,16 +124,16 @@ export default class FrontMessageEnvoi extends Component {
 
   say() {
     if (this.state.supportVoice) {
-        this.setState({speaking:"true"}, () => this.recognition.start())
+      this.setState({ speaking: "true" }, () => this.recognition.start())
     }
   }
 
   sayno() {
-    if (this.state.speaking==="true") {
+    if (this.state.speaking === "true") {
       this.recognition.stop()
-      this.setState({speaking:"false"})
-    }else{
-        return("okok")
+      this.setState({ speaking: "false" })
+    } else {
+      return ("okok")
     }
   }
 
@@ -220,7 +221,11 @@ export default class FrontMessageEnvoi extends Component {
           <div className="row2">
             <div id="colonne3">
               <button className="form-control3" onMouseDown={this.say.bind(this)} onMouseUp={this.sayno.bind(this)}>
-                <i className={this.state.speaking==="false" ? true : "fas fa-microphone-alt"} style={{ fontSize: "500%" }} />
+                <i className={this.state.speaking === "true"
+                  ? "fas fa-microphone-alt"
+                  : this.state.speaking === "false"
+                  ? "fas fa-microphone-alt-slash"                  :""}
+                  style={{ fontSize: "500%" }} />
               </button>
             </div>
 
