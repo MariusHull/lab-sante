@@ -16,6 +16,7 @@ export default class FrontMessageEnvoi extends Component {
     this.state = {
       endpoint: "localhost:3001",
       supportVoice: 'webkitSpeechRecognition' in window,
+      speaking:"false",
       ///
       color: "green",
       message: "",
@@ -120,17 +121,16 @@ export default class FrontMessageEnvoi extends Component {
 
   say() {
     if (this.state.supportVoice) {
-      console.log(this.state.supportVoice)
-      if (!this.state.speaking) {
-        // start listening
-        this.recognition.start();
-      } else {
-        this.recognition.stop();
-        const question = this.state.message;
-      }
-      this.setState({
-        speaking: !this.state.speaking,
-      });
+        this.setState({speaking:"true"}, () => this.recognition.start())
+    }
+  }
+
+  sayno() {
+    if (this.state.speaking==="true") {
+      this.recognition.stop()
+      this.setState({speaking:"false"})
+    }else{
+        return("okok")
     }
   }
 
@@ -141,7 +141,7 @@ export default class FrontMessageEnvoi extends Component {
 
     const { messages, message, services } = this.state;
     return (
-      <div className="general">
+      <div className="general" enablemouseevents>
 
 
         {/* <Navbar /> */}
@@ -163,7 +163,6 @@ export default class FrontMessageEnvoi extends Component {
               </div>
             );
           })*/}
-        <microphone />
 
         <div className="row1">
           <div className="col" id="colonne1">
@@ -218,9 +217,8 @@ export default class FrontMessageEnvoi extends Component {
 
           <div className="row2">
             <div id="colonne3">
-              {/* onmousedown */}
-              <button className="form-control3" onClick={this.say.bind(this)}>
-                <i class={this.state.speaking ? "" : "fas fa-microphone-alt"} style={{ fontSize: "500%" }} />
+              <button className="form-control3" onMouseDown={this.say.bind(this)} onMouseUp={this.sayno.bind(this)}>
+                <i className={this.state.speaking==="false" ? true : "fas fa-microphone-alt"} style={{ fontSize: "500%" }} />
               </button>
             </div>
 
