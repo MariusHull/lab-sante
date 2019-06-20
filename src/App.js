@@ -21,14 +21,15 @@ class App extends Component {
           <Route path="/accueil" component={FrontAccueil} />
           <Route path="/iao" component={FrontIAO} />
           <Route path="/bocal" component={FrontBocal} />
-        <Route path="/board"
-          render={(props) => <MessageBoard {...props} />} />
-        <Route path="/service" component={Service} />
-        <SwipeableRoutes replace resistance={true} enableMouseEvents>
-          <Route path="/message" component={FrontMessage} />
-          <Route path="/boardScroll"
-            render={(props) => <MessageBoard {...props} canScroll />} />
-        </SwipeableRoutes>
+          <Route path="/board"
+            render={(props) => <MessageBoard {...props} />} />
+          <Route path="/service" component={Service} />
+          <Route path="/device" component={()=><SwipeableRoutes containerStyle={{ height: "100vh" }} replace resistance={false} enableMouseEvents>
+            <Route path="/device/message" component={FrontMessage} />
+            <Route path="/device/boardScroll"
+              render={(props) => <MessageBoard {...props} canScroll />} />
+          </SwipeableRoutes>}/>
+          
         </Router>
       </div >
     );
