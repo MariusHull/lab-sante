@@ -8,7 +8,7 @@ import * as moment from "moment";
 import "moment/locale/fr";
 import Axios from "axios";
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient("localhost:3001");
+const socket = socketIOClient(url);
 
 class MessageBoard extends React.Component {
   constructor() {

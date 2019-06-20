@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Navbar from "../../Containers/Navbar";
 import "./front_iao.css";
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient("localhost:3001");
+
+import { url } from '../../config.js';
+const socket = socketIOClient(url);
 
 export default class FrontIAO extends Component {
   constructor() {

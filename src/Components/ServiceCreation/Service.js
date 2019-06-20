@@ -7,7 +7,6 @@ class Service extends Component {
   constructor() {
     super();
     this.state = {
-      endpoint: "localhost:3001",
       savedServices: [],
       colors: [
         "#ffcb83",

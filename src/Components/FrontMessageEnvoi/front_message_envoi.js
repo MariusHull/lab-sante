@@ -8,14 +8,13 @@ import { resolveSrv } from "dns";
 import 'react-animated-slider/build/horizontal.css';
 
 
-const socket = socketIOClient("localhost:3001");
+const socket = socketIOClient(url);
 
 
 export default class FrontMessageEnvoi extends Component {
   constructor() {
     super();
     this.state = {
-      endpoint: "localhost:3001",
       supportVoice: 'webkitSpeechRecognition' in window,
       ///
       color: "green",
