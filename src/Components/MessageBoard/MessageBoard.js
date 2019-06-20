@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
-
+import sync from 'css-animation-sync';
 import "./MessageBoard.css";
 import * as moment from "moment";
 import "moment/locale/fr";
@@ -12,6 +12,7 @@ const socket = socketIOClient("localhost:3001");
 class MessageBoard extends React.Component {
   constructor() {
     super();
+    const animation = new sync("BlinkAnimation");
     moment.locale("fr");
     this.state = {
       emergency: null,
