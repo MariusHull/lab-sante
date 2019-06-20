@@ -12,7 +12,7 @@ const socket = socketIOClient("localhost:3001");
 class MessageBoard extends React.Component {
   constructor() {
     super();
-    const animation = new sync("BlinkAnimation");
+    new sync("BlinkAnimation");
     moment.locale("fr");
     this.state = {
       emergency: null,
@@ -72,6 +72,7 @@ class MessageBoard extends React.Component {
     // console.log("numberRows", numberRows);
   }
 
+
   displayMessage(message, index) {
     const color = message.color || "orange";
     return (
@@ -117,7 +118,7 @@ class MessageBoard extends React.Component {
     }
     return (
       <div className={"message-status " + cssClass}>
-        <i class={logo} style={{ fontSize: "200%" }} />
+        <i className={logo} style={{ fontSize: "200%" }} />
       </div>
     );
   }
@@ -149,7 +150,7 @@ class MessageBoard extends React.Component {
           }}
         >
           {messages.map((message, index) => {
-            return <div>{this.displayMessage(message, index)}</div>;
+            return <div key={index}>{this.displayMessage(message, index)}</div>;
           })}
         </Slider>
       </div>
