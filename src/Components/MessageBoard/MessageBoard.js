@@ -1,6 +1,6 @@
 import React from "react";
-import Slider from 'react-animated-slider';
-import 'react-animated-slider/build/horizontal.css';
+import Slider from "react-animated-slider";
+import "react-animated-slider/build/horizontal.css";
 
 import "./MessageBoard.css";
 import * as moment from "moment";
@@ -10,12 +10,10 @@ import socketIOClient from "socket.io-client";
 import Navbar from "../../Containers/Navbar";
 const socket = socketIOClient("localhost:3001");
 
-
 class MessageBoard extends React.Component {
-
   constructor() {
-    super()
-    moment.locale('fr');
+    super();
+    moment.locale("fr");
     this.state = {
       emergency: null,
       oldMessageIndex: 0,
@@ -59,13 +57,14 @@ class MessageBoard extends React.Component {
         {
           sender: "Accueil",
           receiver: "IOA",
-          body: "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
+          body:
+            "Attention : deux frères sont arrivés aux urgences. Ne confondez pas les dossiers.",
           updated_at: Date.now(),
           status: "urgent"
         }
       ]
-    }
-  };
+    };
+  }
 
   resizeWindow() {
     let numberRows = Math.trunc((window.innerHeight - 165) / 75);
@@ -81,7 +80,8 @@ class MessageBoard extends React.Component {
           <div className="sender-transparent">
             <div
               className="sender-content"
-              style={{ fontWeight: 900, fontSize: 18 }}>
+              style={{ fontWeight: 900, fontSize: 18 }}
+            >
               {message.sender}
             </div>
             <div>{"à " + moment(message.updated_at).format("LT")}</div>
@@ -97,31 +97,29 @@ class MessageBoard extends React.Component {
 
   displayStatus(status) {
     let logo = "fas fa-info-circle";
-    let cssClass = ""
+    let cssClass = "";
 
     switch (status) {
       case "information":
         logo = "fas fa-info-circle";
-        cssClass = "information-status"
-        break
+        cssClass = "information-status";
+        break;
       case "urgent":
         logo = "fas fa-ambulance";
-        cssClass = "emergency-status-blink"
-        break
+        cssClass = "emergency-status-blink";
+        break;
       case "important":
         logo = "fas fa-exclamation-triangle";
-        cssClass = "important-status"
-        break
+        cssClass = "important-status";
+        break;
       default:
-        logo = ""
+        logo = "";
     }
     return (
-      <div className={"message-status "+ cssClass}>
-        <i
-          class={logo}
-          style={{fontSize: "200%" }}></i>
+      <div className={"message-status " + cssClass}>
+        <i class={logo} style={{ fontSize: "200%" }} />
       </div>
-    )
+    );
   }
 
   displayEmergencyMessage(message) {
@@ -138,49 +136,57 @@ class MessageBoard extends React.Component {
     return (
       <div className="old-messages-container">
         <div className="old-message-title">Anciens messages</div>
-        <div className="old-message-count">{this.state.oldMessageIndex + 1}/{messages.length}</div>
+        <div className="old-message-count">
+          {this.state.oldMessageIndex + 1}/{messages.length}
+        </div>
         <Slider
           autoplay={10000}
           infinite={true}
           previousButton={null}
           nextButton={null}
-          onSlideChange={(event) => { this.setState({ oldMessageIndex: event.slideIndex }) }}>
-          {
-            messages.map((message, index) => {
-              return (
-                <div>{this.displayMessage(message, index)}</div>
-              )
-            })
-          }
+          onSlideChange={event => {
+            this.setState({ oldMessageIndex: event.slideIndex });
+          }}
+        >
+          {messages.map((message, index) => {
+            return <div>{this.displayMessage(message, index)}</div>;
+          })}
         </Slider>
-      </div >
-    )
+      </div>
+    );
   }
 
   componentWillMount = () => {
     // Getting all messages
-    Axios.get("http://localhost:3001/messages/").then(res => {
-      console.log(res.data);
-      // + ajouter trier par dates
-      this.setState({ messageList: res.data.reverse() });
+    const serviceName = this.props.location.pathname.split("/")[
+      this.props.location.pathname.split("/").length - 1
+    ];
+    this.setState({
+      serviceName: serviceName
     });
+    Axios.get(`http://localhost:3001/messages/byreceiver/${serviceName}`).then(
+      res => {
+        console.log(res.data);
+        // + ajouter trier par dates
+        this.setState({ messageList: res.data.reverse() });
+      }
+    );
 
     // Listening to socket
     socket.on("Message", message => {
       console.log(message);
-      // console.log([mess, ...this.state.messageList]);
-      // this.setState({ messageList: mess }); que branlo marius ??
-      this.setState({ messageList: [message, ...this.state.messageList] });
-      if (message.status === "urgent") {
-        this.setState({ emergency: message }, () => {
-          setTimeout(() => {
-            this.setState({ emergency: null });
-          }, 5000);
-        });
+      if (message.receiver === serviceName || message.receiver === "all") {
+        this.setState({ messageList: [message, ...this.state.messageList] });
+        if (message.status === "urgent") {
+          this.setState({ emergency: message }, () => {
+            setTimeout(() => {
+              this.setState({ emergency: null });
+            }, 5000);
+          });
+        }
       }
     });
   };
-
 
   /**
    * Add event listener
@@ -198,9 +204,10 @@ class MessageBoard extends React.Component {
   }
 
   render() {
+    const { serviceName } = this.state;
     return (
       <div>
-        {/* <Navbar /> */}
+        <div>{serviceName}</div>
         <div className="main-container">
           <div className="messages-container">
             {this.state.messageList
@@ -212,7 +219,10 @@ class MessageBoard extends React.Component {
               this.displayEmergencyMessage(this.state.emergency)}
           </div>
           <div className="old-message-container-position">
-            {this.state.messageList.slice(this.state.numberRows).length > 0 && this.displayOldMessages(this.state.messageList.slice(this.state.numberRows))}
+            {this.state.messageList.slice(this.state.numberRows).length > 0 &&
+              this.displayOldMessages(
+                this.state.messageList.slice(this.state.numberRows)
+              )}
           </div>
         </div>
       </div>
