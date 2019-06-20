@@ -10,6 +10,7 @@ import MessageBoard from "./Components/MessageBoard/MessageBoard";
 import FrontBocal from "./Components/FrontBocal/front_bocal";
 import Service from "./Components/ServiceCreation/Service";
 import AccueilUser from "./Components/AccueilUser/AccueilUser";
+import SwipeableRoutes from "react-swipeable-routes";
 
 class App extends Component {
   render() {
@@ -17,12 +18,14 @@ class App extends Component {
       <div>
         <Router>
           <Route exact path="/" component={AccueilUser} />
-          <Route path="/message" component={FrontMessage} />
           <Route path="/accueil" component={FrontAccueil} />
           <Route path="/iao" component={FrontIAO} />
           <Route path="/bocal" component={FrontBocal} />
-          <Route path="/board" component={MessageBoard} />
           <Route path="/service" component={Service} />
+          <SwipeableRoutes replace resistance={true} enableMouseEvents>
+          <Route path="/message" component={FrontMessage} />
+          <Route path="/board" component={MessageBoard} />
+          </SwipeableRoutes>
         </Router>
       </div>
     );
