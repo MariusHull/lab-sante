@@ -7,7 +7,6 @@ import * as moment from "moment";
 import "moment/locale/fr";
 import Axios from "axios";
 import socketIOClient from "socket.io-client";
-import Navbar from "../../Containers/Navbar";
 const socket = socketIOClient("localhost:3001");
 
 class MessageBoard extends React.Component {
