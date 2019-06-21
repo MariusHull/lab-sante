@@ -46,35 +46,35 @@ export default class FrontAccueil extends Component {
 
   render() {
     return (
-      <div>
+      <div className="generalaccueil">
         <div className="row1accueil">
-          <div className="bienvenue">
-            <div className="titretext">Bienvenue aux Urgences de Melun</div>
+          <div className="bienvenueaccueil">
+            <div className="titretextaccueil">Bienvenue aux Urgences de Melun</div>
           </div>
         </div>
 
         <div className="row2accueil">
-          <div className="ordrepassage">
-            <h2 className="soustitreordre">Ordre de passage </h2>
+          <div className="ordrepassageaccueil">
+            <h2 className="soustitreordreaccueil">Ordre de passage </h2>
             {this.state.ordre.slice(0, 1).map(patient => (
-              <div className="ordrebox1">
+              <div className="ordrebox1accueil">
                 {" "}
-                <div className="textbox">
+                <div className="textboxaccueil">
                   Attendu à l'accueil: {patient.name}{" "}
                 </div>
               </div>
             ))}
             {this.state.ordre.slice(1, 8).map(patient => (
-              <div className="ordrebox">
+              <div className="ordreboxaccueil">
                 {" "}
-                <div className="textbox"> {patient.name} </div>
+                <div className="textboxaccueil"> {patient.name} </div>
               </div>
             ))}
           </div>
 
-          <div className="procedures">
-            <h2 className="soustitreprocedure">Procédures</h2>
-            <div className="textprocedure">
+          <div className="proceduresaccueil">
+            <h2 className="soustitreprocedureaccueil">Procédures</h2>
+            <div className="textprocedureaccueil">
               Veuillez prendre un ticket pour l’ordre de passage près de la
               porte d'entrée. <br />
               Attendez que votre numéro soit appelé pour vous présenter avec:

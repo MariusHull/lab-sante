@@ -26,7 +26,7 @@ class App extends Component {
             render={(props) => <MessageBoard {...props} />} />
           <Route path="/service" component={Service} />
           <Route path="/device" component={() =>
-            <SwipeableRoutes containerStyle={{ height: "100vh" }} replace resistance={false} enableMouseEvents>
+            <SwipeableRoutes containerStyle={{ width:"100%",height: "100vh" }} replace resistance={false} enableMouseEvents>
               <Route path="/device/message" component={FrontMessage} />
               <Route path="/device/boardScroll"
                 render={(props) => <MessageBoard {...props} canScroll />} />

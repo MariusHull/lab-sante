@@ -1,9 +1,14 @@
-.row1accueil {
+.generalaccueil {
   width: 100%;
-  height: 20vh;
+  height: 100vh;
 }
 
-.bienvenue {
+.row1accueil {
+  width: 100%;
+  height: 20%;
+}
+
+.bienvenueaccueil {
   width: 90%;
   height: 50%;
 
@@ -20,7 +25,7 @@
   align-items: center;
 }
 
-.titretext {
+.titretextaccueil {
   font-size: xx-large;
   text-align: center;
   color: white;
@@ -28,12 +33,12 @@
   vertical-align: middle;
 }
 
-.row2accueil {
+.row2accueilaccueil {
   width: 100%;
-  height: 80vh;
+  height: 80%;
 }
 
-.soustitreprocedure {
+.soustitreprocedureaccueil {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +48,7 @@
   color: white;
 }
 
-.soustitreordre {
+.soustitreordreaccueil {
   color: white;
   display: flex;
   justify-content: center;
@@ -52,7 +57,7 @@
   height: 12%;
 }
 
-.ordrepassage {
+.ordrepassageaccueil {
   float: left;
 
   width: 35%;
@@ -65,7 +70,7 @@
   border-radius: 5px;
 }
 
-.textbox {
+.textboxaccueil {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +79,7 @@
   color: black;
 }
 
-.ordrebox {
+.ordreboxaccueil {
   font-size: x-large;
 
   margin-left: 5%;
@@ -86,7 +91,7 @@
   border-radius: 5px;
 }
 
-.ordrebox1 {
+.ordrebox1accueil {
   font-size: x-large;
   text-align: center;
   color: white;
@@ -100,7 +105,7 @@
   border-radius: 5px;
 }
 
-.procedures {
+.proceduresaccueil {
   float: left;
 
   width: 50%;
@@ -112,7 +117,7 @@
   border-radius: 5px;
 }
 
-.textprocedure {
+.textprocedureaccueil {
   margin-left: 3%;
   margin-right: 3%;
   display: flex;
