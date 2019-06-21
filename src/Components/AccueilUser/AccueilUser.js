@@ -36,12 +36,12 @@ export default class AccueilUser extends Component {
                   <div className="card-body card-service">
                     <div className="row row-service">
                       <div className="col col-service">
-                        <Link to={`/board/${service.name}`}>
+                        <Link to={`/board/${service.name}`} className="link-service">
                           Messages reçus
                         </Link>
                       </div>
                       <div className="col col-service">
-                        <Link to={`/message/${service.name}`}>
+                        <Link to={`/message/${service.name}`} className="link-service">
                           Écrire un message
                         </Link>
                       </div>
