@@ -38,6 +38,160 @@ class MessageBoard extends React.Component {
           status: "urgent"
         },
         {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
           sender: "Bocal",
           receiver: "IOA",
           body: "Ceci est un test.",
@@ -73,12 +227,12 @@ class MessageBoard extends React.Component {
   resizeWindow() {
     let numberRows = Math.trunc((window.innerHeight - 165) / 75);
     this.setState({ numberRows: numberRows });
-    // console.log("numberRows", numberRows);
   }
 
 
+
   displayMessage(message, index) {
-    const color = message.color || "orange";
+    const color = message.color || "#DDDDDD";
     return (
       <div className="message" key={index} style={{ borderColor: color }}>
         <div className="sender-container" style={{ backgroundColor: color }}>
@@ -104,7 +258,6 @@ class MessageBoard extends React.Component {
     return (
       <Swipeout
         style={{
-          height: '100%', 
           marginTop: '10px',
           borderRadius: "10px"
         }}
@@ -112,12 +265,12 @@ class MessageBoard extends React.Component {
           [
             {
               text: "Je m'en occupe !",
-              onPress: () => alert("C'est noté. Le service '"+message.sender+"' vous remercie."),
+              onPress: () => alert("C'est noté. Le service '" + message.sender + "' vous remercie."),
               className: "right-button-swipe-message"
             }
           ]}
-        onOpen={() => {}}
-        onClose={() => {}}
+        onOpen={() => { }}
+        onClose={() => { }}
         autoClose
       >
         {this.displayMessage(message, index)}
@@ -225,39 +378,44 @@ class MessageBoard extends React.Component {
    */
   componentDidMount() {
     this.resizeWindow();
-    window.addEventListener("resize", this.resizeWindow.bind(this));
+    if (!this.props.canScroll) {
+      window.addEventListener("resize", this.resizeWindow.bind(this))
+    };
   }
 
   /**
    * Remove event listener
    */
   componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeWindow.bind(this));
+    if (!this.props.canScroll) {
+      window.removeEventListener("resize", this.resizeWindow.bind(this))
+    };
   }
 
   render() {
-    const { serviceName } = this.state;
     return (
-      <div>
-        {/* <div>{serviceName}</div> */}
-        <div className="main-container">
-          <div className="messages-container">
+      
+      <div className="main-container">
+        {this.props.canScroll ? 
+        <div id="navbar-board">Messages reçus | {this.state.serviceName}</div> : <div></div>}
+        <div className="messages-container scroll-device">
+
             {this.state.messageList
               .slice(0, this.props.canScroll ? this.state.messageList.length : this.state.numberRows)
               .map((message, index) => {
                 return this.displayMessageSwipe(message, index);
               })}
-            {this.state.emergency && !this.props.canScroll &&
-              this.displayEmergencyMessage(this.state.emergency)}
-          </div>
-          <div className="old-message-container-position">
-            {!this.props.canScroll && this.state.messageList.slice(this.state.numberRows).length > 0 &&
-              this.displayOldMessages(
-                this.state.messageList.slice(this.state.numberRows)
-              )}
-          </div>
+            {this.state.emergency && !this.props.canScroll && this.displayEmergencyMessage(this.state.emergency)}
+
+        </div>
+        <div className="old-message-container-position">
+          {!this.props.canScroll && this.state.messageList.slice(this.state.numberRows).length > 0 &&
+            this.displayOldMessages(
+              this.state.messageList.slice(this.state.numberRows)
+            )}
         </div>
       </div>
+ 
     );
   }
 }

@@ -1,19 +1,24 @@
 .main-container{
     /* background-image: url('../../assets/background.png'); */
-    background-color: rgba(204, 213, 255, 0.521);
-    background-size: 100% 100%;
+    background-color: rgba(204, 213, 255, 0.445);
+    /* background-size: 100% 100%; */
     margin : 0;
-    position: relative;
+    /* background-attachment: fixed; */
+    height: 100%;
+    /* -webkit-overflow-scrolling: touch; */
+    /* position: relative;
     z-index: 0;
-    min-height: 100vh;
+    min-height: 100vh; */
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .messages-container{
     padding: 15px 15px;
-    height: 100%;
+    /* overflow: scroll;
+    -webkit-overflow-scrolling: touch; */
     /* min-height: 80vh; */
 }
 
@@ -58,10 +63,12 @@
 
 
 .emergency-status-blink {
-  -webkit-animation: BlinkAnimation 2s infinite;  /* Safari 4+ */
-  -moz-animation: BlinkAnimation 2s infinite;  /* Fx 5+ */
-  -o-animation: BlinkAnimation 2s infinite;  /* Opera 12+ */
-  animation: BlinkAnimation 2s infinite;  /* IE 10+, Fx 29+ */
+  background-color: rgb(255, 176, 176);
+  color: red;
+  -webkit-animation: BlinkAnimation 4s infinite;  /* Safari 4+ */
+  -moz-animation: BlinkAnimation 4s infinite;  /* Fx 5+ */
+  -o-animation: BlinkAnimation 4s infinite;  /* Opera 12+ */
+  animation: BlinkAnimation 4s infinite;  /* IE 10+, Fx 29+ */
 }
 
 .information-status {
@@ -180,4 +187,15 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+
+#navbar-board{
+  background-color: navy;
+  height: 80px;
+  color: white;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000058;
+  padding: 10px;
 }
