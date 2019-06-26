@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./MessageEnvoi.css"
-
 import Axios from "axios";
 import { DropdownButton, Dropdown, Form } from "react-bootstrap"
-
 import { url } from '../../config.js';
 
 class MessageEnvoi extends Component {
@@ -12,6 +10,7 @@ class MessageEnvoi extends Component {
         super();
         this.state = {
             services: [],
+            supportVoice: 'SpeechRecognition' in window || "webkitSpeechRecognition" in window || "mozSpeechRecognition" in window || "msSpeechRecognition" in window,
             placeholder : "Ecrire un message...",
             recording: false,
             sender: null,
@@ -26,6 +25,35 @@ class MessageEnvoi extends Component {
         });
     };
 
+    componentDidMount() {
+        if (this.state.supportVoice) {
+          this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+          this.recognition.continuous = true;
+          this.recognition.interimResults = true;
+          this.recognition.lang = this.props.lang || 'fr';
+          this.recognition.onresult = (event) => {
+            let interimTranscript = '';
+            let finalTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript;
+                this.setState({
+                  message: finalTranscript
+                });
+                if (this.props.onChange) this.props.onChange(finalTranscript);
+                if (this.props.onEnd) this.props.onEnd(finalTranscript);
+              } else {
+                interimTranscript += event.results[i][0].transcript;
+                this.setState({
+                  message: interimTranscript
+                });
+                if (this.props.onChange) this.props.onChange(interimTranscript);
+              }
+            }
+          };
+        }
+      }
+
     changeSender(value) {
         this.setState({ sender: value })
     }
@@ -39,12 +67,29 @@ class MessageEnvoi extends Component {
     }
     
     onTouchStartMic(){
-        this.setState({recording: true, placeholder: "Enregistrement en cours..."})
-    
+        if(!this.state.recording){
+            this.setState({recording: true, placeholder: "Enregistrement en cours..."}, ()=>{
+                if (this.state.supportVoice) {
+                    this.recognition.start()
+                }
+                else{
+                    alert("Probleme start")
+                }
+            })  
+        }  
     }
 
     onTouchEndMic(){
-        this.setState({recording: false, placeholder: "Ecrire un message..."})
+        if(this.state.recording){
+            this.setState({recording: false, placeholder: "Ecrire un message..."}, ()=>{
+                if (this.state.supportVoice) {
+                    this.recognition.stop()
+                }
+                else{
+                    alert(this.state.supportVoice)
+                }
+            })
+        }
     }
 
     render() {
