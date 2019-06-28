@@ -4,6 +4,7 @@ import Axios from "axios";
 import { DropdownButton, Dropdown, Form } from "react-bootstrap";
 import { url } from "../../config.js";
 import socketIOClient from "socket.io-client";
+import ReactTooltip from "react-tooltip";
 
 const socket = socketIOClient(url);
 
@@ -24,9 +25,11 @@ class MessageServiceEnvoi extends Component {
       message: null,
       color: "green",
       message: "",
-      receiver: "all",
-      sender: "IOA",
+      receiver: "",
+      sender: "",
       status: "",
+      hours: 0,
+      days: 0,
       services: []
     };
   }
@@ -78,58 +81,58 @@ class MessageServiceEnvoi extends Component {
     });
   };
 
-  changeValue(event) {
-    this.setState({
-      message: event.target.value
-    });
-  }
+  //   changeValue(event) {
+  //     this.setState({
+  //       message: event.target.value
+  //     });
+  //   }
 
-  componentDidMount() {
-    if (this.state.supportVoice) {
-      this.recognition = new (window.SpeechRecognition ||
-        window.webkitSpeechRecognition ||
-        window.mozSpeechRecognition ||
-        window.msSpeechRecognition)();
-      this.recognition.continuous = true;
-      this.recognition.interimResults = true;
-      this.recognition.lang = this.props.lang || "fr";
-      this.recognition.onresult = event => {
-        let interimTranscript = "";
-        let finalTranscript = "";
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          if (event.results[i].isFinal) {
-            finalTranscript += event.results[i][0].transcript;
-            this.setState({
-              message: finalTranscript
-            });
-            if (this.props.onChange) this.props.onChange(finalTranscript);
-            if (this.props.onEnd) this.props.onEnd(finalTranscript);
-          } else {
-            interimTranscript += event.results[i][0].transcript;
-            this.setState({
-              message: interimTranscript
-            });
-            if (this.props.onChange) this.props.onChange(interimTranscript);
-          }
-        }
-      };
-    }
-  }
+  //   componentDidMount() {
+  //     if (this.state.supportVoice) {
+  //       this.recognition = new (window.SpeechRecognition ||
+  //         window.webkitSpeechRecognition ||
+  //         window.mozSpeechRecognition ||
+  //         window.msSpeechRecognition)();
+  //       this.recognition.continuous = true;
+  //       this.recognition.interimResults = true;
+  //       this.recognition.lang = this.props.lang || "fr";
+  //       this.recognition.onresult = event => {
+  //         let interimTranscript = "";
+  //         let finalTranscript = "";
+  //         for (let i = event.resultIndex; i < event.results.length; ++i) {
+  //           if (event.results[i].isFinal) {
+  //             finalTranscript += event.results[i][0].transcript;
+  //             this.setState({
+  //               message: finalTranscript
+  //             });
+  //             if (this.props.onChange) this.props.onChange(finalTranscript);
+  //             if (this.props.onEnd) this.props.onEnd(finalTranscript);
+  //           } else {
+  //             interimTranscript += event.results[i][0].transcript;
+  //             this.setState({
+  //               message: interimTranscript
+  //             });
+  //             if (this.props.onChange) this.props.onChange(interimTranscript);
+  //           }
+  //         }
+  //       };
+  //     }
+  //   }
 
-  changeSender(value) {
-    this.setState({ sender: value });
-  }
+  //   changeSender(value) {
+  //     this.setState({ sender: value });
+  //   }
 
-  changeReceiver(value) {
-    this.setState({ receiver: value });
-  }
+  //   changeReceiver(value) {
+  //     this.setState({ receiver: value });
+  //   }
 
-  changeMessage(value) {
-    this.setState({ message: value });
-  }
+  //   changeMessage(value) {
+  //     this.setState({ message: value });
+  //   }
 
   questionnaire = () => {
-    const { message, services } = this.state;
+    const { message, services, sender, receiver, hours, days } = this.state;
     return (
       <div>
         <div className="row">
@@ -141,7 +144,7 @@ class MessageServiceEnvoi extends Component {
               onChange={this.onChange}
             >
               <option value="" selected disabled hidden>
-                Expéditeur ? (IOA)
+                (choisir)
               </option>
               {services &&
                 services.map((service, index) => (
@@ -157,7 +160,7 @@ class MessageServiceEnvoi extends Component {
             <br />
           </div>
           <div className="col">
-            Récepteur
+            Destinataire
             <br />
             <select
               className="form-control"
@@ -165,7 +168,7 @@ class MessageServiceEnvoi extends Component {
               name="receiver"
             >
               <option value="" selected disabled hidden>
-                Destinataire ?
+                (choisir)
               </option>
               <option value="all" couleur="green">
                 Tous
@@ -183,7 +186,8 @@ class MessageServiceEnvoi extends Component {
             </select>
           </div>
         </div>
-
+        <br />
+        <br />
         <div className="form-group">
           <textarea
             name="message"
@@ -196,6 +200,51 @@ class MessageServiceEnvoi extends Component {
             maxlength="256"
           />
         </div>
+        <div class="form-inline">
+          Durée de validité du message :
+          <div class="form-group mx-sm-3 mb-2">
+            <input
+              type="text"
+              class="form-control"
+              id="inputPassword2"
+              placeholder="Password"
+              value={hours}
+              name="hours"
+              onChange={this.onChange}
+            />
+            &nbsp; heure(s)
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input
+              type="text"
+              class="form-control"
+              id="inputPassword3"
+              placeholder="Password"
+              value={days}
+              name="days"
+              onChange={this.onChange}
+            />
+            &nbsp; jour(s)
+          </div>
+        </div>
+        {sender !== "" && receiver !== "" && days !== 0 && hours !== 0 ? (
+          <button
+            type="button"
+            onClick={() => this.onSubmit()}
+            className="col btn btn-success"
+          >
+            Envoyer le message &nbsp; <i class="far fa-paper-plane" />
+          </button>
+        ) : (
+          <button
+            type="button"
+            disabled
+            onClick={() => this.onSubmit()}
+            className="col btn btn-success"
+          >
+            Envoyer le message &nbsp; <i class="far fa-paper-plane" />
+          </button>
+        )}
       </div>
     );
   };

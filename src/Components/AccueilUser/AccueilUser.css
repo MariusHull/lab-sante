@@ -43,7 +43,6 @@
 
 .card-service {
   padding: 0px;
-  height: 50px;
 }
 
 .card-header {
@@ -64,12 +63,13 @@
   margin: 0px;
   padding: auto;
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .link-service {
   color: black;
 }
 
-.container{
+.container {
   width: 90%;
 }
