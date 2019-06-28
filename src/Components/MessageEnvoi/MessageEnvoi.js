@@ -117,7 +117,7 @@ class MessageEnvoi extends Component {
                         </DropdownButton>
                     </div>
                     <div id="receiver">
-                        <DropdownButton size="lg" id="dropdown-receiver" title={this.state.receiver ? this.state.receiver === 'all' ? "Tous" : this.state.sender : "Destinataire "}>
+                        <DropdownButton size="lg" id="dropdown-receiver" title={this.state.receiver ? this.state.receiver === 'all' ? "Tous" : this.state.receiver : "Destinataire "}>
                             <Dropdown.Item active={this.state.receiver === 'all'} onClick={(e) => { this.changeReceiver('all') }}>Tous</Dropdown.Item>
                             {services.map((service, index) => {
                                 return (<div key={index}><Dropdown.Item active={this.state.receiver === service.name} onClick={(e) => { this.changeReceiver(service.name) }}>{service.name}</Dropdown.Item></div>)
