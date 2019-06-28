@@ -39,7 +39,7 @@ class App extends Component {
                   resistance={false}
                   enableMouseEvents
                 >
-                  <Route path="/device/message" component={FrontMessage} />
+                  {/* <Route path="/device/message" component={FrontMessage} /> */}
                   <Route
                     path="/device/newFrontEnvoi"
                     render={() => <MessageEnvoi />}
