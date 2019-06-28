@@ -2,21 +2,22 @@ import React, { Component } from "react";
 import "./MessageEnvoi.css"
 import socketIOClient from "socket.io-client";
 import Axios from "axios";
-import { DropdownButton, Dropdown, Form, ButtonToolbar, Button } from "react-bootstrap"
+import { DropdownButton, Dropdown, Form, ButtonToolbar, Button, Modal } from "react-bootstrap"
 import { url } from '../../config.js';
 const socket = socketIOClient(url);
 
 class MessageEnvoi extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            modalShow: false,
             services: [],
             supportVoice: 'SpeechRecognition' in window || "webkitSpeechRecognition" in window || "mozSpeechRecognition" in window || "msSpeechRecognition" in window,
             placeholder: "Ecrire un message...",
             recording: false,
             sender: null,
-            receiver: null,
+            receiver: "",
             message: ""
         };
     }
@@ -53,8 +54,17 @@ class MessageEnvoi extends Component {
         }
     }
 
-    changeSender(value) {
-        this.setState({ sender: value })
+    componentDidMount() {
+        if (this.props.loginService) {
+            this.setState({ sender: this.props.loginService })
+        }
+    }
+
+    changeSender = (value) => {
+        // this.setState({ sender: value })
+        this.setState({modalService: value})
+        // this.props.changeLoginService(value)
+        // this.props.history.push(value)
     }
 
     changeReceiver(value) {
@@ -104,10 +114,41 @@ class MessageEnvoi extends Component {
         }
     }
 
+    connectService(){
+        this.props.changeLoginService(this.state.modalService)
+    }
+
+    showModal() {
+        return (
+            <Modal
+                show={this.state.modalService}
+                {...this.props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Authentification : {this.state.modalService}
+          </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h5>Entrez votre mot de passe</h5>
+                    <input class="form-control" type="password" />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="success" onClick={() => this.connectService()}>Connexion</Button>
+                    <Button variant="danger" onClick={()=>this.setState({modalService: null})}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        )
+    }
+
     render() {
         let services = this.state.services
         return (
             <div id="message-envoi">
+                {this.showModal()}
                 <div id="container-authors">
                     <div id="sender">
                         <DropdownButton size="lg" id="dropdown-sender" title={this.state.sender ? this.state.sender === 'all' ? "Tous" : this.state.sender : "Expéditeur "}>
@@ -117,7 +158,7 @@ class MessageEnvoi extends Component {
                         </DropdownButton>
                     </div>
                     <div id="receiver">
-                        <DropdownButton size="lg" id="dropdown-receiver" title={this.state.receiver ? this.state.receiver === 'all' ? "Tous" : this.state.receiver : "Destinataire "}>
+                        <DropdownButton size="lg" id="dropdown-receiver" title={this.state.receiver ? this.state.receiver === 'all' ? "Tous" : this.state.receiver : "Destinataire"}>
                             <Dropdown.Item active={this.state.receiver === 'all'} onClick={(e) => { this.changeReceiver('all') }}>Tous</Dropdown.Item>
                             {services.map((service, index) => {
                                 return (<div key={index}><Dropdown.Item active={this.state.receiver === service.name} onClick={(e) => { this.changeReceiver(service.name) }}>{service.name}</Dropdown.Item></div>)
@@ -135,11 +176,11 @@ class MessageEnvoi extends Component {
                 </div>
                 <div id="container-buttons">
                     <ButtonToolbar id="button-toolbar">
-                        <Button className="button-envoi" variant="primary" onClick={() => this.sendMessage("important")}>
+                        <Button className="button-envoi" variant="primary" disabled={(!this.state.sender || this.state.sender.length == 0) || (!this.state.receiver || this.state.receiver.length == 0)} onClick={() => this.sendMessage("important")}>
                             <i className="fas fa-exclamation-triangle"></i><div className="status">Important</div></Button>
-                        <Button className="button-envoi" variant="success" onClick={() => this.sendMessage("information")}>
+                        <Button className="button-envoi" variant="success" disabled={(!this.state.sender || this.state.sender.length == 0) || (!this.state.receiver || this.state.receiver.length == 0)} onClick={() => this.sendMessage("information")}>
                             <i className="fas fa-info-circle"></i><div className="status">Information</div></Button>
-                        <Button className="button-envoi" variant="danger" onClick={() => this.sendMessage("urgent")}>
+                        <Button className="button-envoi" variant="danger" disabled={(!this.state.sender || this.state.sender.length == 0) || (!this.state.receiver || this.state.receiver.length == 0)} onClick={() => this.sendMessage("urgent")}>
                             <i className="fas fa-ambulance"></i><div className="status">Urgent</div></Button>
                     </ButtonToolbar>
                 </div>

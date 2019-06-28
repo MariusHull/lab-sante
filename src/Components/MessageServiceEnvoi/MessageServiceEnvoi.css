@@ -1,4 +1,4 @@
-#message-envoi{
+#message-envoi-service{
     background-color: rgba(0,0,0,0.4);
     height: 100%;
     padding: 5px;
@@ -7,7 +7,7 @@
 
 /********************/
 
-#message-envoi #container-authors{
+#message-envoi-service #container-authors{
     width: 100%;
     height: 20%;
     display: flex;
@@ -15,37 +15,37 @@
     align-items: center;
 }
 
-#message-envoi #sender, #message-envoi #receiver{
+#message-envoi-service #sender, #message-envoi #receiver{
     height: 85%;
     width: 49%;
     margin: 5px;
 }
 
-#message-envoi .dropdown, #message-envoi #dropdown-sender, #message-envoi #dropdown-receiver{
+#message-envoi-service .dropdown, #message-envoi #dropdown-sender, #message-envoi #dropdown-receiver{
     height: 100%;
     width: 100%;
 }
 
-#message-envoi .dropdown-menu{
+#message-envoi-service .dropdown-menu{
     margin-top: 5px;
     width: 100%;
 }
 
 /**************************/
 
-#message-envoi #container-message{
+#message-envoi-service #container-message{
     width: 100%;
     height: 50%;
     display: flex;
 }
 
-#message-envoi #message-area{
+#message-envoi-service #message-area{
     height: 100%;
     width: 75%;
     display: flex;
 }
 
-#message-envoi .text-area-message{
+#message-envoi-service .text-area-message{
     font-size: 200%;
     margin: 5px;
     padding: 20px;
@@ -53,7 +53,7 @@
     border: none;
 }
 
-#message-envoi #microphone{
+#message-envoi-service #microphone{
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@
     width: 25%;
 }
 
-#message-envoi #icon-microphone{
+#message-envoi-service #icon-microphone{
     font-size: 600%;
     height: 100%;
     margin: 5px;
@@ -74,13 +74,13 @@
     -webkit-user-select: none;
 }
 
-#message-envoi .icon-microphone-off{
+#message-envoi-service .icon-microphone-off{
     background-color: rgba(209, 209, 209, 0.9);
     color: black;
 }
 
 
-#message-envoi .icon-microphone-on{
+#message-envoi-service .icon-microphone-on{
     color: rgb(68, 68, 68);
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 0px 10px 1px rgb(77, 76, 76);
@@ -92,7 +92,7 @@
 
 /***************/
 
-#message-envoi #container-buttons{
+#message-envoi-service #container-buttons{
     width: 100%;
     height: 30%;
     background-color: orange;

@@ -15,6 +15,20 @@ import MessageEnvoi from "./Components/MessageEnvoi/MessageEnvoi";
 import MessageServiceEnvoi from "./Components/MessageServiceEnvoi/MessageServiceEnvoi";
 
 class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      loginService: null
+    }
+  }
+
+  changeLoginService = (service) => {
+    this.setState({loginService : service}, ()=>{
+      console.log(service)
+    })
+  }
+
   render() {
     return (
       <div style={{ height: "100%" }}>
@@ -31,22 +45,22 @@ class App extends Component {
             path="/device"
             component={() => (
               <div style={{ height: "100%" }}>
-                <div style={{ backgroundColor: "green", height: "0%" }} />
+                <div style={{ backgroundColor: "white", height: "0%" }} />
                 <SwipeableRoutes
                   style={{ height: "100%" }}
                   containerStyle={{ width: "100%", height: "100%" }}
                   replace
-                  resistance={false}
+                  // resistance={false}
                   enableMouseEvents
                 >
                   {/* <Route path="/device/message" component={FrontMessage} /> */}
                   <Route
-                    path="/device/newFrontEnvoi"
-                    render={() => <MessageEnvoi />}
+                    path="/device/message"
+                    render={props => <MessageEnvoi {...props} loginService={this.state.loginService} changeLoginService={this.changeLoginService} />}
                   />
                   <Route
-                    path="/device/boardScroll"
-                    render={props => <MessageBoard {...props} canScroll />}
+                    path="/device/board"
+                    render={props => <MessageBoard {...props} loginService={this.state.loginService} canScroll />}
                   />
                 </SwipeableRoutes>
               </div>

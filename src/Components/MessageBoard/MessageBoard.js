@@ -342,13 +342,15 @@ class MessageBoard extends React.Component {
   }
 
   componentWillMount = () => {
+    let serviceName = this.props.loginService
+    console.log(serviceName)
     // Getting all messages
-    const serviceName = this.props.location.pathname.split("/")[
-      this.props.location.pathname.split("/").length - 1
-    ];
-    this.setState({
-      serviceName: serviceName
-    });
+    // const serviceName = this.props.location.pathname.split("/")[
+    //   this.props.location.pathname.split("/").length - 1
+    // ];
+    // this.setState({
+    //   serviceName: serviceName
+    // });
     Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(
       res => {
         console.log(res.data);
@@ -397,7 +399,7 @@ class MessageBoard extends React.Component {
       
       <div className="main-container">
         {this.props.canScroll ? 
-        <div id="navbar-board">Messages reçus | {this.state.serviceName}</div> : <div></div>}
+        <div id="navbar-board">Messages reçus | {this.props.loginService}</div> : <div></div>}
         <div className="messages-container scroll-device">
 
             {this.state.messageList
