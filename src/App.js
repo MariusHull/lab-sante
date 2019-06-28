@@ -30,7 +30,7 @@ class App extends Component {
             <div style={{ height: "100%" }}>
               <div style={{ backgroundColor: "green", height: "0%" }}></div>
               <SwipeableRoutes style={{ height: "100%" }} containerStyle={{ width: "100%", height: "100%" }} replace resistance={false} enableMouseEvents>
-                <Route path="/device/message" component={FrontMessage} />
+                {/* <Route path="/device/message" component={FrontMessage} /> */}
                 <Route path="/device/newFrontEnvoi" render={() => <MessageEnvoi />} />
                 <Route path="/device/boardScroll" render={(props) => <MessageBoard {...props} canScroll />} />
               </SwipeableRoutes>
