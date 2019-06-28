@@ -72,9 +72,6 @@ class MessageEnvoi extends Component {
                 if (this.state.supportVoice) {
                     this.recognition.start()
                 }
-                else{
-                    alert("Probleme start")
-                }
             })  
         }  
     }
@@ -84,9 +81,6 @@ class MessageEnvoi extends Component {
             this.setState({recording: false, placeholder: "Ecrire un message..."}, ()=>{
                 if (this.state.supportVoice) {
                     this.recognition.stop()
-                }
-                else{
-                    alert(this.state.supportVoice)
                 }
             })
         }
