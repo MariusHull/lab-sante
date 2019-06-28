@@ -11,33 +11,49 @@ import FrontBocal from "./Components/FrontBocal/front_bocal";
 import Service from "./Components/ServiceCreation/Service";
 import AccueilUser from "./Components/AccueilUser/AccueilUser";
 import SwipeableRoutes from "react-swipeable-routes";
-import MessageEnvoi from "./Components/MessageEnvoi/MessageEnvoi"
+import MessageEnvoi from "./Components/MessageEnvoi/MessageEnvoi";
+import MessageServiceEnvoi from "./Components/MessageServiceEnvoi/MessageServiceEnvoi";
 
 class App extends Component {
   render() {
     return (
-      <div style={{ height: '100%' }}>
+      <div style={{ height: "100%" }}>
         <Router>
-          <Route exact path="/" component={() => <Redirect to='/device' />} />
+          <Route exact path="/" component={() => <Redirect to="/device" />} />
           <Route path="/user" component={AccueilUser} />
           <Route path="/accueil" component={FrontAccueil} />
           <Route path="/iao" component={FrontIAO} />
           <Route path="/bocal" component={FrontBocal} />
-          <Route path="/board"
-            render={(props) => <MessageBoard {...props} />} />
+          <Route path="/board" render={props => <MessageBoard {...props} />} />
           <Route path="/service" component={Service} />
-          <Route path="/device" component={() =>
-            <div style={{ height: "100%" }}>
-              <div style={{ backgroundColor: "green", height: "0%" }}></div>
-              <SwipeableRoutes style={{ height: "100%" }} containerStyle={{ width: "100%", height: "100%" }} replace resistance={false} enableMouseEvents>
-                <Route path="/device/message" component={FrontMessage} />
-                <Route path="/device/newFrontEnvoi" render={() => <MessageEnvoi />} />
-                <Route path="/device/boardScroll" render={(props) => <MessageBoard {...props} canScroll />} />
-              </SwipeableRoutes>
-            </div>
-          } />
+          <Route path="/messageService" component={MessageServiceEnvoi} />
+          <Route
+            path="/device"
+            component={() => (
+              <div style={{ height: "100%" }}>
+                <div style={{ backgroundColor: "green", height: "0%" }} />
+                <SwipeableRoutes
+                  style={{ height: "100%" }}
+                  containerStyle={{ width: "100%", height: "100%" }}
+                  replace
+                  resistance={false}
+                  enableMouseEvents
+                >
+                  <Route path="/device/message" component={FrontMessage} />
+                  <Route
+                    path="/device/newFrontEnvoi"
+                    render={() => <MessageEnvoi />}
+                  />
+                  <Route
+                    path="/device/boardScroll"
+                    render={props => <MessageBoard {...props} canScroll />}
+                  />
+                </SwipeableRoutes>
+              </div>
+            )}
+          />
         </Router>
-      </div >
+      </div>
     );
   }
 }

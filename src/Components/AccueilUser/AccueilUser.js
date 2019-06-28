@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { url } from '../../config.js';
+import { url } from "../../config.js";
 import { Link } from "react-router-dom";
 import "./AccueilUser.css";
 
@@ -36,12 +36,18 @@ export default class AccueilUser extends Component {
                   <div className="card-body card-service">
                     <div className="row row-service">
                       <div className="col col-service">
-                        <Link to={`/board/${service.name}`} className="link-service">
+                        <Link
+                          to={`/board/${service.name}`}
+                          className="link-service"
+                        >
                           Messages reçus
                         </Link>
                       </div>
                       <div className="col col-service">
-                        <Link to={`/message/${service.name}`} className="link-service">
+                        <Link
+                          to={`/message/${service.name}`}
+                          className="link-service"
+                        >
                           Écrire un message
                         </Link>
                       </div>
@@ -86,6 +92,15 @@ export default class AccueilUser extends Component {
                 className="col btn btn-outline-success"
               >
                 Ajouter un service &nbsp; <i class="fas fa-plus" />
+              </button>
+              <br />
+              <button
+                type="button"
+                onClick={() => this.props.history.push("/messageService")}
+                className="col btn btn-outline-info"
+              >
+                Envoyer un message de service &nbsp;{" "}
+                <i class="far fa-envelope" />
               </button>
             </div>
           </div>
