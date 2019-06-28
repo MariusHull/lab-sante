@@ -11,7 +11,7 @@ class MessageEnvoi extends Component {
         this.state = {
             services: [],
             supportVoice: 'SpeechRecognition' in window || "webkitSpeechRecognition" in window || "mozSpeechRecognition" in window || "msSpeechRecognition" in window,
-            placeholder : "Ecrire un message...",
+            placeholder: "Ecrire un message...",
             recording: false,
             sender: null,
             receiver: null,
@@ -27,32 +27,32 @@ class MessageEnvoi extends Component {
 
     componentDidMount() {
         if (this.state.supportVoice) {
-          this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
-          this.recognition.continuous = true;
-          this.recognition.interimResults = true;
-          this.recognition.lang = this.props.lang || 'fr';
-          this.recognition.onresult = (event) => {
-            let interimTranscript = '';
-            let finalTranscript = '';
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-              if (event.results[i].isFinal) {
-                finalTranscript += event.results[i][0].transcript;
-                this.setState({
-                  message: finalTranscript
-                });
-                if (this.props.onChange) this.props.onChange(finalTranscript);
-                if (this.props.onEnd) this.props.onEnd(finalTranscript);
-              } else {
-                interimTranscript += event.results[i][0].transcript;
-                this.setState({
-                  message: interimTranscript
-                });
-                if (this.props.onChange) this.props.onChange(interimTranscript);
-              }
-            }
-          };
+            this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+            this.recognition.continuous = true;
+            this.recognition.interimResults = true;
+            this.recognition.lang = this.props.lang || 'fr';
+            this.recognition.onresult = (event) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                        this.setState({
+                            message: finalTranscript
+                        });
+                        if (this.props.onChange) this.props.onChange(finalTranscript);
+                        if (this.props.onEnd) this.props.onEnd(finalTranscript);
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                        this.setState({
+                            message: interimTranscript
+                        });
+                        if (this.props.onChange) this.props.onChange(interimTranscript);
+                    }
+                }
+            };
         }
-      }
+    }
 
     changeSender(value) {
         this.setState({ sender: value })
@@ -61,28 +61,28 @@ class MessageEnvoi extends Component {
     changeReceiver(value) {
         this.setState({ receiver: value })
     }
-    
-    changeMessage(value){
+
+    changeMessage(value) {
         this.setState({ message: value })
     }
-    
-    onTouchStartMic(){
-        if(!this.state.recording){
-            this.setState({recording: true, placeholder: "Enregistrement en cours..."}, ()=>{
-                if (this.state.supportVoice) {
-                    this.recognition.start()
-                }
-            })  
-        }  
+
+    onTouchStartMic() {
+        if (this.state.supportVoice) {
+            if (!this.state.recording) {
+                this.setState({ recording: true, placeholder: "Enregistrement en cours..." }, ()=>{
+                    this.recognition.start();
+                });
+            }
+        }
     }
 
-    onTouchEndMic(){
-        if(this.state.recording){
-            this.setState({recording: false, placeholder: "Ecrire un message..."}, ()=>{
-                if (this.state.supportVoice) {
+    onTouchEndMic() {
+        if (this.state.supportVoice) {
+            if (this.state.recording) {
+                this.setState({ recording: false, placeholder: "Ecrire un message..." }, ()=>{
                     this.recognition.stop()
-                }
-            })
+                });
+            }
         }
     }
 
@@ -108,10 +108,10 @@ class MessageEnvoi extends Component {
                 </div>
                 <div id="container-message">
                     <div id="microphone">
-                        <div id="icon-microphone" className={this.state.recording ? "icon-microphone-on" : "icon-microphone-off"}onTouchStart={this.onTouchStartMic.bind(this)} onTouchEnd={this.onTouchEndMic.bind(this)}><i class="fas fa-microphone"></i></div> 
+                        <div id="icon-microphone" className={this.state.recording ? "icon-microphone-on" : "icon-microphone-off"} onTouchStart={this.onTouchStartMic.bind(this)} onTouchEnd={this.onTouchEndMic.bind(this)}><i class="fas fa-microphone"></i></div>
                     </div>
                     <Form id="message-area">
-                        <Form.Control className="text-area-message" placeholder={this.state.placeholder} as="textarea"  value={this.state.message} onChange={e=>this.changeMessage(e.target.value)}/>
+                        <Form.Control className="text-area-message" placeholder={this.state.placeholder} as="textarea" value={this.state.message} onChange={e => this.changeMessage(e.target.value)} />
                     </Form>
                 </div>
                 <div id="container-buttons">ligne 3</div>
