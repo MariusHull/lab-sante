@@ -252,6 +252,14 @@ class MessageBoard extends React.Component {
     );
   }
 
+  takeCare = () => {
+    console.log("done!");
+    if (this.props.loginService === "") return 1;
+    socket.emit("TakeCare", {
+      carer: this.props.loginService
+    });
+  };
+
   displayMessageSwipe(message, index) {
     return (
       <Swipeout
@@ -262,10 +270,12 @@ class MessageBoard extends React.Component {
         right={[
           {
             text: "Je m'en occupe !",
-            onPress: () =>
+            onPress: () => {
               alert(
                 "C'est noté. Le service '" + message.sender + "' vous remercie."
-              ),
+              );
+              this.takeCare();
+            },
             className: "right-button-swipe-message"
           }
         ]}
