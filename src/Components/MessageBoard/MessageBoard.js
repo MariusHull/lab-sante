@@ -4,6 +4,8 @@ import "rc-swipeout/assets/index.css";
 // import 'rc-swipeout/assets/index'
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import sync from "css-animation-sync";
 import { url } from "../../config.js";
 import "./MessageBoard.css";
@@ -434,6 +436,17 @@ class MessageBoard extends React.Component {
             this.setState({ messageList: res.data.reverse() });
           }
         );
+      })
+      .on("Receive", service => {
+        if (service.emit === this.serviceName) {
+          toast.success(
+            "Le service " + service.carer + " a pris en charge votre demande !",
+            {
+              position: "top-center",
+              autoClose: 20000
+            }
+          );
+        }
       });
   };
 

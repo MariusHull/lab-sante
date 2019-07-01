@@ -2,6 +2,9 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 import "./App.css";
 import FrontMessage from "./Components/FrontMessageEnvoi/front_message_envoi";
 import FrontAccueil from "./Components/FrontAccueil/front_accueil";
@@ -15,19 +18,18 @@ import MessageEnvoi from "./Components/MessageEnvoi/MessageEnvoi";
 import MessageServiceEnvoi from "./Components/MessageServiceEnvoi/MessageServiceEnvoi";
 
 class App extends Component {
-
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       loginService: null
-    }
+    };
   }
 
-  changeLoginService = (service) => {
-    this.setState({loginService : service}, ()=>{
-      console.log(service)
-    })
-  }
+  changeLoginService = service => {
+    this.setState({ loginService: service }, () => {
+      console.log(service);
+    });
+  };
 
   render() {
     return (
@@ -56,17 +58,39 @@ class App extends Component {
                   {/* <Route path="/device/message" component={FrontMessage} /> */}
                   <Route
                     path="/device/message"
-                    render={props => <MessageEnvoi {...props} loginService={this.state.loginService} changeLoginService={this.changeLoginService} />}
+                    render={props => (
+                      <MessageEnvoi
+                        {...props}
+                        loginService={this.state.loginService}
+                        changeLoginService={this.changeLoginService}
+                      />
+                    )}
                   />
                   <Route
                     path="/device/board"
-                    render={props => <MessageBoard {...props} loginService={this.state.loginService} canScroll />}
+                    render={props => (
+                      <MessageBoard
+                        {...props}
+                        loginService={this.state.loginService}
+                        canScroll
+                      />
+                    )}
                   />
                 </SwipeableRoutes>
               </div>
             )}
           />
         </Router>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </div>
     );
   }
