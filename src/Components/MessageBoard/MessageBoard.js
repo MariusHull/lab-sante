@@ -257,7 +257,7 @@ class MessageBoard extends React.Component {
     console.log("done!");
     if (this.serviceName === "") return 1;
     socket.emit("TakeCare", {
-      carer: this.props.loginService,
+      carer: this.serviceName,
       targetMessage: id
     });
   };
