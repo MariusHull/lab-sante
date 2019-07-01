@@ -25,31 +25,25 @@ export default class AccueilUser extends Component {
         {services &&
           services.map((service, index) => {
             return (
-              <div className="col-6 col-services">
-                <div className="card">
-                  <div
-                    className="card-header"
-                    style={{ backgroundColor: service.color }}
-                  >
-                    {service.name}
-                  </div>
-                  <div className="card-body card-service">
-                    <div className="row row-service">
-                      <div className="col col-service">
-                        <Link
-                          to={`/board/${service.name}`}
-                          className="link-service"
-                        >
-                          Messages reçus
-                        </Link>
-                      </div>
-                      <div className="col col-service">
-                        <Link
-                          to={`/message/${service.name}`}
-                          className="link-service"
-                        >
-                          Écrire un message
-                        </Link>
+              <div className="col col-services">
+                <div className="contain-card">
+                  <div className="card" style={{ borderColor: service.color }}>
+                    <div
+                      className="card-header"
+                      style={{ backgroundColor: service.color }}
+                    >
+                      {service.name}
+                    </div>
+                    <div className="card-body card-service">
+                      <div className="row row-service">
+                        <div className="col col-service">
+                          <Link
+                            to={`/board/${service.name}`}
+                            className="link-service"
+                          >
+                            <i class="fas fa-inbox" /> Messages reçus
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -76,13 +70,13 @@ export default class AccueilUser extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="row1accueil bienvenue titretext">
           Bienvenue aux Urgences de Melun
         </div>
-        <div className="container">
+        <div className="">
           <div className="card">
-            <h5 className="card-header">Sélectionnez votre service :</h5>
+            <h4 className="card-header">Sélectionnez votre service :</h4>
             <div className="card-body">
               {this.getRoutes()}
               <br />
