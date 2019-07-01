@@ -1,11 +1,11 @@
 import React from "react";
-import Swipeout from 'rc-swipeout';
-import 'rc-swipeout/assets/index.css';
+import Swipeout from "rc-swipeout";
+import "rc-swipeout/assets/index.css";
 // import 'rc-swipeout/assets/index'
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
-import sync from 'css-animation-sync';
-import { url } from '../../config.js';
+import sync from "css-animation-sync";
+import { url } from "../../config.js";
 import "./MessageBoard.css";
 import * as moment from "moment";
 import "moment/locale/fr";
@@ -229,8 +229,6 @@ class MessageBoard extends React.Component {
     this.setState({ numberRows: numberRows });
   }
 
-
-
   displayMessage(message, index) {
     const color = message.color || "#DDDDDD";
     return (
@@ -258,26 +256,27 @@ class MessageBoard extends React.Component {
     return (
       <Swipeout
         style={{
-          marginTop: '10px',
+          marginTop: "10px",
           borderRadius: "10px"
         }}
-        right={
-          [
-            {
-              text: "Je m'en occupe !",
-              onPress: () => alert("C'est noté. Le service '" + message.sender + "' vous remercie."),
-              className: "right-button-swipe-message"
-            }
-          ]}
-        onOpen={() => { }}
-        onClose={() => { }}
+        right={[
+          {
+            text: "Je m'en occupe !",
+            onPress: () =>
+              alert(
+                "C'est noté. Le service '" + message.sender + "' vous remercie."
+              ),
+            className: "right-button-swipe-message"
+          }
+        ]}
+        onOpen={() => {}}
+        onClose={() => {}}
         autoClose
       >
         {this.displayMessage(message, index)}
-      </Swipeout >
-    )
+      </Swipeout>
+    );
   }
-
 
   displayStatus(status) {
     let logo = "";
@@ -342,8 +341,9 @@ class MessageBoard extends React.Component {
   }
 
   componentWillMount = () => {
-    let serviceName = this.props.loginService
-    console.log(serviceName)
+    const { messageList } = this.state;
+    let serviceName = this.props.loginService;
+    console.log(serviceName);
     // Getting all messages
     // const serviceName = this.props.location.pathname.split("/")[
     //   this.props.location.pathname.split("/").length - 1
@@ -351,28 +351,48 @@ class MessageBoard extends React.Component {
     // this.setState({
     //   serviceName: serviceName
     // });
-    Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(
-      res => {
-        console.log(res.data);
-        // + ajouter trier par dates
-        this.setState({ messageList: res.data.reverse() });
-      }
-    );
+    Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(res => {
+      console.log(res.data);
+      // + ajouter trier par dates
+      this.setState({ messageList: res.data.reverse() });
+    });
 
     // Listening to socket
-    socket.on("Message", message => {
-      console.log(message);
-      if (message.receiver === serviceName || message.receiver === "all") {
-        this.setState({ messageList: [message, ...this.state.messageList] });
-        if (message.status === "urgent") {
-          this.setState({ emergency: message }, () => {
-            setTimeout(() => {
-              this.setState({ emergency: null });
-            }, 5000);
-          });
+    socket
+      .on("Message", message => {
+        console.log(message);
+        if (message.receiver === serviceName || message.receiver === "all") {
+          this.setState({ messageList: [message, ...this.state.messageList] });
+          if (message.status === "urgent") {
+            this.setState({ emergency: message }, () => {
+              setTimeout(() => {
+                this.setState({ emergency: null });
+              }, 5000);
+            });
+          }
         }
-      }
-    });
+      })
+      .on("Outdate", message => {
+        Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(res => {
+          console.log("Message effacé !", res.data);
+          this.setState({ messageList: res.data.reverse() });
+        });
+        // console.log(
+        //   "message",
+        //   message,
+        //   "outdated : ",
+        //   messageList.filter(mess => mess._id === message._id)
+        // );
+        // if (messageList.filter(mess => mess._id === message._id).length > 0) {
+        //   console.log(
+        //     "outdated2 : ",
+        //     messageList.filter(mess => mess._id !== message._id)
+        //   );
+        //   this.setState({
+        //     messageList: messageList.filter(mess => mess._id !== message._id)
+        //   });
+        // }
+      });
   };
 
   /**
@@ -381,8 +401,8 @@ class MessageBoard extends React.Component {
   componentDidMount() {
     this.resizeWindow();
     if (!this.props.canScroll) {
-      window.addEventListener("resize", this.resizeWindow.bind(this))
-    };
+      window.addEventListener("resize", this.resizeWindow.bind(this));
+    }
   }
 
   /**
@@ -390,34 +410,43 @@ class MessageBoard extends React.Component {
    */
   componentWillUnmount() {
     if (!this.props.canScroll) {
-      window.removeEventListener("resize", this.resizeWindow.bind(this))
-    };
+      window.removeEventListener("resize", this.resizeWindow.bind(this));
+    }
   }
 
   render() {
     return (
-      
       <div className="main-container">
-        {this.props.canScroll ? 
-        <div id="navbar-board">Messages reçus | {this.props.loginService}</div> : <div></div>}
+        {this.props.canScroll ? (
+          <div id="navbar-board">
+            Messages reçus | {this.props.loginService}
+          </div>
+        ) : (
+          <div />
+        )}
         <div className="messages-container scroll-device">
-
-            {this.state.messageList
-              .slice(0, this.props.canScroll ? this.state.messageList.length : this.state.numberRows)
-              .map((message, index) => {
-                return this.displayMessageSwipe(message, index);
-              })}
-            {this.state.emergency && !this.props.canScroll && this.displayEmergencyMessage(this.state.emergency)}
-
+          {this.state.messageList
+            .slice(
+              0,
+              this.props.canScroll
+                ? this.state.messageList.length
+                : this.state.numberRows
+            )
+            .map((message, index) => {
+              return this.displayMessageSwipe(message, index);
+            })}
+          {this.state.emergency &&
+            !this.props.canScroll &&
+            this.displayEmergencyMessage(this.state.emergency)}
         </div>
         <div className="old-message-container-position">
-          {!this.props.canScroll && this.state.messageList.slice(this.state.numberRows).length > 0 &&
+          {!this.props.canScroll &&
+            this.state.messageList.slice(this.state.numberRows).length > 0 &&
             this.displayOldMessages(
               this.state.messageList.slice(this.state.numberRows)
             )}
         </div>
       </div>
- 
     );
   }
 }
