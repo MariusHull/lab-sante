@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { url } from '../../config.js';
+import { url } from "../../config.js";
 import "./Service.css";
 
 class Service extends Component {
@@ -27,7 +27,7 @@ class Service extends Component {
   }
 
   reload = () => {
-    axios.get(`${url}services/`).then(res => {
+    axios.get(`${url}/services/`).then(res => {
       this.setState({ savedServices: res.data });
     });
   };
@@ -42,11 +42,9 @@ class Service extends Component {
     if (!window.confirm("Etes-vous sûr de vouloir supprimer ce service ?")) {
       return 1;
     }
-    axios
-      .delete(`${url}/services/${service._id}`, service)
-      .then(res => {
-        this.reload();
-      });
+    axios.delete(`${url}/services/${service._id}`, service).then(res => {
+      this.reload();
+    });
   };
 
   onSubmit = () => {
