@@ -17,6 +17,7 @@ class MessageBoard extends React.Component {
   constructor(props) {
     super(props);
     new sync("BlinkAnimation");
+    this.serviceName = null;
     moment.locale("fr");
     this.state = {
       emergency: null,
@@ -225,7 +226,7 @@ class MessageBoard extends React.Component {
   }
 
   resizeWindow() {
-    let numberRows = Math.trunc((window.innerHeight - 165) / 75);
+    let numberRows = Math.trunc((window.innerHeight - 185) / 80);
     this.setState({ numberRows: numberRows });
   }
 
@@ -254,7 +255,7 @@ class MessageBoard extends React.Component {
 
   takeCare = id => {
     console.log("done!");
-    if (this.props.loginService === "") return 1;
+    if (this.serviceName === "") return 1;
     socket.emit("TakeCare", {
       carer: this.props.loginService,
       targetMessage: id
@@ -353,8 +354,13 @@ class MessageBoard extends React.Component {
 
   componentWillMount = () => {
     const { messageList } = this.state;
-    let serviceName = this.props.loginService;
-    console.log(serviceName);
+    if (this.props.loginService) {
+      this.serviceName = this.props.loginService;
+    } else {
+      this.serviceName = this.props.location.pathname.split("/")[
+        this.props.location.pathname.split("/").length - 1
+      ];
+    }
     // Getting all messages
     // const serviceName = this.props.location.pathname.split("/")[
     //   this.props.location.pathname.split("/").length - 1
@@ -362,7 +368,7 @@ class MessageBoard extends React.Component {
     // this.setState({
     //   serviceName: serviceName
     // });
-    Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(res => {
+    Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(res => {
       console.log(res.data);
       // + ajouter trier par dates
       this.setState({ messageList: res.data.reverse() });
@@ -372,7 +378,10 @@ class MessageBoard extends React.Component {
     socket
       .on("Message", message => {
         console.log(message);
-        if (message.receiver === serviceName || message.receiver === "all") {
+        if (
+          message.receiver === this.serviceName ||
+          message.receiver === "all"
+        ) {
           this.setState({ messageList: [message, ...this.state.messageList] });
           if (message.status === "urgent") {
             this.setState({ emergency: message }, () => {
@@ -384,10 +393,12 @@ class MessageBoard extends React.Component {
         }
       })
       .on("Outdate", message => {
-        Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(res => {
-          console.log("Message effacé !", res.data);
-          this.setState({ messageList: res.data.reverse() });
-        });
+        Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(
+          res => {
+            console.log("Message effacé !", res.data);
+            this.setState({ messageList: res.data.reverse() });
+          }
+        );
         // console.log(
         //   "message",
         //   message,
@@ -406,6 +417,10 @@ class MessageBoard extends React.Component {
       });
   };
 
+  tick() {
+    this.setState({ date: Date.now() });
+  }
+
   /**
    * Add event listener
    */
@@ -414,6 +429,8 @@ class MessageBoard extends React.Component {
     if (!this.props.canScroll) {
       window.addEventListener("resize", this.resizeWindow.bind(this));
     }
+    // Clock
+    this.intervalID = setInterval(() => this.tick(), 1000);
   }
 
   /**
@@ -423,14 +440,16 @@ class MessageBoard extends React.Component {
     if (!this.props.canScroll) {
       window.removeEventListener("resize", this.resizeWindow.bind(this));
     }
+    clearInterval(this.intervalID);
   }
 
   render() {
     return (
       <div className="main-container">
-        {this.props.canScroll ? (
+        {true ? (
           <div id="navbar-board">
-            Messages reçus | {this.props.loginService}
+            <div>Messages reçus | {this.serviceName}</div>
+            <div>{moment(this.state.date).format("LT")}</div>
           </div>
         ) : (
           <div />
