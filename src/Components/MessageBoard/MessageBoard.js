@@ -252,11 +252,12 @@ class MessageBoard extends React.Component {
     );
   }
 
-  takeCare = () => {
+  takeCare = id => {
     console.log("done!");
     if (this.props.loginService === "") return 1;
     socket.emit("TakeCare", {
-      carer: this.props.loginService
+      carer: this.props.loginService,
+      targetMessage: id
     });
   };
 
@@ -274,7 +275,7 @@ class MessageBoard extends React.Component {
               alert(
                 "C'est noté. Le service '" + message.sender + "' vous remercie."
               );
-              this.takeCare();
+              this.takeCare(message._id);
             },
             className: "right-button-swipe-message"
           }

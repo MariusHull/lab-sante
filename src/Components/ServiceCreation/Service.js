@@ -39,7 +39,11 @@ class Service extends Component {
   };
 
   delete = service => {
-    if (!window.confirm("Etes-vous sûr de vouloir supprimer ce service ?")) {
+    if (
+      !window.confirm(
+        "Etes-vous sûr de vouloir supprimer ce service ? Cette action est irréversible!"
+      )
+    ) {
       return 1;
     }
     axios.delete(`${url}/services/${service._id}`, service).then(res => {

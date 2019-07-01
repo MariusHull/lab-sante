@@ -25,7 +25,7 @@ export default class AccueilUser extends Component {
         {services &&
           services.map((service, index) => {
             return (
-              <div className="col-4 col-services">
+              <div className="col-6 col-services">
                 <div className="card">
                   <div
                     className="card-header"
