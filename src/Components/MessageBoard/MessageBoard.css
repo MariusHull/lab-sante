@@ -192,7 +192,7 @@
 
 #navbar-board{
   background-color: navy;
-  height: 50px;
+  min-height: 50px;
   color: white;
   border-bottom-style: solid;
   border-bottom-width: 2px;
