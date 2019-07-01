@@ -53,6 +53,7 @@ class MessageServiceEnvoi extends Component {
   };
 
   onSubmit = e => {
+    const { hours, days } = this.state;
     const color =
       this.state.services.filter(
         service => service.name === this.state.sender
@@ -72,12 +73,15 @@ class MessageServiceEnvoi extends Component {
       receiver: this.state.receiver,
       body: this.state.message,
       updated_at: Date.now(),
-      status: this.state.status,
+      status: "information",
       color: color,
-      outdated: false
+      outdated: false,
+      expiration: (hours + 24 * days) * 3600 * 1000
     });
     this.setState({
-      message: ""
+      message: "",
+      hours: 0,
+      days: 0
     });
   };
 
@@ -227,7 +231,7 @@ class MessageServiceEnvoi extends Component {
             &nbsp; jour(s)
           </div>
         </div>
-        {sender !== "" && receiver !== "" && days !== 0 && hours !== 0 ? (
+        {sender !== "" && receiver !== "" && (days > 0 || hours > 0) ? (
           <button
             type="button"
             onClick={() => this.onSubmit()}
