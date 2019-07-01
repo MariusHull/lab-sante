@@ -247,11 +247,22 @@ class MessageBoard extends React.Component {
         </div>
         <div className="message-container">
           <div className="message-content">{message.body}</div>
-          {this.displayStatus(message.status)}
+          {this.displayStatus(message.status, message.manage)}
         </div>
       </div>
     );
   }
+
+  displayCarer = carer => {
+    return (
+      <div
+        className={"message-status-carer "}
+        onClick={() => window.alert(`Pris en charge par le service ${carer}`)}
+      >
+        <i className="fas fa-clipboard-check" style={{ fontSize: "200%" }} />
+      </div>
+    );
+  };
 
   takeCare = id => {
     console.log("done!");
@@ -290,7 +301,7 @@ class MessageBoard extends React.Component {
     );
   }
 
-  displayStatus(status) {
+  displayStatus(status, carer) {
     let logo = "";
     let cssClass;
 
@@ -313,6 +324,7 @@ class MessageBoard extends React.Component {
     }
     return (
       <div className={"message-status " + cssClass}>
+        {carer !== "" && this.displayCarer(carer)}
         <i className={logo} style={{ fontSize: "200%" }} />
       </div>
     );
@@ -395,7 +407,7 @@ class MessageBoard extends React.Component {
       .on("Outdate", message => {
         Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(
           res => {
-            console.log("Message effacé !", res.data);
+            console.log("Message effacé : ", message, res.data);
             this.setState({ messageList: res.data.reverse() });
           }
         );
@@ -414,6 +426,14 @@ class MessageBoard extends React.Component {
         //     messageList: messageList.filter(mess => mess._id !== message._id)
         //   });
         // }
+      })
+      .on("Caren", message => {
+        Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(
+          res => {
+            console.log("Message pris en charge : ", message, res.data);
+            this.setState({ messageList: res.data.reverse() });
+          }
+        );
       });
   };
 
