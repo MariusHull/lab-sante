@@ -67,7 +67,7 @@
   -moz-animation: BlinkAnimation 4s infinite; /* Fx 5+ */
   -o-animation: BlinkAnimation 4s infinite; /* Opera 12+ */
   animation: BlinkAnimation 4s infinite; /* IE 10+, Fx 29+ */
-  padding-right: 15px;
+  padding-right: 10px;
   padding-left: 0px;
 }
 
