@@ -176,11 +176,11 @@ class MessageEnvoi extends Component {
                 </div>
                 <div id="container-buttons">
                     <ButtonToolbar id="button-toolbar">
-                        <Button className="button-envoi" variant="primary" disabled={(!this.state.sender || this.state.sender.length == 0) || (!this.state.receiver || this.state.receiver.length == 0)} onClick={() => this.sendMessage("important")}>
+                        <Button className="button-envoi" variant="primary" disabled={(!this.state.sender || this.state.sender.length === 0) || (!this.state.receiver || this.state.receiver.length === 0)} onClick={() => this.sendMessage("important")}>
                             <i className="fas fa-exclamation-triangle"></i><div className="status">Important</div></Button>
-                        <Button className="button-envoi" variant="success" disabled={(!this.state.sender || this.state.sender.length == 0) || (!this.state.receiver || this.state.receiver.length == 0)} onClick={() => this.sendMessage("information")}>
+                        <Button className="button-envoi" variant="success" disabled={(!this.state.sender || this.state.sender.length === 0) || (!this.state.receiver || this.state.receiver.length === 0)} onClick={() => this.sendMessage("information")}>
                             <i className="fas fa-info-circle"></i><div className="status">Information</div></Button>
-                        <Button className="button-envoi" variant="danger" disabled={(!this.state.sender || this.state.sender.length == 0) || (!this.state.receiver || this.state.receiver.length == 0)} onClick={() => this.sendMessage("urgent")}>
+                        <Button className="button-envoi" variant="danger" disabled={(!this.state.sender || this.state.sender.length === 0) || (!this.state.receiver || this.state.receiver.length === 0)} onClick={() => this.sendMessage("urgent")}>
                             <i className="fas fa-ambulance"></i><div className="status">Urgent</div></Button>
                     </ButtonToolbar>
                 </div>
