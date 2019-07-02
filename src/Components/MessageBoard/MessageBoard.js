@@ -238,7 +238,6 @@ class MessageBoard extends React.Component {
           <div className="sender-transparent">
             <div
               className="sender-content"
-              style={{ fontWeight: 900, fontSize: 18 }}
             >
               {message.sender}
             </div>
@@ -259,7 +258,7 @@ class MessageBoard extends React.Component {
         className={"message-status-carer "}
         onClick={() => window.alert(`Pris en charge par le service ${carer}`)}
       >
-        <i className="fas fa-clipboard-check" style={{ fontSize: "200%" }} />
+        <i className="fas fa-clipboard-check fas-size" />
       </div>
     );
   };
@@ -325,7 +324,7 @@ class MessageBoard extends React.Component {
     return (
       <div className={"message-status " + cssClass}>
         {carer !== "" && this.displayCarer(carer)}
-        <i className={logo} style={{ fontSize: "200%" }} />
+        <i className={"fas-size " + logo} />
       </div>
     );
   }
@@ -465,7 +464,7 @@ class MessageBoard extends React.Component {
 
   render() {
     return (
-      <div className="main-container">
+      <div id="main-container">
         {true ? (
           <div id="navbar-board">
             <div>Messages reçus | {this.serviceName}</div>

@@ -119,4 +119,12 @@
     #message-envoi #button-toolbar .status{
         display: none;
     }
+
+    #message-envoi .text-area-message{
+        font-size: 130%;
+    }
+
+    #message-envoi #icon-microphone{
+        font-size: 300%
+    }
 }

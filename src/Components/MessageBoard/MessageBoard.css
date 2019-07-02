@@ -1,4 +1,4 @@
-.main-container {
+#main-container {
   /* background-image: url('../../assets/background.png'); */
   background-color: rgba(204, 213, 255, 0.445);
   /* background-size: 100% 100%; */
@@ -15,14 +15,14 @@
   justify-content: space-between;
 }
 
-.messages-container {
+#main-container .messages-container {
   padding: 15px 15px;
   /* overflow: scroll;
     -webkit-overflow-scrolling: touch; */
   /* min-height: 80vh; */
 }
 
-.old-messages-container {
+#main-container .old-messages-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -31,18 +31,18 @@
   position: relative;
 }
 
-.slider {
+#main-container .slider {
   position: relative;
   height: 100%;
   min-height: 110px;
   margin-top: 25px;
 }
 
-.slide {
+#main-container .slide {
   padding: 15px;
 }
 
-.old-message-title {
+#main-container .old-message-title {
   position: absolute;
   top: 5px;
   left: 10px;
@@ -51,7 +51,7 @@
   font-weight: bold;
 }
 
-.old-message-count {
+#main-container .old-message-count {
   position: absolute;
   top: 5px;
   right: 10px;
@@ -60,7 +60,7 @@
   font-weight: bold;
 }
 
-.emergency-status-blink {
+#main-container .emergency-status-blink {
   background-color: rgb(255, 176, 176);
   color: red;
   -webkit-animation: BlinkAnimation 4s infinite; /* Safari 4+ */
@@ -71,14 +71,14 @@
   padding-left: 0px;
 }
 
-.information-status {
+#main-container .information-status {
   color: green;
   background-color: rgba(0, 100, 0, 0.3);
   padding-right: 15px;
   padding-left: -5px;
 }
 
-.important-status {
+#main-container .important-status {
   color: navy;
   background-color: rgba(0, 0, 255, 0.2);
   padding-right: 15px;
@@ -98,7 +98,7 @@
   }
 }
 
-.message-container {
+#main-container .message-container {
   border-radius: 0px 8px 8px 0px;
   background-color: white;
   width: 100%;
@@ -106,7 +106,7 @@
   justify-content: space-between;
 }
 
-.message-content {
+#main-container .message-content {
   background-color: white;
   display: flex;
   align-items: center;
@@ -117,16 +117,16 @@
   font-family: "Montserrat";
 }
 
-.rc-swipeout-content,
-.right-button-swipe-message {
+#main-container .rc-swipeout-content,
+#main-container .right-button-swipe-message {
   background-color: rgb(63, 58, 58);
 }
-.right-button-swipe-message {
+#main-container .right-button-swipe-message {
   width: 150px;
   color: white;
 }
 
-.message {
+#main-container .message {
   background-color: white;
   /* margin-top: 10px; */
   min-height: 65px;
@@ -137,7 +137,7 @@
   border-radius: 10px;
 }
 
-.message-status {
+#main-container .message-status {
   min-width: 116px;
   display: flex;
   justify-content: center;
@@ -145,7 +145,7 @@
   border-radius: 0px 8px 8px 0px;
 }
 
-.message-status-carer {
+#main-container .message-status-carer {
   min-width: 60px;
   display: flex;
   justify-content: center;
@@ -153,12 +153,12 @@
   border-radius: 0px 8px 8px 0px;
 }
 
-.sender-container {
+#main-container .sender-container {
   width: 200px;
   border-radius: 8px 0px 0px 8px;
 }
 
-.sender-transparent {
+#main-container .sender-transparent {
   height: 100%;
   width: 100%;
   border-radius: 8px 0px 0px 8px;
@@ -169,18 +169,20 @@
   justify-content: center;
 }
 
-.sender-content {
+#main-container .sender-content {
   padding: 5px;
   text-align: center;
   /* font-family: 'Courier New', Courier, monospace; */
+  font-weight: 900; 
+  font-size: 18;
 }
 
-.date-message {
+#main-container .date-message {
   font-weight: bold;
   margin-left: 5px;
 }
 
-.emergency-container {
+#main-container .emergency-container {
   background: rgba(0, 0, 0, 0.8);
   position: absolute;
   top: 0;
@@ -191,7 +193,7 @@
   display: flex;
 }
 
-.emergency-popup {
+#main-container .emergency-popup {
   background-color: #ff8787;
   height: 80%;
   width: 80%;
@@ -214,4 +216,39 @@
   font-size: large;
   display: flex;
   justify-content: space-between;
+}
+
+#main-container .fas-size{
+  font-size: 200%
+}
+
+
+@media screen and (max-width: 640px) {
+  #main-container .main-container, #main-container .message-content{
+      font-size: 110%;
+    }
+
+    #main-container .fas-size{
+    font-size: 85%;
+  }
+
+  #main-container .sender-container {
+      width: 120px;
+      font-size: 60%;
+    }
+  
+    #main-container .message-status {
+      min-width: 55px;
+      padding: 10px;
+    }
+/* 
+    #main-container .message{
+      min-height: 0px;
+    } */
+
+    
+    #main-container .message-status-carer {
+      min-width: 0px;
+      margin-right: 10px;
+    }
 }

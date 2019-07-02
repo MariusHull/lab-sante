@@ -13,7 +13,7 @@ class MessageEnvoi extends Component {
         this.state = {
             modalShow: false,
             services: [],
-            supportVoice: 'SpeechRecognition' in window || "webkitSpeechRecognition" in window || "mozSpeechRecognition" in window || "msSpeechRecognition" in window,
+            supportVoice: "webkitSpeechRecognition" in window || "mozSpeechRecognition" in window || "msSpeechRecognition" in window || 'SpeechRecognition' in window,
             placeholder: "Ecrire un message...",
             recording: false,
             sender: null,
