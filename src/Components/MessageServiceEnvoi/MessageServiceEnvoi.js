@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./MessageServiceEnvoi.css";
 import Axios from "axios";
-import { DropdownButton, Dropdown, Form } from "react-bootstrap";
+//import { DropdownButton, Dropdown, Form } from "react-bootstrap";
 import { url } from "../../config.js";
 import socketIOClient from "socket.io-client";
-import ReactTooltip from "react-tooltip";
+//import ReactTooltip from "react-tooltip";
 
 const socket = socketIOClient(url);
 
@@ -280,7 +280,7 @@ class MessageServiceEnvoi extends Component {
   //   }
 
   render() {
-    const { message, services } = this.state;
+    //const { message, services } = this.state;
     return (
       <div>
         <div className="row1accueil bienvenue titretext">

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 import "./App.css";
-import FrontMessage from "./Components/FrontMessageEnvoi/front_message_envoi";
+//import FrontMessage from "./Components/FrontMessageEnvoi/front_message_envoi";
 import FrontAccueil from "./Components/FrontAccueil/front_accueil";
 import FrontIAO from "./Components/FrontIAO/front_iao";
 import MessageBoard from "./Components/MessageBoard/MessageBoard";
@@ -66,6 +66,7 @@ class App extends Component {
                       />
                     )}
                   />
+
                   <Route
                     path="/device/board"
                     render={props => (

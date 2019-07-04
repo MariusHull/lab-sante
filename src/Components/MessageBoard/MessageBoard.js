@@ -4,7 +4,7 @@ import "rc-swipeout/assets/index.css";
 // import 'rc-swipeout/assets/index'
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import sync from "css-animation-sync";
 import { url } from "../../config.js";
@@ -238,11 +238,7 @@ class MessageBoard extends React.Component {
       <div className="message" key={index} style={{ borderColor: color }}>
         <div className="sender-container" style={{ backgroundColor: color }}>
           <div className="sender-transparent">
-            <div
-              className="sender-content"
-            >
-              {message.sender}
-            </div>
+            <div className="sender-content">{message.sender}</div>
             <div>{"à " + moment(message.updated_at).format("LT")}</div>
           </div>
         </div>
@@ -266,8 +262,9 @@ class MessageBoard extends React.Component {
   };
 
   takeCare = id => {
-    console.log("done!");
-    if (this.serviceName === "") return 1;
+    //console.log("done!");
+    if (this.serviceName === "" || this.serviceName === "board") return 1;
+
     socket.emit("TakeCare", {
       carer: this.serviceName,
       targetMessage: id
@@ -277,6 +274,7 @@ class MessageBoard extends React.Component {
   displayMessageSwipe(message, index) {
     return (
       <Swipeout
+        key={index}
         style={{
           marginTop: "10px",
           borderRadius: "10px"
@@ -285,9 +283,6 @@ class MessageBoard extends React.Component {
           {
             text: "Je m'en occupe !",
             onPress: () => {
-              alert(
-                "C'est noté. Le service '" + message.sender + "' vous remercie."
-              );
               this.takeCare(message._id);
             },
             className: "right-button-swipe-message"
@@ -366,7 +361,6 @@ class MessageBoard extends React.Component {
   }
 
   componentWillMount = () => {
-    const { messageList } = this.state;
     if (this.props.loginService) {
       this.serviceName = this.props.loginService;
     } else {
@@ -429,15 +423,27 @@ class MessageBoard extends React.Component {
         // }
       })
       .on("Caren", message => {
+        if (this.props.match.type !== "full") return 1;
         Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(
           res => {
             console.log("Message pris en charge : ", message, res.data);
             this.setState({ messageList: res.data.reverse() });
+            toast.success(
+              "C'est noté. Le service '" + message.sender + "' vous remercie.",
+              {
+                position: "top-center",
+                autoClose: 20000
+              }
+            );
           }
         );
       })
       .on("Receive", service => {
-        if (service.emit === this.serviceName) {
+        console.log(service, this.serviceName);
+        if (
+          service.emit === this.serviceName &&
+          this.props.match.type === "full"
+        ) {
           toast.success(
             "Le service " + service.carer + " a pris en charge votre demande !",
             {
@@ -463,6 +469,20 @@ class MessageBoard extends React.Component {
     }
     // Clock
     this.intervalID = setInterval(() => this.tick(), 1000);
+    if (this.props.loginService) {
+      this.serviceName = this.props.loginService;
+    } else {
+      this.serviceName = this.props.location.pathname.split("/")[
+        this.props.location.pathname.split("/").length - 1
+      ];
+    }
+    // If not a good service, redirects to the correct page
+    Axios.get(`${url}/services/names/`).then(res => {
+      console.log("names : ", res.data);
+      if (!res.data.includes(this.serviceName)) {
+        this.props.history.push("/device/message");
+      }
+    });
   }
 
   /**
@@ -473,6 +493,7 @@ class MessageBoard extends React.Component {
       window.removeEventListener("resize", this.resizeWindow.bind(this));
     }
     clearInterval(this.intervalID);
+    socket.emit("disconnect");
   }
 
   render() {
