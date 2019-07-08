@@ -96,6 +96,14 @@ export default class AccueilUser extends Component {
                 Envoyer un message de service &nbsp;{" "}
                 <i class="far fa-envelope" />
               </button>
+              <br />
+              <button
+                type="button"
+                onClick={() => this.props.history.push("/textregister")}
+                className="col btn btn-outline-info"
+              >
+                Ajouter un numéro &nbsp; <i class="fas fa-mobile-alt" />
+              </button>
             </div>
           </div>
         </div>

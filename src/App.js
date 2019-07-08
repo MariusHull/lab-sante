@@ -16,6 +16,7 @@ import AccueilUser from "./Components/AccueilUser/AccueilUser";
 import SwipeableRoutes from "react-swipeable-routes";
 import MessageEnvoi from "./Components/MessageEnvoi/MessageEnvoi";
 import MessageServiceEnvoi from "./Components/MessageServiceEnvoi/MessageServiceEnvoi";
+import TextUser from "./Components/TextUser/TextUser";
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class App extends Component {
           <Route path="/board" render={props => <MessageBoard {...props} />} />
           <Route path="/service" component={Service} />
           <Route path="/messageService" component={MessageServiceEnvoi} />
+          <Route path="/textregister" component={TextUser} />
           <Route
             path="/device"
             component={() => (
