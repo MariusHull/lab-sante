@@ -19,19 +19,21 @@ export default class TextUser extends Component {
   }
 
   subscribe = () => {
-    const { number } = this.state;
-    axios
-      .post(`${url}/phones/subscribe/`, { seconds: 10, number: number })
-      .then(res => {
-        toast.success(
-          `Vous avez été inscrit. Vous recevrez les messages d'info vous concernant au : ${number}`,
-          {
-            position: "top-center",
-            autoClose: 20000
-          }
-        );
-        this.setState({ number: "" });
-      });
+    toast.error(`Erreur : Le service de SMS a été désactivé`, {
+      position: "top-center",
+      autoClose: 20000
+    });
+    // const { number } = this.state;
+    // axios.post(`${url}/phones/subscribe/`, { number: number }).then(res => {
+    //   toast.success(
+    //     `Vous avez été inscrit. Vous recevrez les messages d'info vous concernant au : ${number}`,
+    //     {
+    //       position: "top-center",
+    //       autoClose: 20000
+    //     }
+    //   );
+    //   this.setState({ number: "" });
+    // });
   };
 
   onChange = e => {
