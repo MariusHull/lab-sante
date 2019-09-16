@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../../Containers/Navbar";
 import "./front_iao.css";
-import socketIOClient from "socket.io-client";
-
-import { url } from '../../config.js';
-const socket = socketIOClient(url);
 
 export default class FrontIAO extends Component {
   constructor() {
@@ -92,13 +87,6 @@ export default class FrontIAO extends Component {
     };
   }
 
-  componentWillMount = () => {
-    socket.on("Message", mess => {
-      this.setState({ messageList: [mess, ...this.state.messageList] });
-      console.log(this.state.messageList);
-    });
-  };
-
   render() {
     const { nombrepatienturgences } = this.state;
     return (
@@ -110,10 +98,10 @@ export default class FrontIAO extends Component {
               {" "}
               {this.state.messageList
                 .filter(item => {
-                  return item.receiver == "IOA" || item.receiver == "all";
+                  return item.receiver === "IOA" || item.receiver === "all";
                 })
                 .filter(item => {
-                  return item.status == "important";
+                  return item.status === "important";
                 })
                 .slice(0, 1)
                 .map(message => (
@@ -200,7 +188,6 @@ export default class FrontIAO extends Component {
                       </div>
                     ))}
                   </div>
-
                 </div>
               </div>
             </div>

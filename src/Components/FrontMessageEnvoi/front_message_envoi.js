@@ -3,19 +3,17 @@ import socketIOClient from "socket.io-client";
 import "./front_message_envoi.css";
 import Navbar from "../../Containers/Navbar";
 import Axios from "axios";
-import { url } from '../../config.js';
+import { url } from "../../config.js";
 import { resolveSrv } from "dns";
-import 'react-animated-slider/build/horizontal.css';
-
+import "react-animated-slider/build/horizontal.css";
 
 const socket = socketIOClient(url);
-
 
 export default class FrontMessageEnvoi extends Component {
   constructor() {
     super();
     this.state = {
-      supportVoice: 'webkitSpeechRecognition' in window,
+      supportVoice: "webkitSpeechRecognition" in window,
       speaking: "false",
       ///
       color: "green",
@@ -79,22 +77,16 @@ export default class FrontMessageEnvoi extends Component {
     console.log("coucou");
   };
 
-  // adding the function
-  setColor = color => {
-    this.setState({ color });
-  };
-
-
   componentDidMount() {
     if (this.state.supportVoice) {
       const WebkitSpeechRecognition = window.webkitSpeechRecognition;
       this.recognition = new WebkitSpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
-      this.recognition.lang = this.props.lang || 'fr';
-      this.recognition.onresult = (event) => {
-        let interimTranscript = '';
-        let finalTranscript = '';
+      this.recognition.lang = this.props.lang || "fr";
+      this.recognition.onresult = event => {
+        let interimTranscript = "";
+        let finalTranscript = "";
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             finalTranscript += event.results[i][0].transcript;
@@ -118,22 +110,22 @@ export default class FrontMessageEnvoi extends Component {
 
   changeValue(event) {
     this.setState({
-      message: event.target.value,
+      message: event.target.value
     });
   }
 
   say() {
     if (this.state.supportVoice) {
-      this.setState({ speaking: "true" }, () => this.recognition.start())
+      this.setState({ speaking: "true" }, () => this.recognition.start());
     }
   }
 
   sayno() {
     if (this.state.speaking === "true") {
-      this.recognition.stop()
-      this.setState({ speaking: "false" })
+      this.recognition.stop();
+      this.setState({ speaking: "false" });
     } else {
-      return ("okok")
+      return "okok";
     }
   }
 
@@ -145,8 +137,6 @@ export default class FrontMessageEnvoi extends Component {
     const { messages, message, services } = this.state;
     return (
       <div className="general" enablemouseevents>
-
-
         {/* <Navbar /> */}
         {/* <button onClick={() => this.send()}>Change Color</button>
 
@@ -215,17 +205,23 @@ export default class FrontMessageEnvoi extends Component {
             </select>
           </div>
 
-
-
-
           <div className="row2">
             <div id="colonne3">
-              <button className="form-control3" onMouseDown={this.say.bind(this)} onMouseUp={this.sayno.bind(this)}>
-                <i className={this.state.speaking === "true"
-                  ? "fas fa-microphone-alt"
-                  : this.state.speaking === "false"
-                  ? "fas fa-microphone-alt-slash"                  :""}
-                  style={{ fontSize: "500%" }} />
+              <button
+                className="form-control3"
+                onMouseDown={this.say.bind(this)}
+                onMouseUp={this.sayno.bind(this)}
+              >
+                <i
+                  className={
+                    this.state.speaking === "true"
+                      ? "fas fa-microphone-alt"
+                      : this.state.speaking === "false"
+                      ? "fas fa-microphone-alt-slash"
+                      : ""
+                  }
+                  style={{ fontSize: "500%" }}
+                />
               </button>
             </div>
 
@@ -254,10 +250,12 @@ export default class FrontMessageEnvoi extends Component {
                   <div className="important-statusenvoi">
                     <i
                       class="fas fa-exclamation-triangle"
-                      style={{ fontSize: "200%" }}></i>
+                      style={{ fontSize: "200%" }}
+                    />
                   </div>
                   <div className="sous-importantbox">Important</div>
-                </div>              </button>
+                </div>{" "}
+              </button>
             </div>
             <div id="colonne6">
               <button
@@ -268,13 +266,9 @@ export default class FrontMessageEnvoi extends Component {
               >
                 <div className="urgentbox">
                   <div className="urgent-statusenvoi">
-                    <i
-                      class="fas fa-ambulance"
-                      style={{ fontSize: "200%" }}
-                    ></i>
+                    <i class="fas fa-ambulance" style={{ fontSize: "200%" }} />
                   </div>
-                  <div className="sous-urgentbox"
-                  >Urgent</div>
+                  <div className="sous-urgentbox">Urgent</div>
                 </div>
               </button>
             </div>
@@ -289,7 +283,8 @@ export default class FrontMessageEnvoi extends Component {
                   <div className="information-statusenvoi">
                     <i
                       class="fas fa-info-circle"
-                      style={{ fontSize: "200%" }}></i>
+                      style={{ fontSize: "200%" }}
+                    />
                   </div>
                   <div className="sous-infobox">Information</div>
                 </div>

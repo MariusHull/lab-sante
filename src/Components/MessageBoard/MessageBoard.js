@@ -1,11 +1,13 @@
 import React from "react";
-import Swipeout from 'rc-swipeout';
-import 'rc-swipeout/assets/index.css';
+import Swipeout from "rc-swipeout";
+import "rc-swipeout/assets/index.css";
 // import 'rc-swipeout/assets/index'
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
-import sync from 'css-animation-sync';
-import { url } from '../../config.js';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import sync from "css-animation-sync";
+import { url } from "../../config.js";
 import "./MessageBoard.css";
 import * as moment from "moment";
 import "moment/locale/fr";
@@ -17,12 +19,167 @@ class MessageBoard extends React.Component {
   constructor(props) {
     super(props);
     new sync("BlinkAnimation");
+    this.serviceName = null;
     moment.locale("fr");
     this.state = {
       emergency: null,
       oldMessageIndex: 0,
       numberRows: 10,
       messageList: [
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
+        {
+          sender: "IOA",
+          receiver: "Bocal",
+          body: "Aide demandée au Box 3.",
+          updated_at: Date.now(),
+          status: "important"
+        },
+        {
+          sender: "Bocal",
+          receiver: "IOA",
+          body: "Ceci est un test.",
+          updated_at: Date.now(),
+          status: "urgent"
+        },
         {
           sender: "IOA",
           receiver: "Bocal",
@@ -71,62 +228,76 @@ class MessageBoard extends React.Component {
   }
 
   resizeWindow() {
-    let numberRows = Math.trunc((window.innerHeight - 165) / 75);
+    let numberRows = Math.trunc((window.innerHeight - 185) / 80);
     this.setState({ numberRows: numberRows });
-    // console.log("numberRows", numberRows);
   }
 
-
   displayMessage(message, index) {
-    const color = message.color || "orange";
+    const color = message.color || "#DDDDDD";
     return (
       <div className="message" key={index} style={{ borderColor: color }}>
         <div className="sender-container" style={{ backgroundColor: color }}>
           <div className="sender-transparent">
-            <div
-              className="sender-content"
-              style={{ fontWeight: 900, fontSize: 18 }}
-            >
-              {message.sender}
-            </div>
+            <div className="sender-content">{message.sender}</div>
             <div>{"à " + moment(message.updated_at).format("LT")}</div>
           </div>
         </div>
         <div className="message-container">
           <div className="message-content">{message.body}</div>
-          {this.displayStatus(message.status)}
+          {this.displayStatus(message.status, message.manage)}
         </div>
       </div>
     );
   }
 
+  displayCarer = carer => {
+    return (
+      <div
+        className={"message-status-carer "}
+        onClick={() => window.alert(`Pris en charge par le service ${carer}`)}
+      >
+        <i className="fas fa-clipboard-check fas-size" />
+      </div>
+    );
+  };
+
+  takeCare = id => {
+    //console.log("done!");
+    if (this.serviceName === "" || this.serviceName === "board") return 1;
+
+    socket.emit("TakeCare", {
+      carer: this.serviceName,
+      targetMessage: id
+    });
+  };
+
   displayMessageSwipe(message, index) {
     return (
       <Swipeout
+        key={index}
         style={{
-          height: '100%', 
-          marginTop: '10px',
+          marginTop: "10px",
           borderRadius: "10px"
         }}
-        right={
-          [
-            {
-              text: "Je m'en occupe !",
-              onPress: () => alert("C'est noté. Le service '"+message.sender+"' vous remercie."),
-              className: "right-button-swipe-message"
-            }
-          ]}
+        right={[
+          {
+            text: "Je m'en occupe !",
+            onPress: () => {
+              this.takeCare(message._id);
+            },
+            className: "right-button-swipe-message"
+          }
+        ]}
         onOpen={() => {}}
         onClose={() => {}}
         autoClose
       >
         {this.displayMessage(message, index)}
-      </Swipeout >
-    )
+      </Swipeout>
+    );
   }
 
-
-  displayStatus(status) {
+  displayStatus(status, carer) {
     let logo = "";
     let cssClass;
 
@@ -149,7 +320,8 @@ class MessageBoard extends React.Component {
     }
     return (
       <div className={"message-status " + cssClass}>
-        <i className={logo} style={{ fontSize: "200%" }} />
+        {carer !== "" && this.displayCarer(carer)}
+        <i className={"fas-size " + logo} />
       </div>
     );
   }
@@ -189,73 +361,173 @@ class MessageBoard extends React.Component {
   }
 
   componentWillMount = () => {
+    if (this.props.loginService) {
+      this.serviceName = this.props.loginService;
+    } else {
+      this.serviceName = this.props.location.pathname.split("/")[
+        this.props.location.pathname.split("/").length - 1
+      ];
+    }
     // Getting all messages
-    const serviceName = this.props.location.pathname.split("/")[
-      this.props.location.pathname.split("/").length - 1
-    ];
-    this.setState({
-      serviceName: serviceName
+    // const serviceName = this.props.location.pathname.split("/")[
+    //   this.props.location.pathname.split("/").length - 1
+    // ];
+    // this.setState({
+    //   serviceName: serviceName
+    // });
+    Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(res => {
+      console.log(res.data);
+      // + ajouter trier par dates
+      this.setState({ messageList: res.data.reverse() });
     });
-    Axios.get(`${url}/messages/byreceiver/${serviceName}`).then(
-      res => {
-        console.log(res.data);
-        // + ajouter trier par dates
-        this.setState({ messageList: res.data.reverse() });
-      }
-    );
 
     // Listening to socket
-    socket.on("Message", message => {
-      console.log(message);
-      if (message.receiver === serviceName || message.receiver === "all") {
-        this.setState({ messageList: [message, ...this.state.messageList] });
-        if (message.status === "urgent") {
-          this.setState({ emergency: message }, () => {
-            setTimeout(() => {
-              this.setState({ emergency: null });
-            }, 5000);
-          });
+    socket
+      .on("Message", message => {
+        console.log(message);
+        if (
+          message.receiver === this.serviceName ||
+          message.receiver === "all"
+        ) {
+          this.setState({ messageList: [message, ...this.state.messageList] });
+          if (message.status === "urgent") {
+            this.setState({ emergency: message }, () => {
+              setTimeout(() => {
+                this.setState({ emergency: null });
+              }, 5000);
+            });
+          }
         }
-      }
-    });
+      })
+      .on("Outdate", message => {
+        Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(
+          res => {
+            console.log("Message effacé : ", message, res.data);
+            this.setState({ messageList: res.data.reverse() });
+          }
+        );
+        // console.log(
+        //   "message",
+        //   message,
+        //   "outdated : ",
+        //   messageList.filter(mess => mess._id === message._id)
+        // );
+        // if (messageList.filter(mess => mess._id === message._id).length > 0) {
+        //   console.log(
+        //     "outdated2 : ",
+        //     messageList.filter(mess => mess._id !== message._id)
+        //   );
+        //   this.setState({
+        //     messageList: messageList.filter(mess => mess._id !== message._id)
+        //   });
+        // }
+      })
+      .on("Caren", message => {
+        if (this.props.match.type !== "full") return 1;
+        Axios.get(`${url}/messages/byreceiver/${this.serviceName}`).then(
+          res => {
+            console.log("Message pris en charge : ", message, res.data);
+            this.setState({ messageList: res.data.reverse() });
+            toast.success(
+              "C'est noté. Le service '" + message.sender + "' vous remercie.",
+              {
+                position: "top-center",
+                autoClose: 20000
+              }
+            );
+          }
+        );
+      })
+      .on("Receive", service => {
+        console.log(service, this.serviceName);
+        if (
+          service.emit === this.serviceName &&
+          this.props.match.type === "full"
+        ) {
+          toast.success(
+            "Le service " + service.carer + " a pris en charge votre demande !",
+            {
+              position: "top-center",
+              autoClose: 20000
+            }
+          );
+        }
+      });
   };
+
+  tick() {
+    this.setState({ date: Date.now() });
+  }
 
   /**
    * Add event listener
    */
   componentDidMount() {
     this.resizeWindow();
-    window.addEventListener("resize", this.resizeWindow.bind(this));
+    if (!this.props.canScroll) {
+      window.addEventListener("resize", this.resizeWindow.bind(this));
+    }
+    // Clock
+    this.intervalID = setInterval(() => this.tick(), 1000);
+    if (this.props.loginService) {
+      this.serviceName = this.props.loginService;
+    } else {
+      this.serviceName = this.props.location.pathname.split("/")[
+        this.props.location.pathname.split("/").length - 1
+      ];
+    }
+    // If not a good service, redirects to the correct page
+    Axios.get(`${url}/services/names/`).then(res => {
+      console.log("names : ", res.data);
+      if (!res.data.includes(this.serviceName)) {
+        this.props.history.push("/device/message");
+      }
+    });
   }
 
   /**
    * Remove event listener
    */
   componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeWindow.bind(this));
+    if (!this.props.canScroll) {
+      window.removeEventListener("resize", this.resizeWindow.bind(this));
+    }
+    clearInterval(this.intervalID);
+    socket.emit("disconnect");
   }
 
   render() {
-    const { serviceName } = this.state;
     return (
-      <div>
-        {/* <div>{serviceName}</div> */}
-        <div className="main-container">
-          <div className="messages-container">
-            {this.state.messageList
-              .slice(0, this.props.canScroll ? this.state.messageList.length : this.state.numberRows)
-              .map((message, index) => {
-                return this.displayMessageSwipe(message, index);
-              })}
-            {this.state.emergency && !this.props.canScroll &&
-              this.displayEmergencyMessage(this.state.emergency)}
+      <div id="main-container">
+        {true ? (
+          <div id="navbar-board">
+            <div>Messages reçus | {this.serviceName}</div>
+            <div>{moment(this.state.date).format("LT")}</div>
           </div>
-          <div className="old-message-container-position">
-            {!this.props.canScroll && this.state.messageList.slice(this.state.numberRows).length > 0 &&
-              this.displayOldMessages(
-                this.state.messageList.slice(this.state.numberRows)
-              )}
-          </div>
+        ) : (
+          <div />
+        )}
+        <div className="messages-container scroll-device">
+          {this.state.messageList
+            .slice(
+              0,
+              this.props.canScroll
+                ? this.state.messageList.length
+                : this.state.numberRows
+            )
+            .map((message, index) => {
+              return this.displayMessageSwipe(message, index);
+            })}
+          {this.state.emergency &&
+            !this.props.canScroll &&
+            this.displayEmergencyMessage(this.state.emergency)}
+        </div>
+        <div className="old-message-container-position">
+          {!this.props.canScroll &&
+            this.state.messageList.slice(this.state.numberRows).length > 0 &&
+            this.displayOldMessages(
+              this.state.messageList.slice(this.state.numberRows)
+            )}
         </div>
       </div>
     );
